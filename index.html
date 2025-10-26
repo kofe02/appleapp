@@ -246,56 +246,42 @@
         }
         
         /* Color variations - gradient from strong to weak */
-        .scale-option:nth-child(1) .apple-body {
-            border-color: #ff6b6b;
-        }
+        .scale-option:nth-child(1) .apple-body,
         .scale-option:nth-child(1) .apple-body::before {
             border-color: #ff6b6b;
         }
         
-        .scale-option:nth-child(2) .apple-body {
-            border-color: #ff9999;
-        }
+        .scale-option:nth-child(2) .apple-body,
         .scale-option:nth-child(2) .apple-body::before {
             border-color: #ff9999;
         }
         
-        .scale-option:nth-child(3) .apple-body {
-            border-color: #ffcccc;
-        }
+        .scale-option:nth-child(3) .apple-body,
         .scale-option:nth-child(3) .apple-body::before {
             border-color: #ffcccc;
         }
         
-        .scale-option:nth-child(4) .apple-body {
-            border-color: #ffe4cc;
-        }
+        .scale-option:nth-child(4) .apple-body,
         .scale-option:nth-child(4) .apple-body::before {
             border-color: #ffe4cc;
         }
         
-        .scale-option:nth-child(5) .apple-body {
-            border-color: #ccf0e1;
-        }
+        .scale-option:nth-child(5) .apple-body,
         .scale-option:nth-child(5) .apple-body::before {
             border-color: #ccf0e1;
         }
         
-        .scale-option:nth-child(6) .apple-body {
-            border-color: #99e5c7;
-        }
+        .scale-option:nth-child(6) .apple-body,
         .scale-option:nth-child(6) .apple-body::before {
             border-color: #99e5c7;
         }
         
-        .scale-option:nth-child(7) .apple-body {
-            border-color: #00b894;
-        }
+        .scale-option:nth-child(7) .apple-body,
         .scale-option:nth-child(7) .apple-body::before {
             border-color: #00b894;
         }
         
-        /* Apple stem and leaf - adjust sizes */
+        /* Apple stem and leaf */
         .apple-stem {
             position: absolute;
             top: -8px;
@@ -305,12 +291,6 @@
             transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
             z-index: 10;
             transform-origin: bottom center;
-        }
-        
-        .scale-option:nth-child(3) .apple-stem,
-        .scale-option:nth-child(4) .apple-stem,
-        .scale-option:nth-child(5) .apple-stem {
-            transform: translateX(-50%) translateY(8px) scale(0.8);
         }
         
         .stem {
@@ -338,51 +318,40 @@
             transform: scale(1.05);
         }
         
-        .scale-option:hover .apple-body {
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-        
-        /* Checked state - gradual opacity */
+        /* Checked states with different colors */
         .scale-option:nth-child(1) input[type="radio"]:checked ~ .scale-circle .apple-body {
             background: linear-gradient(135deg, #ff6b6b, #ff8787);
             border-color: #ff6b6b;
-            animation: fillApple 0.4s ease;
         }
         
         .scale-option:nth-child(2) input[type="radio"]:checked ~ .scale-circle .apple-body {
             background: linear-gradient(135deg, rgba(255, 107, 107, 0.8), rgba(255, 135, 135, 0.8));
             border-color: #ff9999;
-            animation: fillApple 0.4s ease;
         }
         
         .scale-option:nth-child(3) input[type="radio"]:checked ~ .scale-circle .apple-body {
             background: linear-gradient(135deg, rgba(255, 107, 107, 0.5), rgba(255, 135, 135, 0.5));
             border-color: #ffcccc;
-            animation: fillApple 0.4s ease;
         }
         
         .scale-option:nth-child(4) input[type="radio"]:checked ~ .scale-circle .apple-body {
             background: linear-gradient(135deg, rgba(253, 203, 110, 0.5), rgba(255, 234, 167, 0.5));
             border-color: #ffe4cc;
-            animation: fillApple 0.4s ease;
         }
         
         .scale-option:nth-child(5) input[type="radio"]:checked ~ .scale-circle .apple-body {
             background: linear-gradient(135deg, rgba(0, 184, 148, 0.5), rgba(85, 239, 196, 0.5));
             border-color: #ccf0e1;
-            animation: fillApple 0.4s ease;
         }
         
         .scale-option:nth-child(6) input[type="radio"]:checked ~ .scale-circle .apple-body {
             background: linear-gradient(135deg, rgba(0, 184, 148, 0.8), rgba(85, 239, 196, 0.8));
             border-color: #99e5c7;
-            animation: fillApple 0.4s ease;
         }
         
         .scale-option:nth-child(7) input[type="radio"]:checked ~ .scale-circle .apple-body {
             background: linear-gradient(135deg, #00b894, #55efc4);
             border-color: #00b894;
-            animation: fillApple 0.4s ease;
         }
         
         .scale-option input[type="radio"]:checked ~ .scale-circle .apple-stem {
@@ -390,34 +359,9 @@
             animation: popStem 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
         
-        .scale-option:nth-child(1) input[type="radio"]:checked ~ .scale-circle .apple-stem,
-        .scale-option:nth-child(2) input[type="radio"]:checked ~ .scale-circle .apple-stem,
-        .scale-option:nth-child(6) input[type="radio"]:checked ~ .scale-circle .apple-stem,
-        .scale-option:nth-child(7) input[type="radio"]:checked ~ .scale-circle .apple-stem {
-            transform: translateX(-50%) translateY(0) rotate(0);
-        }
-        
-        .scale-option:nth-child(3) input[type="radio"]:checked ~ .scale-circle .apple-stem,
-        .scale-option:nth-child(4) input[type="radio"]:checked ~ .scale-circle .apple-stem,
-        .scale-option:nth-child(5) input[type="radio"]:checked ~ .scale-circle .apple-stem {
-            transform: translateX(-50%) translateY(0) rotate(0) scale(0.8);
-        }
-        
         .scale-option input[type="radio"]:checked ~ .scale-circle .apple-shape {
             transform: scale(1.15);
             animation: bounceApple 0.5s ease;
-        }
-        
-        @keyframes fillApple {
-            0% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(0.95);
-            }
-            100% {
-                transform: scale(1);
-            }
         }
         
         @keyframes popStem {
@@ -435,23 +379,15 @@
         }
         
         @keyframes bounceApple {
-            0% {
-                transform: scale(1);
-            }
-            30% {
-                transform: scale(0.9);
-            }
-            60% {
-                transform: scale(1.2);
-            }
-            100% {
-                transform: scale(1.15);
-            }
+            0% { transform: scale(1); }
+            30% { transform: scale(0.9); }
+            60% { transform: scale(1.2); }
+            100% { transform: scale(1.15); }
         }
         
         .navigation {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             margin-top: 40px;
         }
         
@@ -470,18 +406,9 @@
             color: #636e72;
         }
         
-        .btn-prev:hover {
-            background: #dfe6e9;
-        }
-        
         .btn-next {
             background: linear-gradient(135deg, #6c5ce7, #a29bfe);
             color: white;
-        }
-        
-        .btn-next:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(108, 92, 231, 0.3);
         }
         
         .btn:disabled {
@@ -526,18 +453,42 @@
             border-radius: 15px;
         }
         
-        .chart-container {
+        .visualization-container {
             margin: 40px 0;
             display: flex;
+            gap: 40px;
             justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
         }
         
-        canvas {
+        .chart-container {
+            flex: 1;
+            min-width: 300px;
             max-width: 400px;
         }
         
-        .hidden {
-            display: none;
+        #canvas3d {
+            width: 100%;
+            max-width: 400px;
+            height: 400px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            background: linear-gradient(180deg, #87CEEB 0%, #98FB98 100%);
+        }
+        
+        .apple-3d-container {
+            flex: 1;
+            min-width: 300px;
+            max-width: 400px;
+            text-align: center;
+        }
+        
+        .apple-3d-info {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 12px;
+            color: #636e72;
         }
         
         .page-indicator {
@@ -565,13 +516,141 @@
             transition: all 0.3s ease;
         }
         
-        .social-links a:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(29, 161, 242, 0.3);
-        }
-        
         .social-links a.instagram {
             background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+        }
+        
+        /* Mobile responsive styles */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            .subtitle {
+                font-size: 14px;
+            }
+            
+            .question {
+                font-size: 16px;
+                padding: 15px;
+            }
+            
+            .scale-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .scale-label {
+                text-align: center !important;
+                width: 100%;
+            }
+            
+            .scale-label.mobile-top {
+                order: 0;
+            }
+            
+            .scale-label.mobile-bottom {
+                order: 0;
+            }
+            
+            .scale-options {
+                order: -1;
+                width: 80%;
+                gap: 5px;
+                padding: 10px 0;
+            }
+            
+            /* Adjust apple sizes for mobile */
+            .scale-option:nth-child(1),
+            .scale-option:nth-child(7) {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .scale-option:nth-child(2),
+            .scale-option:nth-child(6) {
+                width: 38px;
+                height: 38px;
+            }
+            
+            .scale-option:nth-child(3),
+            .scale-option:nth-child(5) {
+                width: 36px;
+                height: 36px;
+            }
+            
+            .scale-option:nth-child(4) {
+                width: 34px;
+                height: 34px;
+            }
+            
+            .scale-option:nth-child(1) .apple-shape,
+            .scale-option:nth-child(7) .apple-shape {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .scale-option:nth-child(2) .apple-shape,
+            .scale-option:nth-child(6) .apple-shape {
+                width: 36px;
+                height: 36px;
+            }
+            
+            .scale-option:nth-child(3) .apple-shape,
+            .scale-option:nth-child(5) .apple-shape {
+                width: 34px;
+                height: 34px;
+            }
+            
+            .scale-option:nth-child(4) .apple-shape {
+                width: 32px;
+                height: 32px;
+            }
+            
+            .navigation {
+                gap: 10px;
+            }
+            
+            .btn {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+            
+            .result-title {
+                font-size: 24px;
+            }
+            
+            .apple-type {
+                font-size: 36px;
+            }
+            
+            .result-description {
+                font-size: 16px;
+                padding: 20px;
+            }
+            
+            .visualization-container {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            #canvas3d {
+                height: 300px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .scale-options {
+                gap: 3px;
+            }
+            
+            .apple-type {
+                font-size: 28px;
+            }
         }
     </style>
 </head>
@@ -594,8 +673,7 @@
         </div>
         
         <div class="navigation">
-            <button class="btn btn-prev" id="prevBtn" onclick="previousPage()">前へ</button>
-            <button class="btn btn-next" id="nextBtn" onclick="nextPage()">次へ</button>
+            <button class="btn btn-next" id="nextBtn" onclick="nextPage()">診断結果へ</button>
         </div>
         
         <div class="page-indicator" id="pageIndicator"></div>
@@ -604,8 +682,17 @@
             <h2 class="result-title">診断結果</h2>
             <div class="apple-type" id="appleType"></div>
             <div class="result-description" id="resultDescription"></div>
-            <div class="chart-container">
-                <canvas id="radarChart"></canvas>
+            <div class="visualization-container">
+                <div class="chart-container">
+                    <canvas id="radarChart"></canvas>
+                </div>
+                <div class="apple-3d-container">
+                    <canvas id="canvas3d"></canvas>
+                    <div class="apple-3d-info">
+                        ドラッグして回転・スクロールでズーム<br>
+                        あなたが選んだりんごで作った、あなただけのりんごの木です🍎
+                    </div>
+                </div>
             </div>
             <div class="social-links">
                 <a href="https://twitter.com" target="_blank">X (Twitter)</a>
@@ -615,74 +702,28 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
         const questions = [
-            // Red⇔Green questions (1-12)
+            // Red⇔Green questions (1-3)
             { text: "あなたのイメージカラーはどっちに近い？", left: "赤やオレンジ", right: "青や緑", type: "RG" },
             { text: "農業をするとしたら、どっちが自分に合っていると感じる？", left: "みんなで協力する農作業", right: "1人で集中する農作業", type: "RG" },
             { text: "りんごを食べるとしたら、どこで食べたい？", left: "外でピクニック気分で", right: "家の中でゆっくり", type: "RG" },
-            { text: "一人でいるより、人と一緒にいる方が好き", left: "そう思う", right: "そう思わない", type: "RG" },
-            { text: "定期的に新しい友人を作ることを心がけている", left: "そう思う", right: "そう思わない", type: "RG" },
-            { text: "人脈を広げたり、見知らぬ人に自分を売り込んだりすることは大変だと感じる", left: "そう思わない", right: "そう思う", type: "RG" },
-            { text: "自分が興味のある人のところに行って話しかけるのは簡単", left: "そう思う", right: "そう思わない", type: "RG" },
-            { text: "チームで何かをするのが好き", left: "そう思う", right: "そう思わない", type: "RG" },
-            { text: "趣味やアクティビティは、グループで行うものよりも一人で行うものの方が楽しい", left: "そう思わない", right: "そう思う", type: "RG" },
-            { text: "社交の場では大抵、最初に他の人が自己紹介するのを待つ", left: "そう思わない", right: "そう思う", type: "RG" },
-            { text: "友達から活発で社交的であると言われる", left: "そう思う", right: "そう思わない", type: "RG" },
-            { text: "電話はかけないようにしている", left: "そう思わない", right: "そう思う", type: "RG" },
             
-            // Sweet⇔Tart questions (13-27)
+            // Sweet⇔Tart questions (4-6)
             { text: "りんごを食べるとしたら、どっちが好み？", left: "焼きリンゴ", right: "生のりんご", type: "ST" },
             { text: "りんごのスイーツを食べるとしたら、どっちの方が好き？", left: "りんごのコンポート", right: "りんごのシャーベット", type: "ST" },
-            { text: "お腹がペコぺコだ…目の前に「食べてはいけない」と書かれたりんごが！", left: "少しなら食べても大丈夫", right: "なるべく食べないようにする", type: "ST" },
-            { text: "通常、事実に基づいた議論よりも、感情的に響くものに説得力を感じる", left: "そう思う", right: "そう思わない", type: "ST" },
-            { text: "数字やデータより、人々の物語や感情の方が力強く響く", left: "そう思う", right: "そう思わない", type: "ST" },
-            { text: "行動方針を決めるとき、他の人の感情より事実を大切にする", left: "そう思わない", right: "そう思う", type: "ST" },
-            { text: "完全に正直であることよりも、思いやりを持つことを優先する", left: "そう思う", right: "そう思わない", type: "ST" },
-            { text: "感情的な面を多少無視してでも、効率的な決断を好む", left: "そう思わない", right: "そう思う", type: "ST" },
-            { text: "意見の相違がある場合、他人の感情を守ることよりも自分の意見を証明することを優先する", left: "そう思わない", right: "そう思う", type: "ST" },
-            { text: "感情的な議論には簡単に動かされない", left: "そう思わない", right: "そう思う", type: "ST" },
-            { text: "倫理的なジレンマについて議論するのが好き", left: "そう思わない", right: "そう思う", type: "ST" },
-            { text: "議論がとても理論的になると、退屈に感じたり興味を失ったりする", left: "そう思う", right: "そう思わない", type: "ST" },
-            { text: "事実と感情が相反する場合、たいていは自身の心に従う", left: "そう思う", right: "そう思わない", type: "ST" },
-            { text: "通常、感情的な印象よりも客観的な事実に基づいて選択する", left: "そう思わない", right: "そう思う", type: "ST" },
-            { text: "感情をコントロールするのではなく、感情にコントロールされている", left: "そう思う", right: "そう思わない", type: "ST" },
+            { text: "お腹がペコぺコだ…目の前に「食べてはいけない」と書かれたりんごが！あなたならどうする？", left: "少しなら食べても大丈夫", right: "なるべく食べないようにする", type: "ST" },
             
-            // Early⇔Late questions (28-42)
+            // Early⇔Late questions (7-9)
             { text: "りんごの見た目なら、どっちが好み？", left: "小さくて形のきれいなりんご", right: "ひときわ大きくて目立つりんご", type: "EL" },
             { text: "めんどくさくて大変な作業があったとしたら、あなたはどうする？", left: "先にやるタイプ", right: "あと回しにするタイプ", type: "EL" },
             { text: "りんごの皮むきを頼まれちゃった！そんな時、あなたならどうする？", left: "とにかくスピーディーにやる", right: "慎重かつ丁寧にやる", type: "EL" },
-            { text: "生活と仕事のスペースは清潔で整理整頓されている", left: "そう思う", right: "そう思わない", type: "EL" },
-            { text: "仕事に優先順位をつけ、効率的に計画を立て、期限よりかなり前に完了させることが多い", left: "そう思う", right: "そう思わない", type: "EL" },
-            { text: "予定表やリストなどの整理・管理ツールを使うのが好き", left: "そう思う", right: "そう思わない", type: "EL" },
-            { text: "何の予定もなく一日を過ごすことがよくある", left: "そう思わない", right: "そう思う", type: "EL" },
-            { text: "やらなければいけないことをしてからリラックスするのが好き", left: "そう思う", right: "そう思わない", type: "EL" },
-            { text: "ギリギリのタイミングで最後にやっと何かを行うことが多い", left: "そう思わない", right: "そう思う", type: "EL" },
-            { text: "仕事や勉強のスケジュールを一定に保つことが難しいと思う", left: "そう思わない", right: "そう思う", type: "EL" },
-            { text: "日々の「やることリスト(ToDoリスト）」を作ることが好き", left: "そう思う", right: "そう思わない", type: "EL" },
-            { text: "計画が途中で中断された場合、最も重要なのは、できる限り迅速に再び軌道に乗せること", left: "そう思う", right: "そう思わない", type: "EL" },
-            { text: "仕事のスタイルは『きちんと着実に努力する』ではなく『自然発生するエネルギー爆発の連続』に近い", left: "そう思わない", right: "そう思う", type: "EL" },
-            { text: "いずれかのステップを省くことなく、順序を追って、念入りに行うほう", left: "そう思う", right: "そう思わない", type: "EL" },
-            { text: "締め切りを守るのが苦手", left: "そう思わない", right: "そう思う", type: "EL" },
             
-            // Famous⇔Unique questions (43-59)
+            // Famous⇔Unique questions (10-12)
             { text: "あなたの洋服やファッションはどっちに近い？", left: "とにかく流行にあわせておこう…派", right: "こだわりをもって選びたい…派", type: "FU" },
             { text: "旅行に行くことになった！そんな時、あなたはどっちに行きたい？", left: "有名な観光スポットを楽しむ", right: "山奥の珍しい温泉街でゆっくり", type: "FU" },
-            { text: "もしりんごを育てるとしたら、どっちの師匠に弟子入りする？", left: "とにかく沢山育てて売るぜ！ガッツ系", right: "自分の好きな品種しか育てない！職人系", type: "FU" },
-            { text: "単純明快なアイデアよりも、複雑で斬新なアイデアのほうがワクワクする", left: "そう思わない", right: "そう思う", type: "FU" },
-            { text: "クリエイティブな作品の様々な解釈の仕方に関する議論には興味はない", left: "そう思う", right: "そう思わない", type: "FU" },
-            { text: "未経験の新しいアプローチを試すことを楽しむ", left: "そう思わない", right: "そう思う", type: "FU" },
-            { text: "新しい経験や知識分野を積極的に追求する", left: "そう思わない", right: "そう思う", type: "FU" },
-            { text: "生計を立てるために架空の物語を書いているご自身を想像することは不可能", left: "そう思う", right: "そう思わない", type: "FU" },
-            { text: "文章を書くなど、さまざまな創造的表現に惹かれる", left: "そう思わない", right: "そう思う", type: "FU" },
-            { text: "馴染みのないアイデアや視点を探求することを楽しんでいる", left: "そう思わない", right: "そう思う", type: "FU" },
-            { text: "将来的な世界動向の理論を議論することには、あまり興味を持つことはない", left: "そう思う", right: "そう思わない", type: "FU" },
-            { text: "抽象的な哲学的問題についてじっくり考えるのは時間の無駄だと思う", left: "そう思う", right: "そう思わない", type: "FU" },
-            { text: "具体的な手順を踏むよりも、創造的な解決策を考える必要がある仕事を好む", left: "そう思わない", right: "そう思う", type: "FU" },
-            { text: "ほぼいつも単独で作業する仕事につくことを望んでいる", left: "そう思わない", right: "そう思う", type: "FU" },
-            { text: "静かな隠れ家のような場所より、人が沢山いて賑やかな雰囲気の方が好き", left: "そう思う", right: "そう思わない", type: "FU" },
-            { text: "選択をする際は、論理的な推論よりも感情的な直感に頼る傾向がある", left: "そう思わない", right: "そう思う", type: "FU" },
-            { text: "ある決断が自身にとって正しいと感じれば、それ以上の証拠を必要とせずに行動することが多い", left: "そう思わない", right: "そう思う", type: "FU" }
+            { text: "もしりんごを育てるとしたら、どっちの師匠に弟子入りする？", left: "とにかく沢山育てて売るぜ！ガッツ系", right: "自分の好きな品種しか育てない！職人系", type: "FU" }
         ];
         
         const appleTypes = {
@@ -704,22 +745,35 @@
             "GUTL": { name: "はつ恋ぐりん", description: "鮮烈な酸味とシャープな香りが特徴の、新しい品種でニッチなファンが多いりんごは、きっとあなたにぴったりのはず！" }
         };
         
+        // Define apple colors for each position
+        const appleColors = [
+            '#ff6b6b', // Position 1 - Strong red
+            '#ff9999', // Position 2 - Medium red
+            '#ffcccc', // Position 3 - Light red
+            '#ffe4cc', // Position 4 - Yellow
+            '#ccf0e1', // Position 5 - Light green
+            '#99e5c7', // Position 6 - Medium green
+            '#00b894'  // Position 7 - Strong green
+        ];
+        
+        const appleSizes = [1.0, 0.9, 0.8, 0.7, 0.8, 0.9, 1.0]; // Size multipliers for each position
+        
         let currentPage = 0;
-        const questionsPerPage = 7;
+        const questionsPerPage = 12;
         const totalPages = Math.ceil(questions.length / questionsPerPage);
-        let answers = new Array(questions.length).fill(null); // No default selection
+        let answers = new Array(questions.length).fill(null);
         
         function renderQuestions() {
             const start = currentPage * questionsPerPage;
             const end = Math.min(start + questionsPerPage, questions.length);
             const container = document.getElementById('questionContainer');
+            const isMobile = window.innerWidth <= 768;
             container.innerHTML = '';
             
             for (let i = start; i < end; i++) {
                 const q = questions[i];
                 const questionDiv = document.createElement('div');
                 
-                // Check if previous questions are answered
                 let isDisabled = false;
                 for (let j = 0; j < i; j++) {
                     if (answers[j] === null) {
@@ -729,31 +783,60 @@
                 }
                 
                 questionDiv.className = isDisabled ? 'question disabled' : 'question';
-                questionDiv.innerHTML = `
-                    <span class="question-number">Q${i + 1}.</span> ${q.text}
-                    <div class="scale-container">
-                        <div class="scale-label left">${q.left}</div>
-                        <div class="scale-options">
-                            ${[1, 2, 3, 4, 5, 6, 7].map(value => `
-                                <div class="scale-option">
-                                    <input type="radio" id="q${i}_${value}" name="q${i}" value="${value}" 
-                                           ${answers[i] === value ? 'checked' : ''}
-                                           onchange="saveAnswer(${i}, ${value})">
-                                    <label for="q${i}_${value}" class="scale-circle">
-                                        <div class="apple-shape">
-                                            <div class="apple-body"></div>
-                                            <div class="apple-stem">
-                                                <div class="stem"></div>
-                                                <div class="leaf"></div>
+                
+                if (isMobile) {
+                    questionDiv.innerHTML = `
+                        <span class="question-number">Q${i + 1}.</span> ${q.text}
+                        <div class="scale-container">
+                            <div class="scale-label left mobile-top">${q.left}</div>
+                            <div class="scale-options">
+                                ${[1, 2, 3, 4, 5, 6, 7].map(value => `
+                                    <div class="scale-option">
+                                        <input type="radio" id="q${i}_${value}" name="q${i}" value="${value}" 
+                                               ${answers[i] === value ? 'checked' : ''}
+                                               onchange="saveAnswer(${i}, ${value})">
+                                        <label for="q${i}_${value}" class="scale-circle">
+                                            <div class="apple-shape">
+                                                <div class="apple-body"></div>
+                                                <div class="apple-stem">
+                                                    <div class="stem"></div>
+                                                    <div class="leaf"></div>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </label>
-                                </div>
-                            `).join('')}
+                                        </label>
+                                    </div>
+                                `).join('')}
+                            </div>
+                            <div class="scale-label right mobile-bottom">${q.right}</div>
                         </div>
-                        <div class="scale-label right">${q.right}</div>
-                    </div>
-                `;
+                    `;
+                } else {
+                    questionDiv.innerHTML = `
+                        <span class="question-number">Q${i + 1}.</span> ${q.text}
+                        <div class="scale-container">
+                            <div class="scale-label left">${q.left}</div>
+                            <div class="scale-options">
+                                ${[1, 2, 3, 4, 5, 6, 7].map(value => `
+                                    <div class="scale-option">
+                                        <input type="radio" id="q${i}_${value}" name="q${i}" value="${value}" 
+                                               ${answers[i] === value ? 'checked' : ''}
+                                               onchange="saveAnswer(${i}, ${value})">
+                                        <label for="q${i}_${value}" class="scale-circle">
+                                            <div class="apple-shape">
+                                                <div class="apple-body"></div>
+                                                <div class="apple-stem">
+                                                    <div class="stem"></div>
+                                                    <div class="leaf"></div>
+                                                </div>
+                                            </div>
+                                        </label>
+                                    </div>
+                                `).join('')}
+                            </div>
+                            <div class="scale-label right">${q.right}</div>
+                        </div>
+                    `;
+                }
                 container.appendChild(questionDiv);
             }
             
@@ -763,12 +846,10 @@
         
         function saveAnswer(questionIndex, value) {
             answers[questionIndex] = value;
-            // Re-render questions to update disabled state
             renderQuestions();
         }
         
         function updateNavigation() {
-            const prevBtn = document.getElementById('prevBtn');
             const nextBtn = document.getElementById('nextBtn');
             const pageIndicator = document.getElementById('pageIndicator');
             
@@ -791,7 +872,6 @@
         }
         
         function nextPage() {
-            // Check if all questions on current page are answered
             const start = currentPage * questionsPerPage;
             const end = Math.min(start + questionsPerPage, questions.length);
             let allAnswered = true;
@@ -824,7 +904,6 @@
         }
         
         function calculateResult() {
-            // Check if all questions are answered
             const unanswered = answers.filter(a => a === null).length;
             if (unanswered > 0) {
                 alert(`まだ ${unanswered} 個の質問に回答していません。すべての質問に回答してください。`);
@@ -840,7 +919,7 @@
             
             questions.forEach((q, i) => {
                 const value = answers[i];
-                const normalizedValue = (value - 4) / 3; // -1 to 1
+                const normalizedValue = (value - 4) / 3;
                 
                 switch(q.type) {
                     case 'RG':
@@ -862,7 +941,6 @@
                 }
             });
             
-            // Determine type
             const color = scores.R > scores.G ? 'R' : 'G';
             const popularity = scores.F > scores.U ? 'F' : 'U';
             const taste = scores.S > scores.T ? 'S' : 'T';
@@ -874,9 +952,152 @@
             };
         }
         
+        function create3DAppleTree() {
+            const canvas = document.getElementById('canvas3d');
+            const scene = new THREE.Scene();
+            scene.background = new THREE.Color(0x87CEEB);
+            
+            const camera = new THREE.PerspectiveCamera(75, canvas.width / canvas.height, 0.1, 1000);
+            camera.position.set(0, 5, 15);
+            
+            const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true });
+            renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+            renderer.shadowMap.enabled = true;
+            
+            // Lighting
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+            scene.add(ambientLight);
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+            directionalLight.position.set(10, 20, 10);
+            directionalLight.castShadow = true;
+            scene.add(directionalLight);
+            
+            // Ground
+            const groundGeometry = new THREE.CircleGeometry(10, 32);
+            const groundMaterial = new THREE.MeshLambertMaterial({ color: 0x98FB98 });
+            const ground = new THREE.Mesh(groundGeometry, groundMaterial);
+            ground.rotation.x = -Math.PI / 2;
+            ground.position.y = -2;
+            ground.receiveShadow = true;
+            scene.add(ground);
+            
+            // Tree trunk
+            const trunkGeometry = new THREE.CylinderGeometry(0.5, 0.8, 4, 8);
+            const trunkMaterial = new THREE.MeshLambertMaterial({ color: 0x8B4513 });
+            const trunk = new THREE.Mesh(trunkGeometry, trunkMaterial);
+            trunk.position.y = 0;
+            trunk.castShadow = true;
+            scene.add(trunk);
+            
+            // Tree crown (leaves)
+            const crownGeometry = new THREE.SphereGeometry(3.5, 16, 16);
+            const crownMaterial = new THREE.MeshLambertMaterial({ color: 0x228B22 });
+            const crown = new THREE.Mesh(crownGeometry, crownMaterial);
+            crown.position.y = 3.5;
+            crown.scale.y = 0.8;
+            crown.castShadow = true;
+            scene.add(crown);
+            
+            // Add apples based on user answers
+            const appleGroup = new THREE.Group();
+            let appleCount = 0;
+            
+            answers.forEach((answer, index) => {
+                if (answer !== null) {
+                    const position = answer - 1; // Convert 1-7 to 0-6
+                    const color = appleColors[position];
+                    const size = appleSizes[position] * 0.3;
+                    
+                    // Random position on tree
+                    const theta = Math.random() * Math.PI * 2;
+                    const phi = Math.random() * Math.PI * 0.5 + Math.PI * 0.25;
+                    const radius = 2.5 + Math.random() * 1.5;
+                    
+                    const x = radius * Math.sin(phi) * Math.cos(theta);
+                    const y = radius * Math.cos(phi) + 3;
+                    const z = radius * Math.sin(phi) * Math.sin(theta);
+                    
+                    // Apple
+                    const appleGeometry = new THREE.SphereGeometry(size, 16, 16);
+                    const appleMaterial = new THREE.MeshPhongMaterial({ 
+                        color: color,
+                        shininess: 100,
+                        specular: 0x222222
+                    });
+                    const apple = new THREE.Mesh(appleGeometry, appleMaterial);
+                    apple.position.set(x, y, z);
+                    apple.scale.y = 1.1;
+                    apple.castShadow = true;
+                    
+                    // Add stem
+                    const stemGeometry = new THREE.CylinderGeometry(0.02, 0.02, 0.1, 4);
+                    const stemMaterial = new THREE.MeshLambertMaterial({ color: 0x654321 });
+                    const stem = new THREE.Mesh(stemGeometry, stemMaterial);
+                    stem.position.set(x, y + size + 0.05, z);
+                    
+                    appleGroup.add(apple);
+                    appleGroup.add(stem);
+                    appleCount++;
+                }
+            });
+            
+            scene.add(appleGroup);
+            
+            // Mouse controls
+            let mouseX = 0;
+            let mouseY = 0;
+            let targetRotationX = 0;
+            let targetRotationY = 0;
+            
+            canvas.addEventListener('mousemove', (e) => {
+                const rect = canvas.getBoundingClientRect();
+                mouseX = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+                mouseY = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+            });
+            
+            // Touch controls for mobile
+            canvas.addEventListener('touchmove', (e) => {
+                if (e.touches.length === 1) {
+                    const rect = canvas.getBoundingClientRect();
+                    const touch = e.touches[0];
+                    mouseX = ((touch.clientX - rect.left) / rect.width) * 2 - 1;
+                    mouseY = -((touch.clientY - rect.top) / rect.height) * 2 + 1;
+                }
+            });
+            
+            // Animation
+            function animate() {
+                requestAnimationFrame(animate);
+                
+                targetRotationY = mouseX * Math.PI * 0.5;
+                targetRotationX = mouseY * Math.PI * 0.2;
+                
+                appleGroup.rotation.y += (targetRotationY - appleGroup.rotation.y) * 0.05;
+                crown.rotation.y = appleGroup.rotation.y * 0.3;
+                
+                // Gentle floating animation for apples
+                appleGroup.children.forEach((child, i) => {
+                    if (child.geometry instanceof THREE.SphereGeometry) {
+                        child.position.y += Math.sin(Date.now() * 0.001 + i) * 0.002;
+                    }
+                });
+                
+                renderer.render(scene, camera);
+            }
+            
+            // Handle resize
+            window.addEventListener('resize', () => {
+                camera.aspect = canvas.clientWidth / canvas.clientHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+            });
+            
+            animate();
+        }
+        
         function showResults() {
             const result = calculateResult();
-            if (!result) return; // Exit if not all questions are answered
+            if (!result) return;
             
             const appleType = appleTypes[result.type];
             
@@ -945,10 +1166,14 @@
                 }
             });
             
+            // Create 3D apple tree
+            create3DAppleTree();
+            
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
         
         // Initialize
+        window.addEventListener('resize', renderQuestions);
         renderQuestions();
     </script>
 </body>
