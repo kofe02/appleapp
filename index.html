@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,28 +11,28 @@
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             padding: 20px;
         }
-        
+
         .container {
             max-width: 800px;
             margin: 0 auto;
             background: white;
             border-radius: 20px;
             padding: 40px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
         }
-        
+
         .header {
             text-align: center;
             margin-bottom: 40px;
         }
-        
+
         .logo {
             display: flex;
             align-items: center;
@@ -39,7 +40,7 @@
             gap: 10px;
             margin-bottom: 20px;
         }
-        
+
         .logo-icon {
             width: 50px;
             height: 50px;
@@ -50,19 +51,19 @@
             justify-content: center;
             font-size: 30px;
         }
-        
+
         h1 {
             color: #2d3436;
             font-size: 28px;
             font-weight: 700;
         }
-        
+
         .subtitle {
             color: #636e72;
             margin-top: 10px;
             font-size: 16px;
         }
-        
+
         .progress-bar {
             width: 100%;
             height: 8px;
@@ -71,18 +72,18 @@
             margin: 30px 0;
             overflow: hidden;
         }
-        
+
         .progress-fill {
             height: 100%;
             background: linear-gradient(90deg, #6c5ce7, #a29bfe);
             border-radius: 10px;
             transition: width 0.3s ease;
         }
-        
+
         .question-container {
             margin: 30px 0;
         }
-        
+
         .question {
             font-size: 18px;
             color: #2d3436;
@@ -92,18 +93,18 @@
             border-radius: 10px;
             border-left: 4px solid #6c5ce7;
         }
-        
+
         .question-number {
             color: #6c5ce7;
             font-weight: bold;
             margin-right: 10px;
         }
-        
+
         .question.disabled {
             opacity: 0.3;
             position: relative;
         }
-        
+
         .scale-container {
             display: flex;
             justify-content: space-between;
@@ -113,62 +114,62 @@
             background: white;
             border-radius: 10px;
         }
-        
+
         .scale-label {
             font-size: 14px;
             color: #636e72;
             min-width: 100px;
         }
-        
+
         .scale-label.left {
             text-align: left;
             color: #ff6b6b;
             font-weight: 600;
         }
-        
+
         .scale-label.right {
             text-align: right;
             color: #00b894;
             font-weight: 600;
         }
-        
+
         .scale-options {
             display: flex;
             gap: 15px;
             align-items: center;
             justify-content: center;
         }
-        
+
         .scale-option {
             position: relative;
             width: 50px;
             height: 50px;
         }
-        
+
         /* Size variations */
         .scale-option:nth-child(1),
         .scale-option:nth-child(7) {
             width: 50px;
             height: 50px;
         }
-        
+
         .scale-option:nth-child(2),
         .scale-option:nth-child(6) {
             width: 45px;
             height: 45px;
         }
-        
+
         .scale-option:nth-child(3),
         .scale-option:nth-child(5) {
             width: 40px;
             height: 40px;
         }
-        
+
         .scale-option:nth-child(4) {
             width: 35px;
             height: 35px;
         }
-        
+
         .scale-option input[type="radio"] {
             position: absolute;
             opacity: 0;
@@ -177,7 +178,7 @@
             height: 100%;
             z-index: 2;
         }
-        
+
         .scale-circle {
             width: 100%;
             height: 100%;
@@ -188,37 +189,37 @@
             position: relative;
             z-index: 1;
         }
-        
+
         /* Apple shape - sizes */
         .scale-option:nth-child(1) .apple-shape,
         .scale-option:nth-child(7) .apple-shape {
             width: 40px;
             height: 40px;
         }
-        
+
         .scale-option:nth-child(2) .apple-shape,
         .scale-option:nth-child(6) .apple-shape {
             width: 36px;
             height: 36px;
         }
-        
+
         .scale-option:nth-child(3) .apple-shape,
         .scale-option:nth-child(5) .apple-shape {
             width: 32px;
             height: 32px;
         }
-        
+
         .scale-option:nth-child(4) .apple-shape {
             width: 28px;
             height: 28px;
         }
-        
+
         .apple-shape {
             position: relative;
             transform: scale(1);
             transition: transform 0.3s ease;
         }
-        
+
         .apple-body {
             width: 100%;
             height: 100%;
@@ -229,7 +230,7 @@
             transition: all 0.3s ease;
             overflow: hidden;
         }
-        
+
         .apple-body::before {
             content: '';
             position: absolute;
@@ -244,43 +245,43 @@
             border-bottom: none;
             clip-path: polygon(0 0, 100% 0, 100% 60%, 0 60%);
         }
-        
+
         /* Color variations - gradient from strong to weak */
         .scale-option:nth-child(1) .apple-body,
         .scale-option:nth-child(1) .apple-body::before {
             border-color: #ff6b6b;
         }
-        
+
         .scale-option:nth-child(2) .apple-body,
         .scale-option:nth-child(2) .apple-body::before {
             border-color: #ff9999;
         }
-        
+
         .scale-option:nth-child(3) .apple-body,
         .scale-option:nth-child(3) .apple-body::before {
             border-color: #ffcccc;
         }
-        
+
         .scale-option:nth-child(4) .apple-body,
         .scale-option:nth-child(4) .apple-body::before {
             border-color: #ffe4cc;
         }
-        
+
         .scale-option:nth-child(5) .apple-body,
         .scale-option:nth-child(5) .apple-body::before {
             border-color: #ccf0e1;
         }
-        
+
         .scale-option:nth-child(6) .apple-body,
         .scale-option:nth-child(6) .apple-body::before {
             border-color: #99e5c7;
         }
-        
+
         .scale-option:nth-child(7) .apple-body,
         .scale-option:nth-child(7) .apple-body::before {
             border-color: #00b894;
         }
-        
+
         /* Apple stem and leaf */
         .apple-stem {
             position: absolute;
@@ -292,7 +293,7 @@
             z-index: 10;
             transform-origin: bottom center;
         }
-        
+
         .stem {
             width: 3px;
             height: 8px;
@@ -301,7 +302,7 @@
             position: relative;
             left: 2px;
         }
-        
+
         .leaf {
             position: absolute;
             top: 2px;
@@ -312,85 +313,98 @@
             border-radius: 0 100% 0 100%;
             transform: rotate(30deg);
         }
-        
+
         /* Hover effect */
         .scale-option:hover .apple-shape {
             transform: scale(1.05);
         }
-        
+
         /* Checked states with different colors */
-        .scale-option:nth-child(1) input[type="radio"]:checked ~ .scale-circle .apple-body {
+        .scale-option:nth-child(1) input[type="radio"]:checked~.scale-circle .apple-body {
             background: linear-gradient(135deg, #ff6b6b, #ff8787);
             border-color: #ff6b6b;
         }
-        
-        .scale-option:nth-child(2) input[type="radio"]:checked ~ .scale-circle .apple-body {
+
+        .scale-option:nth-child(2) input[type="radio"]:checked~.scale-circle .apple-body {
             background: linear-gradient(135deg, rgba(255, 107, 107, 0.8), rgba(255, 135, 135, 0.8));
             border-color: #ff9999;
         }
-        
-        .scale-option:nth-child(3) input[type="radio"]:checked ~ .scale-circle .apple-body {
+
+        .scale-option:nth-child(3) input[type="radio"]:checked~.scale-circle .apple-body {
             background: linear-gradient(135deg, rgba(255, 107, 107, 0.5), rgba(255, 135, 135, 0.5));
             border-color: #ffcccc;
         }
-        
-        .scale-option:nth-child(4) input[type="radio"]:checked ~ .scale-circle .apple-body {
+
+        .scale-option:nth-child(4) input[type="radio"]:checked~.scale-circle .apple-body {
             background: linear-gradient(135deg, rgba(253, 203, 110, 0.5), rgba(255, 234, 167, 0.5));
             border-color: #ffe4cc;
         }
-        
-        .scale-option:nth-child(5) input[type="radio"]:checked ~ .scale-circle .apple-body {
+
+        .scale-option:nth-child(5) input[type="radio"]:checked~.scale-circle .apple-body {
             background: linear-gradient(135deg, rgba(0, 184, 148, 0.5), rgba(85, 239, 196, 0.5));
             border-color: #ccf0e1;
         }
-        
-        .scale-option:nth-child(6) input[type="radio"]:checked ~ .scale-circle .apple-body {
+
+        .scale-option:nth-child(6) input[type="radio"]:checked~.scale-circle .apple-body {
             background: linear-gradient(135deg, rgba(0, 184, 148, 0.8), rgba(85, 239, 196, 0.8));
             border-color: #99e5c7;
         }
-        
-        .scale-option:nth-child(7) input[type="radio"]:checked ~ .scale-circle .apple-body {
+
+        .scale-option:nth-child(7) input[type="radio"]:checked~.scale-circle .apple-body {
             background: linear-gradient(135deg, #00b894, #55efc4);
             border-color: #00b894;
         }
-        
-        .scale-option input[type="radio"]:checked ~ .scale-circle .apple-stem {
+
+        .scale-option input[type="radio"]:checked~.scale-circle .apple-stem {
             opacity: 1;
             animation: popStem 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
-        
-        .scale-option input[type="radio"]:checked ~ .scale-circle .apple-shape {
+
+        .scale-option input[type="radio"]:checked~.scale-circle .apple-shape {
             transform: scale(1.15);
             animation: bounceApple 0.5s ease;
         }
-        
+
         @keyframes popStem {
             0% {
                 opacity: 0;
                 transform: translateX(-50%) translateY(10px) scale(0) rotate(-180deg);
             }
+
             50% {
                 opacity: 1;
                 transform: translateX(-50%) translateY(-3px) scale(1.2) rotate(10deg);
             }
+
             100% {
                 transform: translateX(-50%) translateY(0) scale(1) rotate(0);
             }
         }
-        
+
         @keyframes bounceApple {
-            0% { transform: scale(1); }
-            30% { transform: scale(0.9); }
-            60% { transform: scale(1.2); }
-            100% { transform: scale(1.15); }
+            0% {
+                transform: scale(1);
+            }
+
+            30% {
+                transform: scale(0.9);
+            }
+
+            60% {
+                transform: scale(1.2);
+            }
+
+            100% {
+                transform: scale(1.15);
+            }
         }
-        
+
         .navigation {
             display: flex;
             justify-content: center;
             margin-top: 40px;
         }
-        
+
         .btn {
             padding: 12px 30px;
             border: none;
@@ -400,40 +414,47 @@
             transition: all 0.3s ease;
             font-weight: 600;
         }
-        
+
         .btn-prev {
             background: #ecf0f1;
             color: #636e72;
         }
-        
+
         .btn-next {
             background: linear-gradient(135deg, #6c5ce7, #a29bfe);
             color: white;
         }
-        
+
         .btn:disabled {
             opacity: 0.5;
             cursor: not-allowed;
         }
-        
+
         .result-container {
             display: none;
             text-align: center;
             animation: fadeIn 0.5s ease;
         }
-        
+
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        
+
         .result-title {
             font-size: 32px;
             color: #2d3436;
             margin: 30px 0;
             font-weight: 700;
         }
-        
+
         .apple-type {
             font-size: 48px;
             background: linear-gradient(135deg, #ff6b6b, #feca57);
@@ -442,7 +463,7 @@
             margin: 20px 0;
             font-weight: 900;
         }
-        
+
         .result-description {
             font-size: 18px;
             color: #636e72;
@@ -452,7 +473,7 @@
             background: #f8f9fa;
             border-radius: 15px;
         }
-        
+
         .visualization-container {
             margin: 40px 0;
             display: flex;
@@ -461,50 +482,50 @@
             align-items: center;
             flex-wrap: wrap;
         }
-        
+
         .chart-container {
             flex: 1;
             min-width: 300px;
             max-width: 400px;
         }
-        
+
         #canvas3d {
             width: 100%;
             max-width: 400px;
             height: 400px;
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             background: linear-gradient(180deg, #87CEEB 0%, #98FB98 100%);
         }
-        
+
         .apple-3d-container {
             flex: 1;
             min-width: 300px;
             max-width: 400px;
             text-align: center;
         }
-        
+
         .apple-3d-info {
             text-align: center;
             margin-top: 10px;
             font-size: 12px;
             color: #636e72;
         }
-        
+
         .page-indicator {
             text-align: center;
             color: #636e72;
             margin-top: 20px;
             font-size: 14px;
         }
-        
+
         .social-links {
             margin-top: 40px;
             padding-top: 30px;
             border-top: 1px solid #ecf0f1;
             text-align: center;
         }
-        
+
         .social-links a {
             display: inline-block;
             margin: 0 10px;
@@ -515,145 +536,147 @@
             border-radius: 20px;
             transition: all 0.3s ease;
         }
-        
+
         .social-links a.instagram {
             background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
         }
-        
+
         /* Mobile responsive styles */
         @media (max-width: 768px) {
             .container {
                 padding: 20px;
             }
-            
+
             h1 {
                 font-size: 24px;
             }
-            
+
             .subtitle {
                 font-size: 14px;
             }
-            
+
             .question {
                 font-size: 16px;
                 padding: 15px;
             }
-            
+
             .scale-container {
                 flex-direction: column;
                 gap: 15px;
             }
-            
+
             .scale-label {
                 text-align: center !important;
                 width: 100%;
             }
-            
+
             .scale-label.mobile-top {
-                order: 0;
-            }
-            
-            .scale-label.mobile-bottom {
-                order: 0;
-            }
-            
-            .scale-options {
                 order: -1;
+                text-align: left;
+            }
+
+            .scale-label.mobile-bottom {
+                order: 1;
+            }
+
+            .scale-options {
+                order: 0;
                 width: 80%;
                 gap: 5px;
                 padding: 10px 0;
             }
-            
+
             /* Adjust apple sizes for mobile */
             .scale-option:nth-child(1),
             .scale-option:nth-child(7) {
                 width: 40px;
                 height: 40px;
             }
-            
+
             .scale-option:nth-child(2),
             .scale-option:nth-child(6) {
                 width: 38px;
                 height: 38px;
             }
-            
+
             .scale-option:nth-child(3),
             .scale-option:nth-child(5) {
                 width: 36px;
                 height: 36px;
             }
-            
+
             .scale-option:nth-child(4) {
                 width: 34px;
                 height: 34px;
             }
-            
+
             .scale-option:nth-child(1) .apple-shape,
             .scale-option:nth-child(7) .apple-shape {
                 width: 40px;
                 height: 40px;
             }
-            
+
             .scale-option:nth-child(2) .apple-shape,
             .scale-option:nth-child(6) .apple-shape {
                 width: 36px;
                 height: 36px;
             }
-            
+
             .scale-option:nth-child(3) .apple-shape,
             .scale-option:nth-child(5) .apple-shape {
                 width: 34px;
                 height: 34px;
             }
-            
+
             .scale-option:nth-child(4) .apple-shape {
                 width: 32px;
                 height: 32px;
             }
-            
+
             .navigation {
                 gap: 10px;
             }
-            
+
             .btn {
                 padding: 10px 20px;
                 font-size: 14px;
             }
-            
+
             .result-title {
                 font-size: 24px;
             }
-            
+
             .apple-type {
                 font-size: 36px;
             }
-            
+
             .result-description {
                 font-size: 16px;
                 padding: 20px;
             }
-            
+
             .visualization-container {
                 flex-direction: column;
                 gap: 30px;
             }
-            
+
             #canvas3d {
                 height: 300px;
             }
         }
-        
+
         @media (max-width: 480px) {
             .scale-options {
                 gap: 3px;
             }
-            
+
             .apple-type {
                 font-size: 28px;
             }
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <div class="header">
@@ -663,21 +686,21 @@
             </div>
             <p class="subtitle">59の質問であなたのりんごタイプを診断します</p>
         </div>
-        
+
         <div class="progress-bar">
             <div class="progress-fill" id="progressBar"></div>
         </div>
-        
+
         <div id="questionContainer" class="question-container">
             <!-- Questions will be dynamically inserted here -->
         </div>
-        
+
         <div class="navigation">
-            <button class="btn btn-next" id="nextBtn" onclick="nextPage()">診断結果へ</button>
+            <button class="btn btn-next" id="nextBtn" onclick="nextPage()">次へ</button>
         </div>
-        
+
         <div class="page-indicator" id="pageIndicator"></div>
-        
+
         <div id="resultContainer" class="result-container">
             <h2 class="result-title">診断結果</h2>
             <div class="apple-type" id="appleType"></div>
@@ -709,23 +732,23 @@
             { text: "あなたのイメージカラーはどっちに近い？", left: "赤やオレンジ", right: "青や緑", type: "RG" },
             { text: "農業をするとしたら、どっちが自分に合っていると感じる？", left: "みんなで協力する農作業", right: "1人で集中する農作業", type: "RG" },
             { text: "りんごを食べるとしたら、どこで食べたい？", left: "外でピクニック気分で", right: "家の中でゆっくり", type: "RG" },
-            
+
             // Sweet⇔Tart questions (4-6)
             { text: "りんごを食べるとしたら、どっちが好み？", left: "焼きリンゴ", right: "生のりんご", type: "ST" },
             { text: "りんごのスイーツを食べるとしたら、どっちの方が好き？", left: "りんごのコンポート", right: "りんごのシャーベット", type: "ST" },
             { text: "お腹がペコぺコだ…目の前に「食べてはいけない」と書かれたりんごが！あなたならどうする？", left: "少しなら食べても大丈夫", right: "なるべく食べないようにする", type: "ST" },
-            
+
             // Early⇔Late questions (7-9)
             { text: "りんごの見た目なら、どっちが好み？", left: "小さくて形のきれいなりんご", right: "ひときわ大きくて目立つりんご", type: "EL" },
             { text: "めんどくさくて大変な作業があったとしたら、あなたはどうする？", left: "先にやるタイプ", right: "あと回しにするタイプ", type: "EL" },
             { text: "りんごの皮むきを頼まれちゃった！そんな時、あなたならどうする？", left: "とにかくスピーディーにやる", right: "慎重かつ丁寧にやる", type: "EL" },
-            
+
             // Famous⇔Unique questions (10-12)
             { text: "あなたの洋服やファッションはどっちに近い？", left: "とにかく流行にあわせておこう…派", right: "こだわりをもって選びたい…派", type: "FU" },
             { text: "旅行に行くことになった！そんな時、あなたはどっちに行きたい？", left: "有名な観光スポットを楽しむ", right: "山奥の珍しい温泉街でゆっくり", type: "FU" },
             { text: "もしりんごを育てるとしたら、どっちの師匠に弟子入りする？", left: "とにかく沢山育てて売るぜ！ガッツ系", right: "自分の好きな品種しか育てない！職人系", type: "FU" }
         ];
-        
+
         const appleTypes = {
             "RFSE": { name: "つがる", description: "豊かな甘みとパリッとした食感が特徴の、誰からも愛される早生（わせ）りんごは、きっとあなたにぴったりのはず！" },
             "RFSL": { name: "ふじ", description: "蜜が入りやすく、甘さとシャキシャキ感のバランスがとれた王道りんごは、きっとあなたにぴったりのはず！" },
@@ -744,7 +767,7 @@
             "GUTE": { name: "祝", description: "昔ながらの爽やかな酸味が特徴の、一部の地域でしか流通しない非常に珍しい品種は、きっとあなたにぴったりのはず！" },
             "GUTL": { name: "はつ恋ぐりん", description: "鮮烈な酸味とシャープな香りが特徴の、新しい品種でニッチなファンが多いりんごは、きっとあなたにぴったりのはず！" }
         };
-        
+
         // Define apple colors for each position
         const appleColors = [
             '#ff6b6b', // Position 1 - Strong red
@@ -755,25 +778,25 @@
             '#99e5c7', // Position 6 - Medium green
             '#00b894'  // Position 7 - Strong green
         ];
-        
+
         const appleSizes = [1.0, 0.9, 0.8, 0.7, 0.8, 0.9, 1.0]; // Size multipliers for each position
-        
+
         let currentPage = 0;
         const questionsPerPage = 12;
         const totalPages = Math.ceil(questions.length / questionsPerPage);
         let answers = new Array(questions.length).fill(null);
-        
+
         function renderQuestions() {
             const start = currentPage * questionsPerPage;
             const end = Math.min(start + questionsPerPage, questions.length);
             const container = document.getElementById('questionContainer');
             const isMobile = window.innerWidth <= 768;
             container.innerHTML = '';
-            
+
             for (let i = start; i < end; i++) {
                 const q = questions[i];
                 const questionDiv = document.createElement('div');
-                
+
                 let isDisabled = false;
                 for (let j = 0; j < i; j++) {
                     if (answers[j] === null) {
@@ -781,9 +804,9 @@
                         break;
                     }
                 }
-                
+
                 questionDiv.className = isDisabled ? 'question disabled' : 'question';
-                
+
                 if (isMobile) {
                     questionDiv.innerHTML = `
                         <span class="question-number">Q${i + 1}.</span> ${q.text}
@@ -839,62 +862,61 @@
                 }
                 container.appendChild(questionDiv);
             }
-            
+
             updateNavigation();
             updateProgress();
         }
-        
+
         function saveAnswer(questionIndex, value) {
             answers[questionIndex] = value;
             renderQuestions();
         }
-        
+
         function updateNavigation() {
             const nextBtn = document.getElementById('nextBtn');
             const pageIndicator = document.getElementById('pageIndicator');
-            
-            prevBtn.disabled = currentPage === 0;
-            
+
             if (currentPage === totalPages - 1) {
-                nextBtn.textContent = '診断結果を見る';
+                nextBtn.textContent = '結果へ';
                 nextBtn.onclick = showResults;
             } else {
                 nextBtn.textContent = '次へ';
                 nextBtn.onclick = nextPage;
             }
-            
+
             pageIndicator.textContent = `${currentPage + 1} / ${totalPages} ページ`;
         }
-        
+
+
         function updateProgress() {
             const progress = ((currentPage + 1) / totalPages) * 100;
             document.getElementById('progressBar').style.width = `${progress}%`;
         }
-        
+
         function nextPage() {
             const start = currentPage * questionsPerPage;
             const end = Math.min(start + questionsPerPage, questions.length);
             let allAnswered = true;
-            
+
             for (let i = start; i < end; i++) {
                 if (answers[i] === null) {
                     allAnswered = false;
                     break;
                 }
             }
-            
+
             if (!allAnswered) {
                 alert('このページのすべての質問に回答してから次へ進んでください。');
                 return;
             }
-            
+
             if (currentPage < totalPages - 1) {
                 currentPage++;
                 renderQuestions();
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }
         }
-        
+
         function previousPage() {
             if (currentPage > 0) {
                 currentPage--;
@@ -902,26 +924,26 @@
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }
         }
-        
+
         function calculateResult() {
             const unanswered = answers.filter(a => a === null).length;
             if (unanswered > 0) {
                 alert(`まだ ${unanswered} 個の質問に回答していません。すべての質問に回答してください。`);
                 return null;
             }
-            
+
             let scores = {
                 R: 0, G: 0,
                 S: 0, T: 0,
                 E: 0, L: 0,
                 F: 0, U: 0
             };
-            
+
             questions.forEach((q, i) => {
                 const value = answers[i];
                 const normalizedValue = (value - 4) / 3;
-                
-                switch(q.type) {
+
+                switch (q.type) {
                     case 'RG':
                         if (normalizedValue < 0) scores.R += Math.abs(normalizedValue);
                         else scores.G += normalizedValue;
@@ -940,30 +962,30 @@
                         break;
                 }
             });
-            
+
             const color = scores.R > scores.G ? 'R' : 'G';
             const popularity = scores.F > scores.U ? 'F' : 'U';
             const taste = scores.S > scores.T ? 'S' : 'T';
             const season = scores.E > scores.L ? 'E' : 'L';
-            
+
             return {
                 type: color + popularity + taste + season,
                 scores: scores
             };
         }
-        
+
         function create3DAppleTree() {
             const canvas = document.getElementById('canvas3d');
             const scene = new THREE.Scene();
             scene.background = new THREE.Color(0x87CEEB);
-            
+
             const camera = new THREE.PerspectiveCamera(75, canvas.width / canvas.height, 0.1, 1000);
             camera.position.set(0, 5, 15);
-            
+
             const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true });
             renderer.setSize(canvas.clientWidth, canvas.clientHeight);
             renderer.shadowMap.enabled = true;
-            
+
             // Lighting
             const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
             scene.add(ambientLight);
@@ -971,7 +993,7 @@
             directionalLight.position.set(10, 20, 10);
             directionalLight.castShadow = true;
             scene.add(directionalLight);
-            
+
             // Ground
             const groundGeometry = new THREE.CircleGeometry(10, 32);
             const groundMaterial = new THREE.MeshLambertMaterial({ color: 0x98FB98 });
@@ -980,7 +1002,7 @@
             ground.position.y = -2;
             ground.receiveShadow = true;
             scene.add(ground);
-            
+
             // Tree trunk
             const trunkGeometry = new THREE.CylinderGeometry(0.5, 0.8, 4, 8);
             const trunkMaterial = new THREE.MeshLambertMaterial({ color: 0x8B4513 });
@@ -988,7 +1010,7 @@
             trunk.position.y = 0;
             trunk.castShadow = true;
             scene.add(trunk);
-            
+
             // Tree crown (leaves)
             const crownGeometry = new THREE.SphereGeometry(3.5, 16, 16);
             const crownMaterial = new THREE.MeshLambertMaterial({ color: 0x228B22 });
@@ -997,29 +1019,29 @@
             crown.scale.y = 0.8;
             crown.castShadow = true;
             scene.add(crown);
-            
+
             // Add apples based on user answers
             const appleGroup = new THREE.Group();
             let appleCount = 0;
-            
+
             answers.forEach((answer, index) => {
                 if (answer !== null) {
                     const position = answer - 1; // Convert 1-7 to 0-6
                     const color = appleColors[position];
                     const size = appleSizes[position] * 0.3;
-                    
+
                     // Random position on tree
                     const theta = Math.random() * Math.PI * 2;
                     const phi = Math.random() * Math.PI * 0.5 + Math.PI * 0.25;
                     const radius = 2.5 + Math.random() * 1.5;
-                    
+
                     const x = radius * Math.sin(phi) * Math.cos(theta);
                     const y = radius * Math.cos(phi) + 3;
                     const z = radius * Math.sin(phi) * Math.sin(theta);
-                    
+
                     // Apple
                     const appleGeometry = new THREE.SphereGeometry(size, 16, 16);
-                    const appleMaterial = new THREE.MeshPhongMaterial({ 
+                    const appleMaterial = new THREE.MeshPhongMaterial({
                         color: color,
                         shininess: 100,
                         specular: 0x222222
@@ -1028,33 +1050,33 @@
                     apple.position.set(x, y, z);
                     apple.scale.y = 1.1;
                     apple.castShadow = true;
-                    
+
                     // Add stem
                     const stemGeometry = new THREE.CylinderGeometry(0.02, 0.02, 0.1, 4);
                     const stemMaterial = new THREE.MeshLambertMaterial({ color: 0x654321 });
                     const stem = new THREE.Mesh(stemGeometry, stemMaterial);
                     stem.position.set(x, y + size + 0.05, z);
-                    
+
                     appleGroup.add(apple);
                     appleGroup.add(stem);
                     appleCount++;
                 }
             });
-            
+
             scene.add(appleGroup);
-            
+
             // Mouse controls
             let mouseX = 0;
             let mouseY = 0;
             let targetRotationX = 0;
             let targetRotationY = 0;
-            
+
             canvas.addEventListener('mousemove', (e) => {
                 const rect = canvas.getBoundingClientRect();
                 mouseX = ((e.clientX - rect.left) / rect.width) * 2 - 1;
                 mouseY = -((e.clientY - rect.top) / rect.height) * 2 + 1;
             });
-            
+
             // Touch controls for mobile
             canvas.addEventListener('touchmove', (e) => {
                 if (e.touches.length === 1) {
@@ -1064,62 +1086,62 @@
                     mouseY = -((touch.clientY - rect.top) / rect.height) * 2 + 1;
                 }
             });
-            
+
             // Animation
             function animate() {
                 requestAnimationFrame(animate);
-                
+
                 targetRotationY = mouseX * Math.PI * 0.5;
                 targetRotationX = mouseY * Math.PI * 0.2;
-                
+
                 appleGroup.rotation.y += (targetRotationY - appleGroup.rotation.y) * 0.05;
                 crown.rotation.y = appleGroup.rotation.y * 0.3;
-                
+
                 // Gentle floating animation for apples
                 appleGroup.children.forEach((child, i) => {
                     if (child.geometry instanceof THREE.SphereGeometry) {
                         child.position.y += Math.sin(Date.now() * 0.001 + i) * 0.002;
                     }
                 });
-                
+
                 renderer.render(scene, camera);
             }
-            
+
             // Handle resize
             window.addEventListener('resize', () => {
                 camera.aspect = canvas.clientWidth / canvas.clientHeight;
                 camera.updateProjectionMatrix();
                 renderer.setSize(canvas.clientWidth, canvas.clientHeight);
             });
-            
+
             animate();
         }
-        
+
         function showResults() {
             const result = calculateResult();
             if (!result) return;
-            
+
             const appleType = appleTypes[result.type];
-            
+
             document.getElementById('questionContainer').style.display = 'none';
             document.querySelector('.navigation').style.display = 'none';
             document.querySelector('.page-indicator').style.display = 'none';
             document.getElementById('resultContainer').style.display = 'block';
-            
+
             document.getElementById('appleType').textContent = appleType.name;
             document.getElementById('resultDescription').textContent = appleType.description;
-            
+
             // Calculate percentages for radar chart
             const totalRG = result.scores.R + result.scores.G;
             const totalST = result.scores.S + result.scores.T;
             const totalEL = result.scores.E + result.scores.L;
             const totalFU = result.scores.F + result.scores.U;
-            
+
             const redPercent = totalRG > 0 ? (result.scores.R / totalRG) * 100 : 50;
             const sweetPercent = totalST > 0 ? (result.scores.S / totalST) * 100 : 50;
             const earlyPercent = totalEL > 0 ? (result.scores.E / totalEL) * 100 : 50;
             const famousPercent = totalFU > 0 ? (result.scores.F / totalFU) * 100 : 50;
-            
+
             // Create radar chart
             const ctx = document.getElementById('radarChart').getContext('2d');
             new Chart(ctx, {
@@ -1165,16 +1187,17 @@
                     }
                 }
             });
-            
+
             // Create 3D apple tree
             create3DAppleTree();
-            
+
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-        
+
         // Initialize
         window.addEventListener('resize', renderQuestions);
         renderQuestions();
     </script>
 </body>
+
 </html>
