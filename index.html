@@ -122,13 +122,11 @@
         }
 
         .scale-label.left {
-            text-align: left;
             color: #ff6b6b;
             font-weight: 600;
         }
 
         .scale-label.right {
-            text-align: right;
             color: #00b894;
             font-weight: 600;
         }
@@ -511,8 +509,13 @@
 
         /* Mobile responsive styles */
         @media (max-width: 768px) {
+            body{
+                padding: 0px;
+            }
+
             .container {
                 padding: 20px;
+                border-radius: 0;
             }
 
             h1 {
@@ -534,7 +537,6 @@
             }
 
             .scale-label {
-                text-align: center !important;
                 width: 100%;
             }
 
@@ -545,6 +547,7 @@
 
             .scale-label.mobile-bottom {
                 order: 1;
+                text-align: right;
             }
 
             .scale-options {
@@ -793,7 +796,7 @@
                         <div class="scale-container">
                             <div class="scale-label left">${q.left}</div>
                             <div class="scale-options">
-                                ${[1, 2, 3, 4, 5, 6, 7].map(value => `
+                                ${[1, 2, 3, 4, 5].map(value => `
                                     <div class="scale-option">
                                         <input type="radio" id="q${i}_${value}" name="q${i}" value="${value}" 
                                                ${answers[i] === value ? 'checked' : ''}
