@@ -75,7 +75,8 @@
 
         .progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, #6c5ce7, #a29bfe);
+            width: 0%;
+            background: linear-gradient(90deg, #e7c75c, #fe9b9b);
             border-radius: 10px;
             transition: width 0.3s ease;
         }
@@ -822,12 +823,13 @@
             }
 
             updateNavigation();
-            updateProgress();
         }
 
         function saveAnswer(questionIndex, value) {
             answers[questionIndex] = value;
             renderQuestions();
+            const progress = ((questionIndex + 1) / 12) * 100;
+            document.getElementById('progressBar').style.width = `${progress}%`;
             const nextQuestion = document.querySelector(`#q${questionIndex + 1}_1`);
             if (nextQuestion) {
                 nextQuestion.scrollIntoView({
@@ -853,14 +855,6 @@
                     nextBtn.textContent = '次へ';
                     nextBtn.onclick = nextPage;
                 }
-
-                pageIndicator.textContent = `${currentPage + 1} / ${totalPages} ページ`;
-            }
-
-
-            function updateProgress() {
-                const progress = ((currentPage + 1) / totalPages) * 100;
-                document.getElementById('progressBar').style.width = `${progress}%`;
             }
 
             function nextPage() {
