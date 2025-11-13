@@ -1017,8 +1017,16 @@
             answers[questionIndex] = value;
             renderQuestions();
 
-            // 進捗率は回答済みの質問数で計算（巻き戻らないように）
+            // 最初の回答時にquiz_startイベントを送信
             const answeredCount = answers.filter(a => a !== null).length;
+            if (answeredCount === 1) {
+                gtag('event', 'quiz_start', {
+                    'event_category': 'engagement',
+                    'event_label': 'first_question_answered'
+                });
+            }
+
+            // 進捗率は回答済みの質問数で計算（巻き戻らないように）
             const progress = (answeredCount / 12) * 100;
             document.getElementById('progressBar').style.width = `${progress}%`;
 
@@ -1136,6 +1144,24 @@
 
             const appleType = appleTypes[result.type];
 
+            // 診断完了イベントを送信
+            gtag('event', 'quiz_complete', {
+                'event_category': 'engagement',
+                'event_label': 'diagnosis_completed',
+                'apple_type': result.type,
+                'apple_name': appleType.name
+            });
+
+            // 結果をlocalStorageに保存
+            const resultData = {
+                type: result.type,
+                name: appleType.name,
+                description: appleType.description,
+                summary: appleType.summary,
+                timestamp: new Date().toISOString()
+            };
+            localStorage.setItem('appleQuizResult', JSON.stringify(resultData));
+
             document.getElementById('questionContainer').style.display = 'none';
             document.querySelector('.navigation').style.display = 'none';
             document.querySelector('.page-indicator').style.display = 'none';
@@ -1212,12 +1238,28 @@
             const hashtags = `りんご診断,性格診断,${result.type},りんごの会,駒場祭2025,青森,りんご革命`;
 
             document.getElementById('shareTwitter').onclick = () => {
+                // シェアイベントを送信
+                gtag('event', 'share', {
+                    'event_category': 'engagement',
+                    'method': 'Twitter',
+                    'content_type': 'quiz_result',
+                    'item_id': result.type
+                });
+
                 const text = `🍏あなたの性格をりんごで表すと…？🍎\n🍏りんご性格診断🍎\n\n私は【${appleType.name}(${result.type})】タイプ！🍎\n${appleType.summary}\n\nあなたにぴったりのりんごを見つけよう👇\n${shareUrl}\n\n#${hashtags.replace(/,/g, ' #')}\n@ut_keio_apple`;
                 const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
                 window.open(url, '_blank', 'noopener');
             };
 
             document.getElementById('shareLine').onclick = () => {
+                // シェアイベントを送信
+                gtag('event', 'share', {
+                    'event_category': 'engagement',
+                    'method': 'LINE',
+                    'content_type': 'quiz_result',
+                    'item_id': result.type
+                });
+
                 const text = `🍏あなたの性格をりんごで表すと…？🍎\n🍏りんご性格診断🍎\n\n私は【${appleType.name}(${result.type})】タイプでした！🍎\n${appleType.summary}\n\nあなたもやってみてね👇\n${shareUrl}\n\n#りんご診断 #駒場祭2025 #りんごの会`;
                 const url = `https://line.me/R/msg/text/?${encodeURIComponent(text)}`;
                 window.open(url, '_blank', 'noopener');
@@ -1226,9 +1268,135 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
+        // ページ読み込み時に保存された結果を確認
+        function checkSavedResult() {
+            const savedResult = localStorage.getItem('appleQuizResult');
+            if (savedResult) {
+                try {
+                    const resultData = JSON.parse(savedResult);
+                    // 7日以内の結果のみ表示
+                    const savedDate = new Date(resultData.timestamp);
+                    const daysDiff = (new Date() - savedDate) / (1000 * 60 * 60 * 24);
+
+                    if (daysDiff < 7) {
+                        const showSaved = confirm(`前回の診断結果（${resultData.name}タイプ）が保存されています。\n\n結果を表示しますか？\n\n「キャンセル」を押すと新しく診断を始めます。`);
+                        if (showSaved) {
+                            // 保存された結果を表示するため、回答を復元する必要なし
+                            // 直接結果画面へ遷移
+                            displaySavedResult(resultData);
+                            return true;
+                        }
+                    }
+                } catch (e) {
+                    console.error('保存された結果の読み込みに失敗しました', e);
+                }
+            }
+            return false;
+        }
+
+        function displaySavedResult(resultData) {
+            document.getElementById('questionContainer').style.display = 'none';
+            document.querySelector('.navigation').style.display = 'none';
+            document.querySelector('.page-indicator').style.display = 'none';
+            document.getElementById('resultContainer').style.display = 'block';
+            document.getElementById('progressBar').style.width = '100%';
+
+            const appleImageEl = document.getElementById('appleImage');
+            const isGreen = resultData.type[0] === 'G';
+            appleImageEl.textContent = isGreen ? '🍏' : '🍎';
+
+            document.getElementById('appleType').textContent = `${resultData.name}（${resultData.type}）`;
+            document.getElementById('resultDescription').textContent = resultData.description;
+
+            // タイプ解説表を再生成
+            const typeTableEl = document.getElementById('typeTable');
+            const typeMapping = {
+                'R': { label: 'Red', desc: '赤い（情熱的・明るい）' },
+                'G': { label: 'Green', desc: '緑/青い（冷静・内向的）' },
+                'F': { label: 'Famous', desc: '有名（トレンドに敏感）' },
+                'U': { label: 'Unique', desc: '珍しい（個性的・ニッチ）' },
+                'S': { label: 'Sweet', desc: '甘い（優しい・理想家）' },
+                'T': { label: 'Tart', desc: '酸っぱい（ストイック・現実的）' },
+                'E': { label: 'Early', desc: '早生（せっかち・効率的）' },
+                'L': { label: 'Late', desc: '晚生（マイペース・のんびり）' }
+            };
+
+            const userTypes = resultData.type.split('');
+            typeTableEl.innerHTML = '';
+
+            const axes = [
+                ['R', 'G'],
+                ['F', 'U'],
+                ['S', 'T'],
+                ['E', 'L']
+            ];
+
+            axes.forEach((axis) => {
+                const axisGroup = document.createElement('div');
+                axisGroup.style.background = '#f0f0f0';
+                axisGroup.style.borderRadius = '10px';
+                axisGroup.style.padding = '5px';
+                axisGroup.style.display = 'flex';
+                axisGroup.style.flexDirection = 'column';
+                axisGroup.style.gap = '5px';
+
+                axis.forEach(letter => {
+                    const isHighlighted = userTypes.includes(letter);
+                    const type = typeMapping[letter];
+                    const rowDiv = document.createElement('div');
+                    rowDiv.className = `type-row ${isHighlighted ? 'highlighted' : ''}`;
+
+                    const firstLetter = type.label.charAt(0);
+                    const restOfLabel = type.label.slice(1);
+
+                    rowDiv.innerHTML = `
+                        <span class="type-label"><strong style="font-size: 1.2em; font-weight: 900;">${firstLetter}</strong>${restOfLabel}</span>
+                        <span class="type-desc">${type.desc}</span>
+                    `;
+                    axisGroup.appendChild(rowDiv);
+                });
+
+                typeTableEl.appendChild(axisGroup);
+            });
+
+            // シェアボタンの設定
+            const shareUrl = 'https://kofe02.github.io/appleapp/';
+            const hashtags = `りんご診断,性格診断,${resultData.type},りんごの会,駒場祭2025,青森,りんご革命`;
+
+            document.getElementById('shareTwitter').onclick = () => {
+                gtag('event', 'share', {
+                    'event_category': 'engagement',
+                    'method': 'Twitter',
+                    'content_type': 'quiz_result',
+                    'item_id': resultData.type
+                });
+
+                const text = `🍏あなたの性格をりんごで表すと…？🍎\n🍏りんご性格診断🍎\n\n私は【${resultData.name}(${resultData.type})】タイプ！🍎\n${resultData.summary}\n\nあなたにぴったりのりんごを見つけよう👇\n${shareUrl}\n\n#${hashtags.replace(/,/g, ' #')}\n@ut_keio_apple`;
+                const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
+                window.open(url, '_blank', 'noopener');
+            };
+
+            document.getElementById('shareLine').onclick = () => {
+                gtag('event', 'share', {
+                    'event_category': 'engagement',
+                    'method': 'LINE',
+                    'content_type': 'quiz_result',
+                    'item_id': resultData.type
+                });
+
+                const text = `🍏あなたの性格をりんごで表すと…？🍎\n🍏りんご性格診断🍎\n\n私は【${resultData.name}(${resultData.type})】タイプでした！🍎\n${resultData.summary}\n\nあなたもやってみてね👇\n${shareUrl}\n\n#りんご診断 #駒場祭2025 #りんごの会`;
+                const url = `https://line.me/R/msg/text/?${encodeURIComponent(text)}`;
+                window.open(url, '_blank', 'noopener');
+            };
+        }
+
         // Initialize
         window.addEventListener('resize', renderQuestions);
-        renderQuestions();
+
+        // 保存された結果がない場合のみ質問を表示
+        if (!checkSavedResult()) {
+            renderQuestions();
+        }
     </script>
 </body>
 
