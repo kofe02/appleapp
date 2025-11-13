@@ -13,9 +13,8 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>りんご性格診断 - あなたはどのりんごタイプ？</title>
-    <meta name="description" content="あなたの性格をりんごで表すと?16種類のりんごであなたの性格タイプを診断!駒場祭2025・りんごの会が贈る、楽しくて美味しい性格診断。">
-    <meta name="keywords" content="りんご診断,性格診断,りんごの会,駒場祭2025,東大,慶應,青森,りんご,診断テスト">
+    <meta name="description" content="あなたの性格をりんごで表すと?16種類のりんごであなたの性格タイプを診断!つがる、ふじ、王林など、あなたにぴったりのりんごを見つけよう。">
+    <meta name="keywords" content="りんご診断,性格診断,りんごの会,駒場祭2025,東大,慶應,青森,りんご,診断結果">
     <meta name="author" content="りんごの会">
     <meta name="theme-color" content="#feca57">
     <link rel="canonical" href="https://kofe02.github.io/appleapp/">
@@ -23,8 +22,8 @@
     <!-- OGP / Open Graph Protocol -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://kofe02.github.io/appleapp/">
-    <meta property="og:title" content="りんご性格診断 - あなたはどのりんごタイプ?">
-    <meta property="og:description" content="あなたの性格をりんごで表すと?16種類のりんごであなたの性格タイプを診断!駒場祭2025・りんごの会が贈る、楽しくて美味しい性格診断。">
+    <meta property="og:title" content="りんご性格診断 - 診断結果">
+    <meta property="og:description" content="あなたの性格をりんごで表すと?16種類のりんごであなたの性格タイプを診断!つがる、ふじ、王林など、あなたにぴったりのりんごを見つけよう。">
     <meta property="og:image" content="https://kofe02.github.io/appleapp/src/image.png">
     <meta property="og:site_name" content="りんご性格診断">
     <meta property="og:locale" content="ja_JP">
@@ -33,12 +32,15 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@ut_keio_apple">
     <meta name="twitter:creator" content="@ut_keio_apple">
-    <meta name="twitter:title" content="りんご性格診断 - あなたはどのりんごタイプ?">
+    <meta name="twitter:title" content="りんご性格診断 - 診断結果">
     <meta name="twitter:description" content="あなたの性格をりんごで表すと?16種類のりんごであなたの性格タイプを診断!">
     <meta name="twitter:image" content="https://kofe02.github.io/appleapp/src/image.png">
 
+    <title>りんご性格診断 - Welcome</title>
     <link rel="icon" type="image/x-icon" href="src/favicon.ico">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap');
+
         * {
             margin: 0;
             padding: 0;
@@ -46,404 +48,253 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+            font-family: 'Noto Sans JP', 'BIZ UDGothic', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
             background: linear-gradient(135deg, rgb(225, 225, 180) 0%, #feca57 50%, #ff9999 100%);
             min-height: 100vh;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             padding: 20px;
-            padding-top: 60px;
         }
 
-        .container {
+        .welcome-container {
             max-width: 800px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-        }
-
-        .header {
+            width: 100%;
             text-align: center;
-            margin-bottom: 40px;
+            position: relative;
+            z-index: 10;
         }
 
         .logo {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            margin-bottom: 20px;
+            gap: 15px;
+            margin-bottom: 30px;
+            animation: fadeInDown 1s ease;
         }
 
         .logo-icon {
-            width: 50px;
-            height: 50px;
+            width: 80px;
+            height: 80px;
             background: linear-gradient(135deg, #ff6b6b, #feca57);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 30px;
+            font-size: 50px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
         h1 {
-            color: #2d3436;
-            font-size: 28px;
-            font-weight: 700;
+            color: white;
+            font-size: 48px;
+            font-weight: 900;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+            letter-spacing: 2px;
         }
 
         .subtitle {
-            color: #636e72;
-            margin-top: 10px;
-            font-size: 16px;
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 20px;
+            margin: 20px 0 40px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 1.5s ease;
         }
 
-        .progress-bar {
+        .description {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 40px auto;
+            max-width: 600px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 2s ease;
+        }
+
+        .description h2 {
+            color: #2d3436;
+            font-size: 24px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .description p {
+            color: #636e72;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        .start-button {
+            display: inline-block;
+            padding: 20px 60px;
+            font-size: 24px;
+            font-weight: 700;
+            color: white;
+            background: linear-gradient(135deg, #ff6b6b, #feca57);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.4);
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+            margin-top: 20px;
+        }
+
+        .start-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 107, 107, 0.6);
+        }
+
+        /* Apple carousel background */
+        .apple-carousel {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: 8px;
-            background: rgba(236, 240, 241, 0.9);
+            height: 100%;
             overflow: hidden;
-            z-index: 1000;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .progress-fill {
-            height: 100%;
-            width: 0%;
-            background: linear-gradient(90deg, #e7c75c, #fe9b9b);
-            transition: width 0.3s ease;
-        }
-
-        .question-container {
-            margin: 30px 0;
-        }
-
-        .question {
-            font-size: 18px;
-            color: #2d3436;
-            margin-bottom: 25px;
-            padding: 20px;
-            background: #f8f9fa;
-            border-radius: 10px;
-            border-left: 4px solid #6c5ce7;
-        }
-
-        .question-number {
-            color: #6c5ce7;
-            font-weight: bold;
-            margin-right: 10px;
-        }
-
-        .question.disabled {
-            opacity: 0.3;
-            position: relative;
-        }
-
-        .scale-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin: 20px 0;
-            padding: 15px;
-            background: white;
-            border-radius: 10px;
-        }
-
-        .scale-label {
-            font-size: 14px;
-            color: #636e72;
-            min-width: 100px;
-            width: 150px;
-        }
-
-        .scale-label.left {
-            color: #ff6b6b;
-            font-weight: 600;
-        }
-
-        .scale-label.right {
-            color: #00b894;
-            font-weight: 600;
-        }
-
-        .scale-options {
-            display: flex;
-            gap: 15px;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .scale-option {
-            position: relative;
-            width: 50px;
-            height: 50px;
-        }
-
-        /* Size variations */
-        .scale-option:nth-child(1),
-        .scale-option:nth-child(5) {
-            width: 50px;
-            height: 50px;
-        }
-
-        .scale-option:nth-child(2),
-        .scale-option:nth-child(4) {
-            width: 45px;
-            height: 45px;
-        }
-
-        .scale-option:nth-child(3) {
-            width: 40px;
-            height: 40px;
-        }
-
-        .scale-option input[type="radio"] {
-            position: absolute;
-            opacity: 0;
-            cursor: pointer;
-            width: 100%;
-            height: 100%;
-            z-index: 2;
-        }
-
-        .scale-circle {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            position: relative;
             z-index: 1;
+            opacity: 0.4;
         }
 
-        /* Apple shape - sizes */
-        .scale-option:nth-child(1) .apple-shape,
-        .scale-option:nth-child(5) .apple-shape {
-            width: 40px;
-            height: 40px;
+        .apple-column {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            height: 200%;
         }
 
-        .scale-option:nth-child(2) .apple-shape,
-        .scale-option:nth-child(4) .apple-shape {
-            width: 36px;
-            height: 36px;
+        .apple-column.left {
+            left: 5%;
+            animation: scrollUp 30s linear infinite;
         }
 
-        .scale-option:nth-child(3) .apple-shape {
-            width: 32px;
-            height: 32px;
+        .apple-column.right {
+            right: 5%;
+            animation: scrollDown 30s linear infinite;
         }
 
-        .apple-shape {
+        .apple-item {
+            width: 150px;
+            height: 180px;
+            margin: 20px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .apple-image {
+            width: 120px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+            animation: float 3s ease-in-out infinite;
             position: relative;
-            transform: scale(1);
-            transition: transform 0.3s ease;
         }
 
-        .apple-body {
+        .apple-photo {
             width: 100%;
             height: 100%;
-            background: white;
-            border: 3px solid #dfe6e9;
-            border-radius: 50% 50% 60% 60% / 60% 60% 40% 40%;
+            border-radius: 50% 50% 55% 55% / 55% 55% 45% 45%;
             position: relative;
-            transition: all 0.3s ease;
-            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), inset -5px -5px 15px rgba(0, 0, 0, 0.2), inset 5px 5px 15px rgba(255, 255, 255, 0.4);
         }
 
-        .apple-body::before {
+        .apple-photo.red {
+            background: radial-gradient(circle at 30% 30%, #ff6b6b, #e74c3c 40%, #c0392b 80%);
+        }
+
+        .apple-photo.green {
+            background: radial-gradient(circle at 30% 30%, #b8e994, #78e08f 40%, #38ada9 80%);
+        }
+
+        .apple-photo::before {
             content: '';
             position: absolute;
-            top: -5px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 37.5%;
-            height: 37.5%;
-            background: white;
-            border: 3px solid #dfe6e9;
+            top: 15%;
+            left: 25%;
+            width: 30px;
+            height: 30px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.6), transparent);
             border-radius: 50%;
-            border-bottom: none;
-            clip-path: polygon(0 0, 100% 0, 100% 60%, 0 60%);
+            filter: blur(8px);
         }
 
-        /* Color variations - gradient from strong to weak */
-        .scale-option:nth-child(1) .apple-body,
-        .scale-option:nth-child(1) .apple-body::before {
-            border-color: #ff6b6b;
-        }
-
-        .scale-option:nth-child(2) .apple-body,
-        .scale-option:nth-child(2) .apple-body::before {
-            border-color: #ff9999;
-        }
-
-        .scale-option:nth-child(3) .apple-body,
-        .scale-option:nth-child(3) .apple-body::before {
-            border-color: #ffe4cc;
-        }
-
-        .scale-option:nth-child(4) .apple-body,
-        .scale-option:nth-child(4) .apple-body::before {
-            border-color: #99e5c7;
-        }
-
-        .scale-option:nth-child(5) .apple-body,
-        .scale-option:nth-child(5) .apple-body::before {
-            border-color: #00b894;
-        }
-
-        /* Apple stem and leaf */
-        .apple-stem {
+        .apple-photo::after {
+            content: '';
             position: absolute;
             top: -8px;
             left: 50%;
-            transform: translateX(-50%) translateY(10px);
-            opacity: 0;
-            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            z-index: 10;
-            transform-origin: bottom center;
+            transform: translateX(-50%);
+            width: 6px;
+            height: 15px;
+            background: linear-gradient(to bottom, #8B4513, #654321);
+            border-radius: 3px 3px 0 0;
         }
 
-        .stem {
-            width: 3px;
-            height: 8px;
-            background: #8b4513;
-            border-radius: 1px;
-            position: relative;
-            left: 2px;
+        .apple-name {
+            color: white;
+            font-size: 14px;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.3);
+            padding: 5px 15px;
+            border-radius: 20px;
         }
 
-        .leaf {
-            position: absolute;
-            top: 2px;
-            left: 4px;
-            width: 8px;
-            height: 5px;
-            background: #00b894;
-            border-radius: 0 100% 0 100%;
-            transform: rotate(30deg);
-        }
-
-        /* Hover effect */
-        .scale-option:hover .apple-shape {
-            transform: scale(1.05);
-        }
-
-        /* Checked states with different colors */
-        .scale-option:nth-child(1) input[type="radio"]:checked~.scale-circle .apple-body {
-            background: linear-gradient(135deg, #ff6b6b, #ff8787);
-            border-color: #ff6b6b;
-        }
-
-        .scale-option:nth-child(2) input[type="radio"]:checked~.scale-circle .apple-body {
-            background: linear-gradient(135deg, rgba(255, 107, 107, 0.8), rgba(255, 135, 135, 0.8));
-            border-color: #ff9999;
-        }
-
-        .scale-option:nth-child(3) input[type="radio"]:checked~.scale-circle .apple-body {
-            background: linear-gradient(135deg, rgba(253, 203, 110, 0.5), rgba(255, 234, 167, 0.5));
-            border-color: #ffe4cc;
-        }
-
-        .scale-option:nth-child(4) input[type="radio"]:checked~.scale-circle .apple-body {
-            background: linear-gradient(135deg, rgba(0, 184, 148, 0.8), rgba(85, 239, 196, 0.8));
-            border-color: #99e5c7;
-        }
-
-        .scale-option:nth-child(5) input[type="radio"]:checked~.scale-circle .apple-body {
-            background: linear-gradient(135deg, #00b894, #55efc4);
-            border-color: #00b894;
-        }
-
-        .scale-option input[type="radio"]:checked~.scale-circle .apple-stem {
-            opacity: 1;
-            animation: popStem 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        }
-
-        .scale-option input[type="radio"]:checked~.scale-circle .apple-shape {
-            transform: scale(1.15);
-            animation: bounceApple 0.5s ease;
-        }
-
-        @keyframes popStem {
+        @keyframes scrollUp {
             0% {
-                opacity: 0;
-                transform: translateX(-50%) translateY(10px) scale(0) rotate(-180deg);
+                transform: translateY(0);
+            }
+
+            100% {
+                transform: translateY(-50%);
+            }
+        }
+
+        @keyframes scrollDown {
+            0% {
+                transform: translateY(-50%);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
             }
 
             50% {
-                opacity: 1;
-                transform: translateX(-50%) translateY(-3px) scale(1.2) rotate(10deg);
+                transform: translateY(-20px);
             }
-
-            100% {
-                transform: translateX(-50%) translateY(0) scale(1) rotate(0);
-            }
-        }
-
-        @keyframes bounceApple {
-            0% {
-                transform: scale(1);
-            }
-
-            30% {
-                transform: scale(0.9);
-            }
-
-            60% {
-                transform: scale(1.2);
-            }
-
-            100% {
-                transform: scale(1.15);
-            }
-        }
-
-        .navigation {
-            display: flex;
-            justify-content: center;
-            margin-top: 40px;
-        }
-
-        .btn {
-            padding: 12px 30px;
-            border: none;
-            border-radius: 25px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 600;
-        }
-
-        .btn-prev {
-            background: #ecf0f1;
-            color: #636e72;
-        }
-
-        .btn-next {
-            background: linear-gradient(135deg, #6c5ce7, #a29bfe);
-            color: white;
-        }
-
-        .btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
-        .result-container {
-            display: none;
-            text-align: center;
-            animation: fadeIn 0.5s ease;
         }
 
         @keyframes fadeIn {
             from {
                 opacity: 0;
-                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
             }
 
             to {
@@ -452,957 +303,147 @@
             }
         }
 
-        .result-title {
-            font-size: 32px;
-            color: #2d3436;
-            margin: 30px 0;
-            font-weight: 700;
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
         }
 
-        .apple-type {
-            font-size: 48px;
-            background: linear-gradient(135deg, #ff6b6b, #feca57);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin: 20px 0;
-            font-weight: 900;
-        }
-
-        .result-description {
-            font-size: 18px;
-            color: #636e72;
-            line-height: 1.8;
-            margin: 30px 0;
-            padding: 25px;
-            background: #f8f9fa;
-            border-radius: 15px;
-        }
-
-        .apple-image-container {
-            margin: 30px auto;
-            text-align: center;
-        }
-
-        .apple-result-image {
-            max-width: 300px;
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto;
-            font-size: 120px;
-        }
-
-        .type-explanation {
-            margin: 30px 0;
-            padding: 25px;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .type-explanation h3 {
-            font-size: 20px;
-            color: #2d3436;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .type-table {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            margin-top: 15px;
-        }
-
-        .type-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px 15px;
-            background: #f8f9fa;
-            border-radius: 10px;
-            transition: all 0.3s ease;
-        }
-
-        .type-row.highlighted {
-            background: linear-gradient(135deg, #ff6b6b, #feca57);
-            color: white;
-            font-weight: 600;
-            transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
-        }
-
-        .type-label {
-            font-weight: 600;
-            font-size: 16px;
-        }
-
-        .type-desc {
-            font-size: 14px;
-            text-align: right;
-        }
-
-        .share-buttons {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            margin: 30px 0;
-            flex-wrap: wrap;
-        }
-
-        .share-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 12px 25px;
-            border: none;
-            border-radius: 25px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            color: white;
-        }
-
-        .share-btn.twitter {
-            background: #1DA1F2;
-        }
-
-        .share-btn.twitter:hover {
-            background: #1a8cd8;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(29, 161, 242, 0.4);
-        }
-
-        .share-btn.line {
-            background: #00B900;
-        }
-
-        .share-btn.line:hover {
-            background: #009900;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 185, 0, 0.4);
-        }
-
-        .share-icon {
-            width: 20px;
-            height: 20px;
-        }
-
-
-
-        #canvas3d {
-            width: 100%;
-            max-width: 400px;
-            height: 400px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            background: linear-gradient(180deg, #87CEEB 0%, #98FB98 100%);
-        }
-
-        .apple-3d-container {
-            flex: 1;
-            min-width: 300px;
-            max-width: 400px;
-            text-align: center;
-        }
-
-        .apple-3d-info {
-            text-align: center;
-            margin-top: 10px;
-            font-size: 12px;
-            color: #636e72;
-        }
-
-        .page-indicator {
-            text-align: center;
-            color: #636e72;
-            margin-top: 20px;
-            font-size: 14px;
-        }
-
-        .social-links {
-            margin-top: 40px;
-            padding-top: 30px;
-            border-top: 1px solid #ecf0f1;
-            text-align: center;
-        }
-
-        .social-links a {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            margin: 0 10px;
-            padding: 12px 24px;
-            background: #1da1f2;
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            transition: all 0.3s ease;
-            font-weight: 600;
-        }
-
-        .social-links a:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .social-links a.instagram {
-            background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
-        }
-
-        .social-icon {
-            width: 20px;
-            height: 20px;
-        }
-
-        /* Mobile responsive styles */
+        /* Mobile responsive */
         @media (max-width: 768px) {
-            body {
-                padding: 0px;
-                padding-top: 8px;
-            }
-
-            .container {
-                padding: 20px;
-                border-radius: 0;
-            }
-
             h1 {
-                font-size: 24px;
+                font-size: 32px;
             }
 
             .subtitle {
-                font-size: 14px;
-            }
-
-            .question {
                 font-size: 16px;
-                padding: 15px;
             }
 
-            .scale-container {
-                flex-direction: column;
-                gap: 15px;
-            }
-
-            .scale-label {
-                width: 100%;
-            }
-
-            .scale-label.mobile-top {
-                order: -1;
-                text-align: left;
-            }
-
-            .scale-label.mobile-bottom {
-                order: 1;
-                text-align: right;
-            }
-
-            .scale-options {
-                order: 0;
-                width: 80%;
-                gap: 20px;
-                padding: 10px 0;
-            }
-
-            /* Adjust apple sizes for mobile */
-            .scale-option:nth-child(1),
-            .scale-option:nth-child(5) {
-                width: 40px;
-                height: 40px;
-            }
-
-            .scale-option:nth-child(2),
-            .scale-option:nth-child(4) {
-                width: 38px;
-                height: 38px;
-            }
-
-            .scale-option:nth-child(3) {
-                width: 36px;
-                height: 36px;
-            }
-
-            .scale-option:nth-child(1) .apple-shape,
-            .scale-option:nth-child(5) .apple-shape {
-                width: 40px;
-                height: 40px;
-            }
-
-            .scale-option:nth-child(2) .apple-shape,
-            .scale-option:nth-child(4) .apple-shape {
-                width: 36px;
-                height: 36px;
-            }
-
-            .scale-option:nth-child(3) .apple-shape {
-                width: 34px;
-                height: 34px;
-            }
-
-            .navigation {
-                gap: 10px;
-            }
-
-            .btn {
-                padding: 10px 20px;
-                font-size: 14px;
-            }
-
-            .result-title {
-                font-size: 24px;
-            }
-
-            .apple-type {
-                font-size: 36px;
-            }
-
-            .result-description {
-                font-size: 16px;
+            .description {
                 padding: 20px;
             }
 
-            .apple-result-image {
-                max-width: 250px;
-                height: 250px;
-                font-size: 80px;
+            .description h2 {
+                font-size: 20px;
             }
 
-            .type-table {
-                grid-template-columns: 1fr;
+            .description p {
+                font-size: 14px;
             }
 
-            .share-buttons {
-                flex-direction: column;
-                align-items: stretch;
+            .start-button {
+                padding: 15px 40px;
+                font-size: 20px;
             }
 
-            .share-btn {
-                width: 100%;
-                justify-content: center;
+            .apple-image {
+                width: 80px;
+                height: 80px;
+                font-size: 50px;
             }
 
-            .social-links {
-                display: flex;
-                justify-content: center;
-                gap: 15px;
+            .apple-item {
+                flex: 0 0 150px;
+                height: 150px;
             }
 
-            .social-links a {
-                padding: 0;
-                width: 50px;
-                height: 50px;
-                border-radius: 50%;
-                justify-content: center;
-                align-items: center;
-                margin: 0;
-                font-size: 0;
-                display: inline-flex;
-            }
-
-            .social-links a svg {
-                width: 24px;
-                height: 24px;
-            }
-
-            #canvas3d {
-                height: 300px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .scale-options {
-                gap: 20px;
-            }
-
-            .apple-type {
-                font-size: 28px;
+            .apple-name {
+                font-size: 12px;
             }
         }
     </style>
 </head>
 
 <body>
-    <div class="container">
-        <div class="header">
-            <div class="logo">
-                <div class="logo-icon">🍎</div>
-                <h1>りんご性格診断</h1>
-            </div>
-            <p class="subtitle">12の質問であなたのりんごタイプを診断します</p>
-        </div>
-
-        <div class="progress-bar">
-            <div class="progress-fill" id="progressBar"></div>
-        </div>
-
-        <div id="questionContainer" class="question-container">
-            <!-- Questions will be dynamically inserted here -->
-        </div>
-
-        <div class="navigation">
-            <button class="btn btn-next" id="nextBtn" onclick="nextPage()">次へ</button>
-        </div>
-
-        <div class="page-indicator" id="pageIndicator"></div>
-
-        <div id="resultContainer" class="result-container">
-            <h2 class="result-title">診断結果</h2>
-
-            <div class="apple-image-container">
-                <div class="apple-result-image" id="appleImage">🍎</div>
-            </div>
-
-            <div class="apple-type" id="appleType"></div>
-            <div class="result-description" id="resultDescription"></div>
-
-            <div class="type-explanation">
-                <h3>あなたのタイプ解説</h3>
-                <div class="type-table" id="typeTable"></div>
-            </div>
-
-            <div class="share-buttons">
-                <button class="share-btn twitter" id="shareTwitter">
-                    <svg class="share-icon" viewBox="0 0 24 24" fill="currentColor">
-                        <path
-                            d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                    </svg>
-                    Xでシェア
-                </button>
-                <button class="share-btn line" id="shareLine">
-                    <svg class="share-icon" viewBox="0 0 24 24" fill="currentColor">
-                        <path
-                            d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.105.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.768.039 1.08l-.171 1.026c-.053.303-.242 1.186 1.039.647 1.281-.54 6.911-4.069 9.428-6.967C23.176 14.393 24 12.458 24 10.314" />
-                    </svg>
-                    LINEでシェア
-                </button>
-            </div>
-
-            <div class="social-links">
-                <a href="https://x.com/ut_keio_apple" target="_blank" rel="noopener">
-                    <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
-                        <path
-                            d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                    </svg>
-                    公式X (Twitter)
-                </a>
-                <a href="https://www.instagram.com/ut_keio_apple/" target="_blank" rel="noopener" class="instagram">
-                    <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
-                        <path
-                            d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
-                    </svg>
-                    公式Instagram
-                </a>
-            </div>
-        </div>
+    <!-- Background apple carousel -->
+    <div class="apple-carousel">
+        <div class="apple-column left" id="leftColumn"></div>
+        <div class="apple-column right" id="rightColumn"></div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- Main content -->
+    <div class="welcome-container">
+        <div class="logo">
+            <div class="logo-icon">🍎</div>
+            <h1>りんご性格診断</h1>
+        </div>
+
+        <p class="subtitle">あなたはどのりんごタイプ？</p>
+
+        <div class="description">
+            <h2>16品種のりんごから<br>あなたにぴったりの品種を診断</h2>
+            <p>
+                簡単な12の質問に答えるだけで、<br>
+                あなたの性格にぴったりのりんご品種がわかります。<br>
+                さあ、あなたはどのりんごタイプでしょうか？
+            </p>
+        </div>
+
+        <a href="diagnosis.html" class="start-button">診断をスタート</a>
+    </div>
+
     <script>
-        const questions = [
-            // Red⇔Green questions (1-3)
-            { text: "あなたのイメージカラーはどっちに近い？", left: "赤やオレンジ", right: "青や緑", type: "RG" },
-            { text: "農業をするとしたら、どっちが自分に合っていると感じる？", left: "みんなで協力する農作業", right: "1人で集中する農作業", type: "RG" },
-            { text: "りんごを食べるとしたら、どこで食べたい？", left: "外でピクニック気分で", right: "家の中でゆっくり", type: "RG" },
-
-            // Sweet⇔Tart questions (4-6)
-            { text: "りんごを食べるとしたら、どっちが好み？", left: "焼きリンゴ", right: "生のりんご", type: "ST" },
-            { text: "りんごのスイーツを食べるとしたら、どっちの方が好き？", left: "りんごのコンポート", right: "りんごのシャーベット", type: "ST" },
-            { text: "お腹がペコぺコだ…目の前に「食べてはいけない」と書かれたりんごが！あなたならどうする？", left: "少しなら食べても大丈夫", right: "なるべく食べないようにする", type: "ST" },
-
-            // Early⇔Late questions (7-9)
-            { text: "りんごの見た目なら、どっちが好み？", left: "小さくて形のきれいなりんご", right: "ひときわ大きくて目立つりんご", type: "EL" },
-            { text: "めんどくさくて大変な作業があったとしたら、あなたはどうする？", left: "先にやるタイプ", right: "あと回しにするタイプ", type: "EL" },
-            { text: "りんごの皮むきを頼まれちゃった！そんな時、あなたならどうする？", left: "とにかくスピーディーにやる", right: "慎重かつ丁寧にやる", type: "EL" },
-
-            // Famous⇔Unique questions (10-12)
-            { text: "あなたの洋服やファッションはどっちに近い？", left: "とにかく流行にあわせておこう…派", right: "こだわりをもって選びたい…派", type: "FU" },
-            { text: "旅行に行くことになった！そんな時、あなたはどっちに行きたい？", left: "有名な観光スポットを楽しむ", right: "山奥の珍しい温泉街でゆっくり", type: "FU" },
-            { text: "もしりんごを育てるとしたら、どっちの師匠に弟子入りする？", left: "とにかく沢山育てて売るぜ！ガッツ系", right: "自分の好きな品種しか育てない！職人系", type: "FU" }
+        // 16 apple types with their names and image paths
+        const appleTypes = [
+            { name: "つがる", emoji: "🍎", src: "" },
+            { name: "ふじ", emoji: "🍎", src: "" },
+            { name: "ジョナゴールド", emoji: "🍎", src: "" },
+            { name: "紅玉", emoji: "🍎", src: "" },
+            { name: "未希らいふ", emoji: "🍎", src: "" },
+            { name: "世界一", emoji: "🍎", src: "" },
+            { name: "御所川原", emoji: "🍎", src: "" },
+            { name: "むつ", emoji: "🍎", src: "" },
+            { name: "トキ", emoji: "🍏", src: "" },
+            { name: "王林", emoji: "🍏", src: "" },
+            { name: "きおう", emoji: "🍏", src: "" },
+            { name: "シナノゴールド", emoji: "🍏", src: "" },
+            { name: "ぐんま名月", emoji: "🍏", src: "" },
+            { name: "金星", emoji: "🍏", src: "" },
+            { name: "祝", emoji: "🍏", src: "" },
+            { name: "はつ恋ぐりん", emoji: "🍏", src: "" }
         ];
 
-        const appleTypes = {
-            "RFSE": { name: "つがる", description: "豊かな甘みとパリッとした食感が特徴の、誰からも愛される早生（わせ）りんごは、きっとあなたにぴったりのはず！", summary: "明るく親しみやすい早生の人気者", image: "" },
-            "RFSL": { name: "ふじ", description: "蜜が入りやすく、甘さとシャキシャキ感のバランスがとれた王道りんごは、きっとあなたにぴったりのはず！", summary: "安定感抜群の王道タイプ", image: "" },
-            "RFTE": { name: "ジョナゴールド", description: "強い酸味と甘みのメリハリがあり、料理やお菓子作りにも人気のりんごは、きっとあなたにぴったりのはず！", summary: "アクティブでメリハリのある人気者", image: "" },
-            "RFTL": { name: "紅玉", description: "ガツンとくる力強い酸味が特徴で、古くから愛される定番品種は、きっとあなたにぴったりのはず！", summary: "情熱的でストイックな定番品種", image: "" },
-            "RUSE": { name: "未希らいふ", description: "さっぱりとした甘みとジューシーな果汁が特徴の、市場では珍しい早生（わせ）品種は、きっとあなたにぴったりのはず！", summary: "個性的で優しい早生のレア品種", image: "" },
-            "RUSL": { name: "世界一", description: "規格外の大きさと優しい甘さが特徴の、贈答品としても人気の珍しい品種は、きっとあなたにぴったりのはず！", summary: "大らかで優しい個性派", image: "" },
-            "RUTE": { name: "御所川原", description: "しっかりとした酸味があり、流通量が少なく知る人ぞ知るニッチな品種は、きっとあなたにぴったりのはず！", summary: "アクティブでストイックな個性派", image: "" },
-            "RUTL": { name: "むつ", description: "大型で食べ応えのある果肉と程よい酸味が特徴の、じっくり味わいたい珍しい晚生（おくて）品種は、きっとあなたにぴったりのはず！", summary: "じっくり型のストイック個性派", image: "" },
-            "GFSE": { name: "トキ", description: "甘みが強く酸味が少ない、爽やかな味わいが特徴の、近年人気の高い黄色いりんごは、きっとあなたにぴったりのはず！", summary: "穏やかで優しい早生の人気者", image: "" },
-            "GFSL": { name: "王林", description: "強い甘さと独特な香りが特徴の、誰もが知る緑黄色の定番品種は、きっとあなたにぴったりのはず！", summary: "落ち着いた優しさの王道タイプ", image: "" },
-            "GFTE": { name: "きおう", description: "さっぱりとした酸味とシャキシャキ感が特徴の、初秋に出回る爽やかな黄色いりんごは、きっとあなたにぴったりのはず！", summary: "冷静でストイックな早生の人気者", image: "" },
-            "GFTL": { name: "シナノゴールド", description: "心地よい酸味とパリッとした食感が特徴の、貯蔵性の高い黄色いりんごは、きっとあなたにぴったりのはず！", summary: "着実でストイックな定番品種", image: "" },
-            "GUSE": { name: "ぐんま名月", description: "濃厚な甘みとほのかな香りが特徴の、希少な黄色い高級品種は、きっとあなたにぴったりのはず！", summary: "穏やかで優しい個性派の高級品", image: "" },
-            "GUSL": { name: "金星", description: "上品でまろやかな甘さが特徴の、表面のサビが特徴的な珍しい黄色いりんごは、きっとあなたにぴったりのはず！", summary: "マイペースで優しい個性派", image: "" },
-            "GUTE": { name: "祝", description: "昔ながらの爽やかな酸味が特徴の、一部の地域でしか流通しない非常に珍しい品種は、きっとあなたにぴったりのはず！", summary: "冷静でストイックなレア品種", image: "" },
-            "GUTL": { name: "はつ恋ぐりん", description: "鮮烈な酸味とシャープな香りが特徴の、新しい品種でニッチなファンが多いりんごは、きっとあなたにぴったりのはず！", summary: "マイペースでストイックな個性派", image: "" }
-        };        // Define apple colors for each position
-        const appleColors = [
-            '#ff6b6b', // Position 1 - Strong red
-            '#ff9999', // Position 2 - Medium red
-            '#ffe4cc', // Position 4 - Yellow
-            '#99e5c7', // Position 6 - Medium green
-            '#00b894'  // Position 7 - Strong green
-        ];
+        // Create apple items for each column
+        function createAppleColumn(columnId) {
+            const column = document.getElementById(columnId);
+            const applesPerColumn = 8;
 
-        const appleSizes = [1.0, 0.9, 0.8, 0.9, 1.0]; // Size multipliers for each position
+            // Create two sets for infinite scroll
+            for (let set = 0; set < 2; set++) {
+                for (let i = 0; i < applesPerColumn; i++) {
+                    const index = i % appleTypes.length;
+                    const apple = appleTypes[index];
 
-        let currentPage = 0;
-        const questionsPerPage = 12;
-        const totalPages = Math.ceil(questions.length / questionsPerPage);
-        let answers = new Array(questions.length).fill(null);
+                    const appleItem = document.createElement('div');
+                    appleItem.className = 'apple-item';
+                    appleItem.style.animationDelay = `${i * 0.3}s`;
 
-        function renderQuestions() {
-            const start = currentPage * questionsPerPage;
-            const end = Math.min(start + questionsPerPage, questions.length);
-            const container = document.getElementById('questionContainer');
-            const isMobile = window.innerWidth <= 768;
-            container.innerHTML = '';
+                    const colorClass = apple.emoji === '🍎' ? 'red' : 'green';
+                    const imageContent = apple.src ?
+                        `<img src="${apple.src}" alt="${apple.name}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50% 50% 55% 55% / 55% 55% 45% 45%;" />` :
+                        `<div class="apple-photo ${colorClass}"></div>`;
 
-            for (let i = start; i < end; i++) {
-                const q = questions[i];
-                const questionDiv = document.createElement('div');
-
-                let isDisabled = false;
-                for (let j = 0; j < i; j++) {
-                    if (answers[j] === null) {
-                        isDisabled = true;
-                        break;
-                    }
-                }
-
-                questionDiv.className = isDisabled ? 'question disabled' : 'question';
-
-                if (isMobile) {
-                    questionDiv.innerHTML = `
-                        <span class="question-number">Q${i + 1}.</span> ${q.text}
-                        <div class="scale-container">
-                            <div class="scale-label left mobile-top">${q.left}</div>
-                            <div class="scale-options">
-                                ${[1, 2, 3, 4, 5].map(value => `
-                                    <div class="scale-option">
-                                        <input type="radio" id="q${i}_${value}" name="q${i}" value="${value}" 
-                                               ${answers[i] === value ? 'checked' : ''}
-                                               onchange="saveAnswer(${i}, ${value})">
-                                        <label for="q${i}_${value}" class="scale-circle">
-                                            <div class="apple-shape">
-                                                <div class="apple-body"></div>
-                                                <div class="apple-stem">
-                                                    <div class="stem"></div>
-                                                    <div class="leaf"></div>
-                                                </div>
-                                            </div>
-                                        </label>
-                                    </div>
-                                `).join('')}
-                            </div>
-                            <div class="scale-label right mobile-bottom">${q.right}</div>
+                    appleItem.innerHTML = `
+                        <div class="apple-image">
+                            ${imageContent}
                         </div>
+                        <div class="apple-name">${apple.name}</div>
                     `;
-                } else {
-                    questionDiv.innerHTML = `
-                        <span class="question-number">Q${i + 1}.</span> ${q.text}
-                        <div class="scale-container">
-                            <div class="scale-label left">${q.left}</div>
-                            <div class="scale-options">
-                                ${[1, 2, 3, 4, 5].map(value => `
-                                    <div class="scale-option">
-                                        <input type="radio" id="q${i}_${value}" name="q${i}" value="${value}" 
-                                               ${answers[i] === value ? 'checked' : ''}
-                                               onchange="saveAnswer(${i}, ${value})">
-                                        <label for="q${i}_${value}" class="scale-circle">
-                                            <div class="apple-shape">
-                                                <div class="apple-body"></div>
-                                                <div class="apple-stem">
-                                                    <div class="stem"></div>
-                                                    <div class="leaf"></div>
-                                                </div>
-                                            </div>
-                                        </label>
-                                    </div>
-                                `).join('')}
-                            </div>
-                            <div class="scale-label right">${q.right}</div>
-                        </div>
-                    `;
-                }
-                container.appendChild(questionDiv);
-            }
 
-            updateNavigation();
-        }
-
-        function saveAnswer(questionIndex, value) {
-            answers[questionIndex] = value;
-            renderQuestions();
-
-            // 進捗率は回答済みの質問数で計算（巻き戻らないように）
-            const answeredCount = answers.filter(a => a !== null).length;
-            const progress = (answeredCount / 12) * 100;
-            document.getElementById('progressBar').style.width = `${progress}%`;
-
-            const nextQuestion = document.querySelector(`#q${questionIndex + 1}_1`);
-            if (nextQuestion) {
-                nextQuestion.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'center'
-                });
-            } else if (questionIndex === answers.length - 1) {
-                // 最後の質問なら「次へ」ボタンを表示位置に
-                document.getElementById('nextBtn').scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'center'
-                });
-            }
-        }
-        function updateNavigation() {
-            const nextBtn = document.getElementById('nextBtn');
-            const pageIndicator = document.getElementById('pageIndicator');
-
-            if (currentPage === totalPages - 1) {
-                nextBtn.textContent = '結果へ';
-                nextBtn.onclick = showResults;
-            } else {
-                nextBtn.textContent = '次へ';
-                nextBtn.onclick = nextPage;
-            }
-        }
-
-        function nextPage() {
-            const start = currentPage * questionsPerPage;
-            const end = Math.min(start + questionsPerPage, questions.length);
-            let allAnswered = true;
-
-            for (let i = start; i < end; i++) {
-                if (answers[i] === null) {
-                    allAnswered = false;
-                    break;
+                    column.appendChild(appleItem);
                 }
             }
-
-            if (!allAnswered) {
-                alert('このページのすべての質問に回答してから次へ進んでください。');
-                return;
-            }
-
-            if (currentPage < totalPages - 1) {
-                currentPage++;
-                renderQuestions();
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
         }
 
-        function previousPage() {
-            if (currentPage > 0) {
-                currentPage--;
-                renderQuestions();
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
-        }
-
-        function calculateResult() {
-            const unanswered = answers.filter(a => a === null).length;
-            if (unanswered > 0) {
-                alert(`まだ ${unanswered} 個の質問に回答していません。すべての質問に回答してください。`);
-                return null;
-            }
-
-            let scores = {
-                R: 0, G: 0,
-                S: 0, T: 0,
-                E: 0, L: 0,
-                F: 0, U: 0
-            };
-
-            questions.forEach((q, i) => {
-                const value = answers[i];
-                const normalizedValue = (value - 3) / 2;
-
-                switch (q.type) {
-                    case 'RG':
-                        if (normalizedValue < 0) scores.R += Math.abs(normalizedValue);
-                        else scores.G += normalizedValue;
-                        break;
-                    case 'ST':
-                        if (normalizedValue < 0) scores.S += Math.abs(normalizedValue);
-                        else scores.T += normalizedValue;
-                        break;
-                    case 'EL':
-                        if (normalizedValue < 0) scores.E += Math.abs(normalizedValue);
-                        else scores.L += normalizedValue;
-                        break;
-                    case 'FU':
-                        if (normalizedValue < 0) scores.F += Math.abs(normalizedValue);
-                        else scores.U += normalizedValue;
-                        break;
-                }
-            });
-
-            const color = scores.R > scores.G ? 'R' : 'G';
-            const popularity = scores.F > scores.U ? 'F' : 'U';
-            const taste = scores.S > scores.T ? 'S' : 'T';
-            const season = scores.E > scores.L ? 'E' : 'L';
-
-            return {
-                type: color + popularity + taste + season,
-                scores: scores
-            };
-        }
-
-        function create3DAppleTree() {
-            const canvas = document.getElementById('canvas3d');
-            const scene = new THREE.Scene();
-            scene.background = new THREE.Color(0x87CEEB);
-
-            const camera = new THREE.PerspectiveCamera(75, canvas.width / canvas.height, 0.1, 1000);
-            camera.position.set(0, 5, 15);
-
-            const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true });
-            renderer.setSize(canvas.clientWidth, canvas.clientHeight);
-            renderer.shadowMap.enabled = true;
-
-            // Lighting
-            const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
-            scene.add(ambientLight);
-            const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
-            directionalLight.position.set(10, 20, 10);
-            directionalLight.castShadow = true;
-            scene.add(directionalLight);
-
-            // Ground
-            const groundGeometry = new THREE.CircleGeometry(10, 32);
-            const groundMaterial = new THREE.MeshLambertMaterial({ color: 0x98FB98 });
-            const ground = new THREE.Mesh(groundGeometry, groundMaterial);
-            ground.rotation.x = -Math.PI / 2;
-            ground.position.y = -2;
-            ground.receiveShadow = true;
-            scene.add(ground);
-
-            // Tree trunk
-            const trunkGeometry = new THREE.CylinderGeometry(0.5, 0.8, 4, 8);
-            const trunkMaterial = new THREE.MeshLambertMaterial({ color: 0x8B4513 });
-            const trunk = new THREE.Mesh(trunkGeometry, trunkMaterial);
-            trunk.position.y = 0;
-            trunk.castShadow = true;
-            scene.add(trunk);
-
-            // Tree crown (leaves)
-            const crownGeometry = new THREE.SphereGeometry(3.5, 16, 16);
-            const crownMaterial = new THREE.MeshLambertMaterial({ color: 0x228B22 });
-            const crown = new THREE.Mesh(crownGeometry, crownMaterial);
-            crown.position.y = 3.5;
-            crown.scale.y = 0.8;
-            crown.castShadow = true;
-            scene.add(crown);
-
-            // Add apples based on user answers
-            const appleGroup = new THREE.Group();
-            let appleCount = 0;
-
-            answers.forEach((answer, index) => {
-                if (answer !== null) {
-                    const position = answer - 1; // Convert 1-7 to 0-6
-                    const color = appleColors[position];
-                    const size = appleSizes[position] * 0.3;
-
-                    // Random position on tree
-                    const theta = Math.random() * Math.PI * 2;
-                    const phi = Math.random() * Math.PI * 0.5 + Math.PI * 0.25;
-                    const radius = 2.5 + Math.random() * 1.5;
-
-                    const x = radius * Math.sin(phi) * Math.cos(theta);
-                    const y = radius * Math.cos(phi) + 3;
-                    const z = radius * Math.sin(phi) * Math.sin(theta);
-
-                    // Apple
-                    const appleGeometry = new THREE.SphereGeometry(size, 16, 16);
-                    const appleMaterial = new THREE.MeshPhongMaterial({
-                        color: color,
-                        shininess: 100,
-                        specular: 0x222222
-                    });
-                    const apple = new THREE.Mesh(appleGeometry, appleMaterial);
-                    apple.position.set(x, y, z);
-                    apple.scale.y = 1.1;
-                    apple.castShadow = true;
-
-                    // Add stem
-                    const stemGeometry = new THREE.CylinderGeometry(0.02, 0.02, 0.1, 4);
-                    const stemMaterial = new THREE.MeshLambertMaterial({ color: 0x654321 });
-                    const stem = new THREE.Mesh(stemGeometry, stemMaterial);
-                    stem.position.set(x, y + size + 0.05, z);
-
-                    appleGroup.add(apple);
-                    appleGroup.add(stem);
-                    appleCount++;
-                }
-            });
-
-            scene.add(appleGroup);
-
-            // Mouse controls
-            let mouseX = 0;
-            let mouseY = 0;
-            let targetRotationX = 0;
-            let targetRotationY = 0;
-
-            canvas.addEventListener('mousemove', (e) => {
-                const rect = canvas.getBoundingClientRect();
-                mouseX = ((e.clientX - rect.left) / rect.width) * 2 - 1;
-                mouseY = -((e.clientY - rect.top) / rect.height) * 2 + 1;
-            });
-
-            // Touch controls for mobile
-            canvas.addEventListener('touchmove', (e) => {
-                if (e.touches.length === 1) {
-                    const rect = canvas.getBoundingClientRect();
-                    const touch = e.touches[0];
-                    mouseX = ((touch.clientX - rect.left) / rect.width) * 2 - 1;
-                    mouseY = -((touch.clientY - rect.top) / rect.height) * 2 + 1;
-                }
-            });
-
-            // Animation
-            function animate() {
-                requestAnimationFrame(animate);
-
-                targetRotationY = mouseX * Math.PI * 0.5;
-                targetRotationX = mouseY * Math.PI * 0.2;
-
-                appleGroup.rotation.y += (targetRotationY - appleGroup.rotation.y) * 0.05;
-                crown.rotation.y = appleGroup.rotation.y * 0.3;
-
-                // Gentle floating animation for apples
-                appleGroup.children.forEach((child, i) => {
-                    if (child.geometry instanceof THREE.SphereGeometry) {
-                        child.position.y += Math.sin(Date.now() * 0.001 + i) * 0.002;
-                    }
-                });
-
-                renderer.render(scene, camera);
-            }
-
-            // Handle resize
-            window.addEventListener('resize', () => {
-                camera.aspect = canvas.clientWidth / canvas.clientHeight;
-                camera.updateProjectionMatrix();
-                renderer.setSize(canvas.clientWidth, canvas.clientHeight);
-            });
-
-            animate();
-        }
-
-        function showResults() {
-            const result = calculateResult();
-            if (!result) return;
-
-            const appleType = appleTypes[result.type];
-
-            document.getElementById('questionContainer').style.display = 'none';
-            document.querySelector('.navigation').style.display = 'none';
-            document.querySelector('.page-indicator').style.display = 'none';
-            document.getElementById('resultContainer').style.display = 'block';
-
-            // りんごの画像を表示
-            const appleImageEl = document.getElementById('appleImage');
-            if (appleType.image) {
-                appleImageEl.innerHTML = `<img src="${appleType.image}" alt="${appleType.name}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 20px;" />`;
-            } else {
-                const isGreen = result.type[0] === 'G';
-                appleImageEl.textContent = isGreen ? '🍏' : '🍎';
-            }
-
-            document.getElementById('appleType').textContent = `${appleType.name}（${result.type}）`;
-            document.getElementById('resultDescription').textContent = appleType.description;
-
-            // アルファベット説明表を作成
-            const typeTableEl = document.getElementById('typeTable');
-            const typeMapping = {
-                'R': { label: 'Red', desc: '赤い（情熱的・明るい）' },
-                'G': { label: 'Green', desc: '緑/青い（冷静・内向的）' },
-                'F': { label: 'Famous', desc: '有名（トレンドに敏感）' },
-                'U': { label: 'Unique', desc: '珍しい（個性的・ニッチ）' },
-                'S': { label: 'Sweet', desc: '甘い（優しい・理想家）' },
-                'T': { label: 'Tart', desc: '酸っぱい（ストイック・現実的）' },
-                'E': { label: 'Early', desc: '早生（せっかち・効率的）' },
-                'L': { label: 'Late', desc: '晚生（マイペース・のんびり）' }
-            };
-
-            const userTypes = result.type.split('');
-            typeTableEl.innerHTML = '';
-
-            // 4つの軸を表示
-            const axes = [
-                ['R', 'G'],
-                ['F', 'U'],
-                ['S', 'T'],
-                ['E', 'L']
-            ];
-
-            axes.forEach((axis, axisIndex) => {
-                // 軸ごとにグループ化するコンテナを作成
-                const axisGroup = document.createElement('div');
-                axisGroup.style.background = '#f0f0f0';
-                axisGroup.style.borderRadius = '10px';
-                axisGroup.style.padding = '5px';
-                axisGroup.style.display = 'flex';
-                axisGroup.style.flexDirection = 'column';
-                axisGroup.style.gap = '5px';
-
-                axis.forEach(letter => {
-                    const isHighlighted = userTypes.includes(letter);
-                    const type = typeMapping[letter];
-                    const rowDiv = document.createElement('div');
-                    rowDiv.className = `type-row ${isHighlighted ? 'highlighted' : ''}`;
-
-                    // 最初の文字を強調表示
-                    const firstLetter = type.label.charAt(0);
-                    const restOfLabel = type.label.slice(1);
-
-                    rowDiv.innerHTML = `
-                        <span class="type-label"><strong style="font-size: 1.2em; font-weight: 900;">${firstLetter}</strong>${restOfLabel}</span>
-                        <span class="type-desc">${type.desc}</span>
-                    `;
-                    axisGroup.appendChild(rowDiv);
-                });
-
-                typeTableEl.appendChild(axisGroup);
-            });
-
-            // 共有ボタンの設定
-            const shareUrl = 'https://kofe02.github.io/appleapp/';
-            const hashtags = `りんご診断,性格診断,${result.type},りんごの会,駒場祭2025,青森,りんご革命`;
-
-            document.getElementById('shareTwitter').onclick = () => {
-                const text = `🍏あなたの性格をりんごで表すと…？🍎\n🍏りんご性格診断🍎\n\n私は【${appleType.name}(${result.type})】タイプ！🍎\n${appleType.summary}\n\nあなたにぴったりのりんごを見つけよう👇\n${shareUrl}\n\n#${hashtags.replace(/,/g, ' #')}\n@ut_keio_apple`;
-                const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
-                window.open(url, '_blank', 'noopener');
-            };
-
-            document.getElementById('shareLine').onclick = () => {
-                const text = `🍏あなたの性格をりんごで表すと…？🍎\n🍏りんご性格診断🍎\n\n私は【${appleType.name}(${result.type})】タイプでした！🍎\n${appleType.summary}\n\nあなたもやってみてね👇\n${shareUrl}\n\n#りんご診断 #駒場祭2025 #りんごの会`;
-                const url = `https://line.me/R/msg/text/?${encodeURIComponent(text)}`;
-                window.open(url, '_blank', 'noopener');
-            };
-
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        // Initialize
-        window.addEventListener('resize', renderQuestions);
-        renderQuestions();
+        // Initialize columns
+        createAppleColumn('leftColumn');
+        createAppleColumn('rightColumn');
     </script>
 </body>
 
