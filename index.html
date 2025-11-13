@@ -14,6 +14,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>りんご性格診断 - あなたはどのりんごタイプ？</title>
+    <link rel="icon" type="image/x-icon" href="src/favicon.ico">
     <style>
         * {
             margin: 0;
@@ -454,20 +455,125 @@
             border-radius: 15px;
         }
 
-        .visualization-container {
-            margin: 40px 0;
+        .apple-image-container {
+            margin: 30px auto;
+            text-align: center;
+        }
+
+        .apple-result-image {
+            max-width: 300px;
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
             display: flex;
-            gap: 40px;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            font-size: 120px;
+        }
+
+        .type-explanation {
+            margin: 30px 0;
+            padding: 25px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .type-explanation h3 {
+            font-size: 20px;
+            color: #2d3436;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .type-table {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .type-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .type-row.highlighted {
+            background: linear-gradient(135deg, #ff6b6b, #feca57);
+            color: white;
+            font-weight: 600;
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+        }
+
+        .type-label {
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .type-desc {
+            font-size: 14px;
+            text-align: right;
+        }
+
+        .share-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin: 30px 0;
             flex-wrap: wrap;
         }
 
-        .chart-container {
-            flex: 1;
-            min-width: 300px;
-            max-width: 400px;
+        .share-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: white;
         }
+
+        .share-btn.twitter {
+            background: #1DA1F2;
+        }
+
+        .share-btn.twitter:hover {
+            background: #1a8cd8;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(29, 161, 242, 0.4);
+        }
+
+        .share-btn.line {
+            background: #00B900;
+        }
+
+        .share-btn.line:hover {
+            background: #009900;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 185, 0, 0.4);
+        }
+
+        .share-icon {
+            width: 20px;
+            height: 20px;
+        }
+
+
 
         #canvas3d {
             width: 100%;
@@ -507,18 +613,31 @@
         }
 
         .social-links a {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
             margin: 0 10px;
-            padding: 10px 20px;
+            padding: 12px 24px;
             background: #1da1f2;
             color: white;
             text-decoration: none;
-            border-radius: 20px;
+            border-radius: 25px;
             transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
         .social-links a.instagram {
             background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+        }
+
+        .social-icon {
+            width: 20px;
+            height: 20px;
         }
 
         /* Mobile responsive styles */
@@ -629,9 +748,24 @@
                 padding: 20px;
             }
 
-            .visualization-container {
+            .apple-result-image {
+                max-width: 250px;
+                height: 250px;
+                font-size: 80px;
+            }
+
+            .type-table {
+                grid-template-columns: 1fr;
+            }
+
+            .share-buttons {
                 flex-direction: column;
-                gap: 30px;
+                align-items: stretch;
+            }
+
+            .share-btn {
+                width: 100%;
+                justify-content: center;
             }
 
             #canvas3d {
@@ -677,23 +811,51 @@
 
         <div id="resultContainer" class="result-container">
             <h2 class="result-title">診断結果</h2>
+
+            <div class="apple-image-container">
+                <div class="apple-result-image" id="appleImage">🍎</div>
+            </div>
+
             <div class="apple-type" id="appleType"></div>
             <div class="result-description" id="resultDescription"></div>
-            <div class="visualization-container">
-                <div class="chart-container">
-                    <canvas id="radarChart"></canvas>
-                </div>
-                <!-- <div class="apple-3d-container">
-                    <canvas id="canvas3d"></canvas>
-                    <div class="apple-3d-info">
-                        ドラッグして回転・スクロールでズーム<br>
-                        あなたが選んだりんごで作った、あなただけのりんごの木です🍎
-                    </div>
-                </div> -->
+
+            <div class="type-explanation">
+                <h3>あなたのタイプ解説</h3>
+                <div class="type-table" id="typeTable"></div>
             </div>
+
+            <div class="share-buttons">
+                <button class="share-btn twitter" id="shareTwitter">
+                    <svg class="share-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                    </svg>
+                    Xでシェア
+                </button>
+                <button class="share-btn line" id="shareLine">
+                    <svg class="share-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.105.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.768.039 1.08l-.171 1.026c-.053.303-.242 1.186 1.039.647 1.281-.54 6.911-4.069 9.428-6.967C23.176 14.393 24 12.458 24 10.314" />
+                    </svg>
+                    LINEでシェア
+                </button>
+            </div>
+
             <div class="social-links">
-                <a href="https://twitter.com" target="_blank">X (Twitter)</a>
-                <a href="https://instagram.com" target="_blank" class="instagram">Instagram</a>
+                <a href="https://x.com/ut_keio_apple" target="_blank" rel="noopener">
+                    <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                    </svg>
+                    公式X (Twitter)
+                </a>
+                <a href="https://www.instagram.com/ut_keio_apple/" target="_blank" rel="noopener" class="instagram">
+                    <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                    </svg>
+                    公式Instagram
+                </a>
             </div>
         </div>
     </div>
@@ -724,25 +886,23 @@
         ];
 
         const appleTypes = {
-            "RFSE": { name: "つがる", description: "豊かな甘みとパリッとした食感が特徴の、誰からも愛される早生（わせ）りんごは、きっとあなたにぴったりのはず！" },
-            "RFSL": { name: "ふじ", description: "蜜が入りやすく、甘さとシャキシャキ感のバランスがとれた王道りんごは、きっとあなたにぴったりのはず！" },
-            "RFTE": { name: "ジョナゴールド", description: "強い酸味と甘みのメリハリがあり、料理やお菓子作りにも人気のりんごは、きっとあなたにぴったりのはず！" },
-            "RFTL": { name: "紅玉", description: "ガツンとくる力強い酸味が特徴で、古くから愛される定番品種は、きっとあなたにぴったりのはず！" },
-            "RUSE": { name: "未希らいふ", description: "さっぱりとした甘みとジューシーな果汁が特徴の、市場では珍しい早生（わせ）品種は、きっとあなたにぴったりのはず！" },
-            "RUSL": { name: "世界一", description: "規格外の大きさと優しい甘さが特徴の、贈答品としても人気の珍しい品種は、きっとあなたにぴったりのはず！" },
-            "RUTE": { name: "御所川原", description: "しっかりとした酸味があり、流通量が少なく知る人ぞ知るニッチな品種は、きっとあなたにぴったりのはず！" },
-            "RUTL": { name: "むつ", description: "大型で食べ応えのある果肉と程よい酸味が特徴の、じっくり味わいたい珍しい晩生（おくて）品種は、きっとあなたにぴったりのはず！" },
-            "GFSE": { name: "トキ", description: "甘みが強く酸味が少ない、爽やかな味わいが特徴の、近年人気の高い黄色いりんごは、きっとあなたにぴったりのはず！" },
-            "GFSL": { name: "王林", description: "強い甘さと独特な香りが特徴の、誰もが知る緑黄色の定番品種は、きっとあなたにぴったりのはず！" },
-            "GFTE": { name: "きおう", description: "さっぱりとした酸味とシャキシャキ感が特徴の、初秋に出回る爽やかな黄色いりんごは、きっとあなたにぴったりのはず！" },
-            "GFTL": { name: "シナノゴールド", description: "心地よい酸味とパリッとした食感が特徴の、貯蔵性の高い黄色いりんごは、きっとあなたにぴったりのはず！" },
-            "GUSE": { name: "ぐんま名月", description: "濃厚な甘みとほのかな香りが特徴の、希少な黄色い高級品種は、きっとあなたにぴったりのはず！" },
-            "GUSL": { name: "金星", description: "上品でまろやかな甘さが特徴の、表面のサビが特徴的な珍しい黄色いりんごは、きっとあなたにぴったりのはず！" },
-            "GUTE": { name: "祝", description: "昔ながらの爽やかな酸味が特徴の、一部の地域でしか流通しない非常に珍しい品種は、きっとあなたにぴったりのはず！" },
-            "GUTL": { name: "はつ恋ぐりん", description: "鮮烈な酸味とシャープな香りが特徴の、新しい品種でニッチなファンが多いりんごは、きっとあなたにぴったりのはず！" }
-        };
-
-        // Define apple colors for each position
+            "RFSE": { name: "つがる", description: "豊かな甘みとパリッとした食感が特徴の、誰からも愛される早生（わせ）りんごは、きっとあなたにぴったりのはず！", summary: "明るく親しみやすい早生の人気者", image: "" },
+            "RFSL": { name: "ふじ", description: "蜜が入りやすく、甘さとシャキシャキ感のバランスがとれた王道りんごは、きっとあなたにぴったりのはず！", summary: "安定感抜群の王道タイプ", image: "" },
+            "RFTE": { name: "ジョナゴールド", description: "強い酸味と甘みのメリハリがあり、料理やお菓子作りにも人気のりんごは、きっとあなたにぴったりのはず！", summary: "アクティブでメリハリのある人気者", image: "" },
+            "RFTL": { name: "紅玉", description: "ガツンとくる力強い酸味が特徴で、古くから愛される定番品種は、きっとあなたにぴったりのはず！", summary: "情熱的でストイックな定番品種", image: "" },
+            "RUSE": { name: "未希らいふ", description: "さっぱりとした甘みとジューシーな果汁が特徴の、市場では珍しい早生（わせ）品種は、きっとあなたにぴったりのはず！", summary: "個性的で優しい早生のレア品種", image: "" },
+            "RUSL": { name: "世界一", description: "規格外の大きさと優しい甘さが特徴の、贈答品としても人気の珍しい品種は、きっとあなたにぴったりのはず！", summary: "大らかで優しい個性派", image: "" },
+            "RUTE": { name: "御所川原", description: "しっかりとした酸味があり、流通量が少なく知る人ぞ知るニッチな品種は、きっとあなたにぴったりのはず！", summary: "アクティブでストイックな個性派", image: "" },
+            "RUTL": { name: "むつ", description: "大型で食べ応えのある果肉と程よい酸味が特徴の、じっくり味わいたい珍しい晚生（おくて）品種は、きっとあなたにぴったりのはず！", summary: "じっくり型のストイック個性派", image: "" },
+            "GFSE": { name: "トキ", description: "甘みが強く酸味が少ない、爽やかな味わいが特徴の、近年人気の高い黄色いりんごは、きっとあなたにぴったりのはず！", summary: "穏やかで優しい早生の人気者", image: "" },
+            "GFSL": { name: "王林", description: "強い甘さと独特な香りが特徴の、誰もが知る緑黄色の定番品種は、きっとあなたにぴったりのはず！", summary: "落ち着いた優しさの王道タイプ", image: "" },
+            "GFTE": { name: "きおう", description: "さっぱりとした酸味とシャキシャキ感が特徴の、初秋に出回る爽やかな黄色いりんごは、きっとあなたにぴったりのはず！", summary: "冷静でストイックな早生の人気者", image: "" },
+            "GFTL": { name: "シナノゴールド", description: "心地よい酸味とパリッとした食感が特徴の、貯蔵性の高い黄色いりんごは、きっとあなたにぴったりのはず！", summary: "着実でストイックな定番品種", image: "" },
+            "GUSE": { name: "ぐんま名月", description: "濃厚な甘みとほのかな香りが特徴の、希少な黄色い高級品種は、きっとあなたにぴったりのはず！", summary: "穏やかで優しい個性派の高級品", image: "" },
+            "GUSL": { name: "金星", description: "上品でまろやかな甘さが特徴の、表面のサビが特徴的な珍しい黄色いりんごは、きっとあなたにぴったりのはず！", summary: "マイペースで優しい個性派", image: "" },
+            "GUTE": { name: "祝", description: "昔ながらの爽やかな酸味が特徴の、一部の地域でしか流通しない非常に珍しい品種は、きっとあなたにぴったりのはず！", summary: "冷静でストイックなレア品種", image: "" },
+            "GUTL": { name: "はつ恋ぐりん", description: "鮮烈な酸味とシャープな香りが特徴の、新しい品種でニッチなファンが多いりんごは、きっとあなたにぴったりのはず！", summary: "マイペースでストイックな個性派", image: "" }
+        };        // Define apple colors for each position
         const appleColors = [
             '#ff6b6b', // Position 1 - Strong red
             '#ff9999', // Position 2 - Medium red
@@ -1109,68 +1269,71 @@
             document.querySelector('.page-indicator').style.display = 'none';
             document.getElementById('resultContainer').style.display = 'block';
 
+            // りんごの画像を表示
+            const appleImageEl = document.getElementById('appleImage');
+            if (appleType.image) {
+                appleImageEl.innerHTML = `<img src="${appleType.image}" alt="${appleType.name}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 20px;" />`;
+            } else {
+                const isGreen = result.type[0] === 'G';
+                appleImageEl.textContent = isGreen ? '🍏' : '🍎';
+            }
+
             document.getElementById('appleType').textContent = `${appleType.name}（${result.type}）`;
             document.getElementById('resultDescription').textContent = appleType.description;
 
-            // Calculate percentages for radar chart
-            const totalRG = result.scores.R + result.scores.G;
-            const totalST = result.scores.S + result.scores.T;
-            const totalEL = result.scores.E + result.scores.L;
-            const totalFU = result.scores.F + result.scores.U;
+            // アルファベット説明表を作成
+            const typeTableEl = document.getElementById('typeTable');
+            const typeMapping = {
+                'R': { label: 'R = Red', desc: '赤い（情熱的・明るい）' },
+                'G': { label: 'G = Green', desc: '緑/青い（冷静・内向的）' },
+                'F': { label: 'F = Famous', desc: '有名（トレンドに敏感）' },
+                'U': { label: 'U = Unique', desc: '珍しい（個性的・ニッチ）' },
+                'S': { label: 'S = Sweet', desc: '甘い（優しい・理想家）' },
+                'T': { label: 'T = Tart', desc: '酸っぱい（ストイック・現実的）' },
+                'E': { label: 'E = Early', desc: '早生（せっかち・効率的）' },
+                'L': { label: 'L = Late', desc: '晚生（マイペース・のんびり）' }
+            };
 
-            const redPercent = totalRG > 0 ? (result.scores.R / totalRG) * 100 : 50;
-            const sweetPercent = totalST > 0 ? (result.scores.S / totalST) * 100 : 50;
-            const earlyPercent = totalEL > 0 ? (result.scores.E / totalEL) * 100 : 50;
-            const famousPercent = totalFU > 0 ? (result.scores.F / totalFU) * 100 : 50;
+            const userTypes = result.type.split('');
+            typeTableEl.innerHTML = '';
 
-            // Create radar chart
-            const ctx = document.getElementById('radarChart').getContext('2d');
-            new Chart(ctx, {
-                type: 'radar',
-                data: {
-                    labels: [
-                        `赤い (${redPercent.toFixed(0)}%)`,
-                        `甘い (${sweetPercent.toFixed(0)}%)`,
-                        `早い (${earlyPercent.toFixed(0)}%)`,
-                        `有名 (${famousPercent.toFixed(0)}%)`
-                    ],
-                    datasets: [{
-                        label: 'あなたのバランス',
-                        data: [redPercent, sweetPercent, earlyPercent, famousPercent],
-                        backgroundColor: 'rgba(108, 92, 231, 0.2)',
-                        borderColor: 'rgba(108, 92, 231, 1)',
-                        borderWidth: 2,
-                        pointBackgroundColor: 'rgba(108, 92, 231, 1)',
-                        pointBorderColor: '#fff',
-                        pointHoverBackgroundColor: '#fff',
-                        pointHoverBorderColor: 'rgba(108, 92, 231, 1)'
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        r: {
-                            angleLines: {
-                                display: true
-                            },
-                            suggestedMin: 0,
-                            suggestedMax: 100,
-                            ticks: {
-                                stepSize: 20
-                            }
-                        }
-                    },
-                    plugins: {
-                        legend: {
-                            display: false
-                        }
-                    }
-                }
+            // 4つの軸を表示
+            const axes = [
+                ['R', 'G'],
+                ['F', 'U'],
+                ['S', 'T'],
+                ['E', 'L']
+            ];
+
+            axes.forEach(axis => {
+                axis.forEach(letter => {
+                    const isHighlighted = userTypes.includes(letter);
+                    const type = typeMapping[letter];
+                    const rowDiv = document.createElement('div');
+                    rowDiv.className = `type-row ${isHighlighted ? 'highlighted' : ''}`;
+                    rowDiv.innerHTML = `
+                        <span class="type-label">${type.label}</span>
+                        <span class="type-desc">${type.desc}</span>
+                    `;
+                    typeTableEl.appendChild(rowDiv);
+                });
             });
 
-            // Create 3D apple tree
-            create3DAppleTree();
+            // 共有ボタンの設定
+            const shareUrl = 'https://kofe02.github.io/appleapp/';
+            const hashtags = `りんご診断,性格診断,${result.type},りんごの会,駒場祭2025,青森,りんご革命`;
+
+            document.getElementById('shareTwitter').onclick = () => {
+                const text = `🍏あなたの性格をりんごで表すと…？🍎\n🍏りんご性格診断🍎\n\n私は【${appleType.name}(${result.type})】タイプ！🍎\n${appleType.summary}\n\nあなたにぴったりのりんごを見つけよう👇\n${shareUrl}\n\n#${hashtags.replace(/,/g, ' #')}\n@ut_keio_apple`;
+                const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
+                window.open(url, '_blank', 'noopener');
+            };
+
+            document.getElementById('shareLine').onclick = () => {
+                const text = `🍏あなたの性格をりんごで表すと…？🍎\n🍏りんご性格診断🍎\n\n私は【${appleType.name}(${result.type})】タイプでした！🍎\n${appleType.summary}\n\nあなたもやってみてね👇\n${shareUrl}\n\n#りんご診断 #駒場祭2025 #りんごの会`;
+                const url = `https://line.me/R/msg/text/?${encodeURIComponent(text)}`;
+                window.open(url, '_blank', 'noopener');
+            };
 
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
