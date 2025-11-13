@@ -1360,24 +1360,24 @@
                 axisGroup.style.display = 'flex';
                 axisGroup.style.flexDirection = 'column';
                 axisGroup.style.gap = '5px';
-                
+
                 axis.forEach(letter => {
                     const isHighlighted = userTypes.includes(letter);
                     const type = typeMapping[letter];
                     const rowDiv = document.createElement('div');
                     rowDiv.className = `type-row ${isHighlighted ? 'highlighted' : ''}`;
-                    
+
                     // 最初の文字を強調表示
                     const firstLetter = type.label.charAt(0);
                     const restOfLabel = type.label.slice(1);
-                    
+
                     rowDiv.innerHTML = `
                         <span class="type-label"><strong style="font-size: 1.2em; font-weight: 900;">${firstLetter}</strong>${restOfLabel}</span>
                         <span class="type-desc">${type.desc}</span>
                     `;
                     axisGroup.appendChild(rowDiv);
                 });
-                
+
                 typeTableEl.appendChild(axisGroup);
             });
 
