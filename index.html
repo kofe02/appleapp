@@ -16,6 +16,7 @@
     <meta name="description" content="あなたの性格をりんごで表すと?16種類のりんごであなたの性格タイプを診断!つがる、ふじ、王林など、あなたにぴったりのりんごを見つけよう。">
     <meta name="keywords" content="りんご診断,性格診断,りんごの会,駒場祭2025,東大,慶應,青森,りんご,診断結果">
     <meta name="author" content="りんごの会">
+    <!-- theme-color: Chrome/Safariのみサポート (Firefox/Operaは無視) -->
     <meta name="theme-color" content="#feca57">
     <link rel="canonical" href="https://kofe02.github.io/appleapp/">
 
@@ -316,6 +317,22 @@
         }
 
         /* Mobile responsive */
+        .footer-links {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .footer-links a:hover {
+            color: rgba(255, 255, 255, 1);
+            text-decoration: underline;
+        }
+
         @media (max-width: 768px) {
             h1 {
                 font-size: 32px;
@@ -387,9 +404,8 @@
 
         <a href="diagnosis.html" class="start-button">診断をスタート</a>
 
-        <div style="text-align: center; margin-top: 30px;">
-            <a href="terms.html"
-                style="color: rgba(255, 255, 255, 0.8); text-decoration: none; font-size: 14px;">利用規約</a>
+        <div class="footer-links">
+            <a href="terms.html">利用規約</a>
         </div>
     </div>
 

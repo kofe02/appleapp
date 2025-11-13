@@ -17,6 +17,7 @@
     <meta name="description" content="12の質問に答えて、あなたの性格タイプを診断。つがる、ふじ、王林なめ16種類のりんごからあなたにぴったりの品種が見つかります。">
     <meta name="keywords" content="りんご診断,性格診断,りんごの会,駒場祭2025,東大,慶應,青森,りんご,診断テスト">
     <meta name="author" content="りんごの会">
+    <!-- theme-color: Chrome/Safariのみサポート (Firefox/Operaは無視) -->
     <meta name="theme-color" content="#feca57">
     <link rel="canonical" href="https://kofe02.github.io/appleapp/">
 
@@ -464,6 +465,7 @@
             background: linear-gradient(135deg, #ff6b6b, #feca57);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin: 20px 0;
             font-weight: 900;
         }
@@ -875,8 +877,8 @@
                 </a>
             </div>
 
-            <div style="text-align: center; margin-top: 20px; padding-top: 20px; border-top: 1px solid #ecf0f1;">
-                <a href="terms.html" style="color: #636e72; text-decoration: none; font-size: 14px;">利用規約</a>
+            <div class="footer-links">
+                <a href="terms.html">利用規約</a>
             </div>
         </div>
     </div>
