@@ -15,7 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>りんご性格診断 - あなたはどのりんごタイプ？</title>
     <meta name="description" content="12の質問に答えて、あなたの性格タイプを診断。つがる、ふじ、王林なめ16種類のりんごからあなたにぴったりの品種が見つかります。">
-    <meta name="keywords" content="りんご診断,性格診断,りんごの会,駒場祭2025,東大,慶應,青森,りんご,診断テスト">
+    <meta name="keywords" content="りんご診断,性格診断,りんごの会,東大,慶應,青森,りんご,診断テスト">
     <meta name="author" content="りんごの会">
     <!-- theme-color: Chrome/Safariのみサポート (Firefox/Operaは無視) -->
     <meta name="theme-color" content="#feca57">
@@ -250,7 +250,7 @@
             height: 100%;
             background: white;
             border: 3px solid #dfe6e9;
-            border-radius: 50% 50% 60% 60% / 60% 60% 40% 40%;
+            border-radius: 50% 50% 40% 40% / 30% 30% 80% 80%;
             position: relative;
             transition: all 0.3s ease;
             overflow: hidden;
@@ -267,7 +267,7 @@
             background: white;
             border: 3px solid #dfe6e9;
             border-radius: 50%;
-            border-bottom: none;
+            border-top: none;
             clip-path: polygon(0 0, 100% 0, 100% 60%, 0 60%);
         }
 
@@ -311,22 +311,22 @@
 
         .stem {
             width: 3px;
-            height: 8px;
+            height: 10px;
             background: #8b4513;
             border-radius: 1px;
             position: relative;
-            left: 2px;
+            top: -5px;
         }
 
         .leaf {
             position: absolute;
-            top: 2px;
-            left: 4px;
-            width: 8px;
-            height: 5px;
-            background: #00b894;
+            left: 2px;
+            top: -2px;
+            width: 16px;
+            height: 10px;
+            background: #039434c5;
             border-radius: 0 100% 0 100%;
-            transform: rotate(30deg);
+            transform: rotate(5deg);
         }
 
         /* Hover effect */
@@ -558,6 +558,14 @@
             flex-wrap: wrap;
         }
 
+        .share-title {
+            text-align: center;
+            font-size: 20px;
+            font-weight: 700;
+            color: #2d3436;
+            margin: 30px 0 15px;
+        }
+
         .share-btn {
             display: inline-flex;
             align-items: center;
@@ -591,6 +599,16 @@
             background: #009900;
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(0, 185, 0, 0.4);
+        }
+
+        .share-btn.threads {
+            background: #000000;
+        }
+
+        .share-btn.threads:hover {
+            background: #1a1a1a;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
         }
 
         .share-icon {
@@ -736,22 +754,40 @@
             }
 
             .result-title {
-                font-size: 24px;
+                font-size: 18px;
+                margin: 10px 0 5px;
             }
 
             .apple-type {
-                font-size: 36px;
+                font-size: 24px;
+                margin: 5px 0;
             }
 
             .result-description {
-                font-size: 16px;
-                padding: 20px;
+                font-size: 13px;
+                padding: 10px;
+                margin: 8px 0;
+                line-height: 1.5;
             }
 
             .apple-result-image {
-                max-width: 250px;
-                height: 250px;
-                font-size: 80px;
+                max-width: 140px;
+                height: 140px;
+                font-size: 60px;
+            }
+
+            .apple-image-container {
+                margin: 8px auto;
+            }
+
+            .type-explanation {
+                margin: 15px 0;
+                padding: 15px;
+            }
+
+            .type-explanation h3 {
+                font-size: 16px;
+                margin-bottom: 10px;
             }
 
             .type-table {
@@ -759,19 +795,39 @@
             }
 
             .share-buttons {
-                flex-direction: column;
-                align-items: stretch;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
+                margin: 8px 0;
+            }
+
+            .share-title {
+                font-size: 15px;
+                margin: 10px 0 8px;
             }
 
             .share-btn {
                 width: 100%;
                 justify-content: center;
+                padding: 8px 12px;
+                font-size: 12px;
+            }
+
+            .share-icon {
+                width: 16px;
+                height: 16px;
+            }
+
+            .share-btn.threads {
+                grid-column: 1 / -1;
             }
 
             .social-links {
                 display: flex;
                 justify-content: center;
                 gap: 15px;
+                margin-top: 15px;
+                padding-top: 15px;
             }
 
             .social-links a {
@@ -838,11 +894,7 @@
             <div class="apple-type" id="appleType"></div>
             <div class="result-description" id="resultDescription"></div>
 
-            <div class="type-explanation">
-                <h3>あなたのタイプ解説</h3>
-                <div class="type-table" id="typeTable"></div>
-            </div>
-
+            <h3 class="share-title">結果をシェアしよう！</h3>
             <div class="share-buttons">
                 <button class="share-btn twitter" id="shareTwitter">
                     <svg class="share-icon" viewBox="0 0 24 24" fill="currentColor">
@@ -858,6 +910,17 @@
                     </svg>
                     LINEでシェア
                 </button>
+                <button class="share-btn threads" id="shareThreads">
+                    <svg class="share-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.589 12c.027 3.086.718 5.496 2.057 7.164 1.43 1.781 3.631 2.695 6.54 2.717 2.623-.02 4.358-.631 5.8-2.045 1.647-1.613 1.618-3.593 1.09-4.798-.31-.71-.873-1.3-1.634-1.75-.192 1.352-.622 2.446-1.284 3.272-.886 1.102-2.14 1.704-3.73 1.79-1.202.065-2.361-.218-3.259-.801-1.063-.689-1.685-1.74-1.752-2.964-.065-1.19.408-2.286 1.33-3.087.88-.763 2.1-1.19 3.509-1.23 1.173-.035 2.334.106 3.43.428 0-.612-.036-1.12-.133-1.538-.241-.97-.767-1.663-1.561-2.058-.678-.339-1.556-.509-2.614-.509-1.664 0-3.013.39-4.007 1.158l-.892-1.63c1.319-.963 3.052-1.452 5.154-1.452 1.446 0 2.665.27 3.622.803 1.208.674 1.979 1.815 2.289 3.39.134.679.202 1.548.202 2.582v.04c1.131.389 2.038.987 2.692 1.781.87 1.055 1.302 2.388 1.302 3.96 0 .973-.217 1.919-.644 2.816-.483 1.014-1.172 1.863-2.043 2.518-1.476 1.11-3.427 1.674-5.802 1.674zM12 16.878c1.123 0 2.063-.467 2.794-1.39.588-.741.99-1.779 1.197-3.096-1.056-.316-2.174-.476-3.322-.476-1.019 0-1.879.234-2.556.696-.593.405-.918.95-.967 1.625-.038.522.15 1.02.545 1.438.49.518 1.213.787 2.143.787l.166-.003z"/>
+                    </svg>
+                    Threadsでシェア
+                </button>
+            </div>
+
+            <div class="type-explanation">
+                <h3>あなたのタイプ解説</h3>
+                <div class="type-table" id="typeTable"></div>
             </div>
 
             <div class="social-links">
@@ -946,17 +1009,20 @@
             const isMobile = window.innerWidth <= 768;
             container.innerHTML = '';
 
+            // 回答済み質問の最大インデックスを見つける
+            let lastAnsweredIndex = -1;
+            for (let i = 0; i < answers.length; i++) {
+                if (answers[i] !== null) {
+                    lastAnsweredIndex = i;
+                }
+            }
+
             for (let i = start; i < end; i++) {
                 const q = questions[i];
                 const questionDiv = document.createElement('div');
 
-                let isDisabled = false;
-                for (let j = 0; j < i; j++) {
-                    if (answers[j] === null) {
-                        isDisabled = true;
-                        break;
-                    }
-                }
+                // 最後の回答済み質問の次の質問まで有効、その次からブラー
+                let isDisabled = i > lastAnsweredIndex + 1;
 
                 questionDiv.className = isDisabled ? 'question disabled' : 'question';
 
@@ -1188,13 +1254,13 @@
             // アルファベット説明表を作成
             const typeTableEl = document.getElementById('typeTable');
             const typeMapping = {
-                'R': { label: 'Red', desc: '赤い（情熱的・明るい）' },
+                'R': { label: 'Red', desc: '赤い（情熱的・外向的）' },
                 'G': { label: 'Green', desc: '緑/青い（冷静・内向的）' },
                 'F': { label: 'Famous', desc: '有名（トレンドに敏感）' },
                 'U': { label: 'Unique', desc: '珍しい（個性的・ニッチ）' },
                 'S': { label: 'Sweet', desc: '甘い（優しい・理想家）' },
                 'T': { label: 'Tart', desc: '酸っぱい（ストイック・現実的）' },
-                'E': { label: 'Early', desc: '早生（せっかち・効率的）' },
+                'E': { label: 'Early', desc: '早生（キビキビ・効率的）' },
                 'L': { label: 'Late', desc: '晚生（マイペース・のんびり）' }
             };
 
@@ -1241,7 +1307,7 @@
 
             // 共有ボタンの設定
             const shareUrl = 'https://kofe02.github.io/appleapp/';
-            const hashtags = `りんご診断,性格診断,${result.type},りんごの会,駒場祭2025,青森,りんご革命`;
+            const hashtags = `りんご診断,性格診断,${result.type},りんごの会,青森,りんご革命`;
 
             document.getElementById('shareTwitter').onclick = () => {
                 // シェアイベントを送信
@@ -1266,8 +1332,22 @@
                     'item_id': result.type
                 });
 
-                const text = `🍏あなたの性格をりんごで表すと…？🍎\n🍏りんご性格診断🍎\n\n私は【${appleType.name}(${result.type})】タイプでした！🍎\n${appleType.summary}\n\nあなたもやってみてね👇\n${shareUrl}\n\n#りんご診断 #駒場祭2025 #りんごの会`;
+                const text = `🍏あなたの性格をりんごで表すと…？🍎\n🍏りんご性格診断🍎\n\n私は【${appleType.name}(${result.type})】タイプでした！🍎\n${appleType.summary}\n\nあなたもやってみてね👇\n${shareUrl}\n\n#りんご診断 #りんごの会`;
                 const url = `https://line.me/R/msg/text/?${encodeURIComponent(text)}`;
+                window.open(url, '_blank', 'noopener');
+            };
+
+            document.getElementById('shareThreads').onclick = () => {
+                // シェアイベントを送信
+                gtag('event', 'share', {
+                    'event_category': 'engagement',
+                    'method': 'Threads',
+                    'content_type': 'quiz_result',
+                    'item_id': result.type
+                });
+
+                const text = `🍏あなたの性格をりんごで表すと…？🍎\n🍏りんご性格診断🍎\n\n私は【${appleType.name}(${result.type})】タイプ！🍎\n${appleType.summary}\n\nあなたにぴったりのりんごを見つけよう👇\n${shareUrl}\n\n#りんご診断 #りんごの会 #性格診断 #青森 #りんご革命`;
+                const url = `https://threads.net/intent/post?text=${encodeURIComponent(text)}`;
                 window.open(url, '_blank', 'noopener');
             };
 
@@ -1317,14 +1397,14 @@
             // タイプ解説表を再生成
             const typeTableEl = document.getElementById('typeTable');
             const typeMapping = {
-                'R': { label: 'Red', desc: '赤い（情熱的・明るい）' },
+                'R': { label: 'Red', desc: '赤い（情熱的・外向的）' },
                 'G': { label: 'Green', desc: '緑/青い（冷静・内向的）' },
                 'F': { label: 'Famous', desc: '有名（トレンドに敏感）' },
                 'U': { label: 'Unique', desc: '珍しい（個性的・ニッチ）' },
                 'S': { label: 'Sweet', desc: '甘い（優しい・理想家）' },
                 'T': { label: 'Tart', desc: '酸っぱい（ストイック・現実的）' },
-                'E': { label: 'Early', desc: '早生（せっかち・効率的）' },
-                'L': { label: 'Late', desc: '晚生（マイペース・のんびり）' }
+                'E': { label: 'Early', desc: '早生（キビキビ・効率的）' },
+                'L': { label: 'Late', desc: '晩生（マイペース・のんびり）' }
             };
 
             const userTypes = resultData.type.split('');
@@ -1367,7 +1447,7 @@
 
             // シェアボタンの設定
             const shareUrl = 'https://kofe02.github.io/appleapp/';
-            const hashtags = `りんご診断,性格診断,${resultData.type},りんごの会,駒場祭2025,青森,りんご革命`;
+            const hashtags = `りんご診断,性格診断,${resultData.type},りんごの会,青森,りんご革命`;
 
             document.getElementById('shareTwitter').onclick = () => {
                 gtag('event', 'share', {
@@ -1390,8 +1470,21 @@
                     'item_id': resultData.type
                 });
 
-                const text = `🍏あなたの性格をりんごで表すと…？🍎\n🍏りんご性格診断🍎\n\n私は【${resultData.name}(${resultData.type})】タイプでした！🍎\n${resultData.summary}\n\nあなたもやってみてね👇\n${shareUrl}\n\n#りんご診断 #駒場祭2025 #りんごの会`;
+                const text = `🍏あなたの性格をりんごで表すと…？🍎\n🍏りんご性格診断🍎\n\n私は【${resultData.name}(${resultData.type})】タイプでした！🍎\n${resultData.summary}\n\nあなたもやってみてね👇\n${shareUrl}\n\n#りんご診断 #りんごの会`;
                 const url = `https://line.me/R/msg/text/?${encodeURIComponent(text)}`;
+                window.open(url, '_blank', 'noopener');
+            };
+
+            document.getElementById('shareThreads').onclick = () => {
+                gtag('event', 'share', {
+                    'event_category': 'engagement',
+                    'method': 'Threads',
+                    'content_type': 'quiz_result',
+                    'item_id': resultData.type
+                });
+
+                const text = `🍏あなたの性格をりんごで表すと…？🍎\n🍏りんご性格診断🍎\n\n私は【${resultData.name}(${resultData.type})】タイプ！🍎\n${resultData.summary}\n\nあなたにぴったりのりんごを見つけよう👇\n${shareUrl}\n\n#りんご診断 #りんごの会 #性格診断 #青森 #りんご革命`;
+                const url = `https://threads.net/intent/post?text=${encodeURIComponent(text)}`;
                 window.open(url, '_blank', 'noopener');
             };
         }
