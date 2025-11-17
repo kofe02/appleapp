@@ -143,7 +143,17 @@
             line-height: 1.8;
         }
 
-        .start-button {
+        .buttons-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        .start-button,
+        .zukan-button {
             display: inline-block;
             padding: 20px 60px;
             font-size: 24px;
@@ -157,10 +167,13 @@
             box-shadow: 0 10px 30px rgba(255, 107, 107, 0.4);
             transition: all 0.3s ease;
             animation: pulse 2s infinite;
-            margin-top: 20px;
+            width: 70%;
+            max-width: 400px;
+            text-align: center;
         }
 
-        .start-button:hover {
+        .start-button:hover,
+        .zukan-button:hover {
             transform: translateY(-3px);
             box-shadow: 0 15px 40px rgba(255, 107, 107, 0.6);
         }
@@ -369,8 +382,9 @@
                 font-size: 14px;
             }
 
-            .start-button {
-                padding: 15px 40px;
+            .start-button,
+            .zukan-button {
+                padding: 15px 20px;
                 font-size: 20px;
             }
 
@@ -417,7 +431,10 @@
             </p>
         </div>
 
-        <a href="diagnosis.html" class="start-button">診断をスタート</a>
+        <div class="buttons-container">
+            <a href="diagnosis.html" class="start-button">診断をスタート</a>
+            <a href="zukan.html" class="zukan-button">🍎 りんご図鑑を見る</a>
+        </div>
 
         <div class="footer-links">
             <a href="terms.html">利用規約</a>

@@ -708,6 +708,45 @@
             height: 20px;
         }
 
+        .zukan-link-container {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .zukan-link {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #ff6b6b, #feca57);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 16px;
+            transition: transform 0.3s ease;
+        }
+
+        .zukan-link:hover {
+            transform: scale(1.05);
+        }
+
+        .footer-links {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .footer-links a {
+            color: #636e72;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #ff6b6b;
+        }
+
         /* Mobile responsive styles */
         @media (max-width: 768px) {
             body {
@@ -927,6 +966,7 @@
                 margin: 0;
                 font-size: 0;
                 display: inline-flex;
+                gap: 0px;
             }
 
             .social-links a svg {
@@ -1011,10 +1051,8 @@
                 <div class="type-table" id="typeTable"></div>
             </div>
 
-            <div style="text-align: center; margin: 30px 0;">
-                <a href="zukan.html"
-                    style="display: inline-block; padding: 15px 40px; background: linear-gradient(135deg, #ff6b6b, #feca57); color: white; text-decoration: none; border-radius: 25px; font-weight: 600; font-size: 16px; transition: transform 0.3s ease;"
-                    onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+            <div class="zukan-link-container">
+                <a href="zukan.html" class="zukan-link">
                     🍎 りんご図鑑を見る
                 </a>
             </div>
