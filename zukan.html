@@ -193,6 +193,7 @@
                 opacity: 0;
                 transform: translateY(-50px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -441,7 +442,7 @@
             <div class="modal-code" id="modalCode"></div>
             <div class="modal-variety" id="modalVariety"></div>
             <div class="modal-summary" id="modalSummary"></div>
-            
+
             <div class="traits-section">
                 <h3 class="traits-title">性格の特性</h3>
                 <div class="traits-grid" id="traitsGrid"></div>
@@ -484,8 +485,8 @@
 
         // 全16タイプのカードを生成
         const gridContainer = document.getElementById('gridContainer');
-        const allTypes = ['RFSE', 'RFSL', 'RFTE', 'RFTL', 'RUSE', 'RUSL', 'RUTE', 'RUTL', 
-                         'GFSE', 'GFSL', 'GFTE', 'GFTL', 'GUSE', 'GUSL', 'GUTE', 'GUTL'];
+        const allTypes = ['RFSE', 'RFSL', 'RFTE', 'RFTL', 'RUSE', 'RUSL', 'RUTE', 'RUTL',
+            'GFSE', 'GFSL', 'GFTE', 'GFTL', 'GUSE', 'GUSL', 'GUTE', 'GUTL'];
 
         allTypes.forEach(code => {
             const apple = appleTypes[code];
@@ -519,7 +520,7 @@
             document.getElementById('modalEmoji').textContent = apple.emoji;
             document.getElementById('modalName').textContent = apple.name;
             document.getElementById('modalCode').textContent = code;
-            
+
             const typeNames = types.map(t => typeMapping[t].full).join(' / ');
             document.getElementById('modalVariety').textContent = typeNames;
             document.getElementById('modalSummary').textContent = apple.description;
@@ -567,7 +568,7 @@
         function updateNavButtons() {
             const prevBtn = document.getElementById('prevCard');
             const nextBtn = document.getElementById('nextCard');
-            
+
             prevBtn.disabled = currentCardIndex === 0;
             nextBtn.disabled = currentCardIndex === allTypes.length - 1;
         }
@@ -578,14 +579,14 @@
         }
 
         // モーダル外をクリックしたら閉じる
-        document.getElementById('modal').addEventListener('click', function(e) {
+        document.getElementById('modal').addEventListener('click', function (e) {
             if (e.target === this) {
                 closeModal();
             }
         });
 
         // Escキーでモーダルを閉じる
-        document.addEventListener('keydown', function(e) {
+        document.addEventListener('keydown', function (e) {
             if (e.key === 'Escape') {
                 closeModal();
             }
