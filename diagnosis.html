@@ -511,43 +511,93 @@
         .type-explanation h3 {
             font-size: 20px;
             color: #2d3436;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             text-align: center;
         }
 
+        /* 鉄アレイスタイル */
+        .dumbbells-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .dumbbell {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .dumbbell-end {
+            width: 80px;
+            height: 80px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            font-size: 12px;
+            font-weight: 700;
+            transition: all 0.6s ease;
+            background: #e0e0e0;
+            color: #666;
+        }
+
+        .dumbbell-bar {
+            flex: 1;
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 4px;
+            min-width: 80px;
+            transition: all 0.6s ease;
+        }
+
+        .dumbbell-end .letter {
+            font-size: 28px;
+            font-weight: 900;
+            line-height: 1;
+        }
+
+        .dumbbell-end .label {
+            font-size: 10px;
+            margin-top: 2px;
+        }
+
+        /* 特性カードスタイル */
         .type-table {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 15px;
-            margin-top: 15px;
+            margin-top: 20px;
         }
 
-        .type-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px 15px;
-            background: #f8f9fa;
-            border-radius: 10px;
+        .trait-card {
+            padding: 20px;
+            background: linear-gradient(135deg, #ff6b6b, #feca57);
+            border-radius: 15px;
+            color: white;
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
             transition: all 0.3s ease;
         }
 
-        .type-row.highlighted {
-            background: linear-gradient(135deg, #ff6b6b, #feca57);
-            color: white;
-            font-weight: 600;
-            transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+        .trait-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.4);
         }
 
-        .type-label {
-            font-weight: 600;
-            font-size: 16px;
+        .trait-letter {
+            font-size: 36px;
+            font-weight: 500;
+            line-height: 1;
+            margin-bottom: 5px;
         }
 
-        .type-desc {
-            font-size: 14px;
-            text-align: right;
+        .trait-desc {
+            font-size: 13px;
+            line-height: 1.4;
+            opacity: 0.95;
         }
 
         .share-buttons {
@@ -787,11 +837,48 @@
 
             .type-explanation h3 {
                 font-size: 16px;
-                margin-bottom: 10px;
+                margin-bottom: 15px;
+            }
+
+            .dumbbells-container {
+                gap: 15px;
+                margin-bottom: 20px;
+            }
+
+            .dumbbell-end {
+                width: 65px;
+                height: 65px;
+                font-size: 10px;
+            }
+
+            .dumbbell-end .letter {
+                font-size: 24px;
+            }
+
+            .dumbbell-end .label {
+                font-size: 8px;
+            }
+
+            .dumbbell-bar {
+                min-width: 40px;
+                height: 6px;
+            }
+
+            .trait-card {
+                padding: 15px;
+            }
+
+            .trait-letter {
+                font-size: 28px;
+            }
+
+            .trait-desc {
+                font-size: 12px;
             }
 
             .type-table {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
             }
 
             .share-buttons {
@@ -1252,23 +1339,29 @@
             document.getElementById('appleType').textContent = `${appleType.name}（${result.type}）`;
             document.getElementById('resultDescription').textContent = appleType.description;
 
-            // アルファベット説明表を作成
+            // タイプ解説セクションの作成
             const typeTableEl = document.getElementById('typeTable');
             const typeMapping = {
-                'R': { label: 'Red', desc: '赤い（情熱的・外向的）' },
-                'G': { label: 'Green', desc: '緑/青い（冷静・内向的）' },
-                'F': { label: 'Famous', desc: '有名（トレンドに敏感）' },
-                'U': { label: 'Unique', desc: '珍しい（個性的・ニッチ）' },
-                'S': { label: 'Sweet', desc: '甘い（優しい・理想家）' },
-                'T': { label: 'Tart', desc: '酸っぱい（ストイック・現実的）' },
-                'E': { label: 'Early', desc: '早生（キビキビ・効率的）' },
-                'L': { label: 'Late', desc: '晚生（マイペース・のんびり）' }
+                'R': { letter: 'R', label: 'Red', full: 'Red', desc: '赤い', desc2: '情熱的・外向的' },
+                'G': { letter: 'G', label: 'Green', full: 'Green', desc: '緑/青い', desc2: '冷静・内向的' },
+                'F': { letter: 'F', label: 'Famous', full: 'Famous', desc: '有名', desc2: 'トレンドに敏感' },
+                'U': { letter: 'U', label: 'Unique', full: 'Unique', desc: '珍しい', desc2: '個性的・ニッチ' },
+                'S': { letter: 'S', label: 'Sweet', full: 'Sweet', desc: '甘い', desc2: '優しい・理想家' },
+                'T': { letter: 'T', label: 'Tart', full: 'Tart', desc: '酸っぱい', desc2: 'ストイック・現実的' },
+                'E': { letter: 'E', label: 'Early', full: 'Early', desc: '早生', desc2: 'キビキビ・効率的' },
+                'L': { letter: 'L', label: 'Late', full: 'Late', desc: '晚生', desc2: 'マイペース・のんびり' }
             };
 
             const userTypes = result.type.split('');
+
+            // まずコンテナをクリア
             typeTableEl.innerHTML = '';
 
-            // 4つの軸を表示
+            // 鉄アレイコンテナを作成
+            const dumbbellsContainer = document.createElement('div');
+            dumbbellsContainer.className = 'dumbbells-container';
+
+            // 4つの軸を鉄アレイ形式で表示
             const axes = [
                 ['R', 'G'],
                 ['F', 'U'],
@@ -1276,34 +1369,133 @@
                 ['E', 'L']
             ];
 
-            axes.forEach((axis, axisIndex) => {
-                // 軸ごとにグループ化するコンテナを作成
-                const axisGroup = document.createElement('div');
-                axisGroup.style.background = '#f0f0f0';
-                axisGroup.style.borderRadius = '10px';
-                axisGroup.style.padding = '5px';
-                axisGroup.style.display = 'flex';
-                axisGroup.style.flexDirection = 'column';
-                axisGroup.style.gap = '5px';
+            axes.forEach(axis => {
+                const dumbbell = document.createElement('div');
+                dumbbell.className = 'dumbbell';
 
-                axis.forEach(letter => {
-                    const isHighlighted = userTypes.includes(letter);
+                axis.forEach((letter, index) => {
+                    if (index === 1) {
+                        // 中央のバーを追加
+                        const bar = document.createElement('div');
+                        bar.className = 'dumbbell-bar';
+                        bar.setAttribute('data-axis', axis.join('-'));
+                        dumbbell.appendChild(bar);
+                    }
+
+                    const isActive = userTypes.includes(letter);
                     const type = typeMapping[letter];
-                    const rowDiv = document.createElement('div');
-                    rowDiv.className = `type-row ${isHighlighted ? 'highlighted' : ''}`;
 
-                    // 最初の文字を強調表示
-                    const firstLetter = type.label.charAt(0);
-                    const restOfLabel = type.label.slice(1);
-
-                    rowDiv.innerHTML = `
-                        <span class="type-label"><strong style="font-size: 1.2em; font-weight: 900;">${firstLetter}</strong>${restOfLabel}</span>
-                        <span class="type-desc">${type.desc}</span>
+                    const end = document.createElement('div');
+                    end.className = 'dumbbell-end';
+                    end.setAttribute('data-letter', letter);
+                    end.setAttribute('data-active', isActive ? 'true' : 'false');
+                    end.innerHTML = `
+                        <div class="letter">${type.letter}</div>
+                        <div class="label">${type.label}</div>
                     `;
-                    axisGroup.appendChild(rowDiv);
+                    dumbbell.appendChild(end);
                 });
 
-                typeTableEl.appendChild(axisGroup);
+                dumbbellsContainer.appendChild(dumbbell);
+            });
+
+            // 鉄アレイを最初に追加
+            typeTableEl.parentElement.insertBefore(dumbbellsContainer, typeTableEl);
+
+            // スクロールに応じた色付けアニメーション
+            function updateDumbbellColors() {
+                const dumbbells = document.querySelector('.dumbbells-container');
+                if (!dumbbells) return;
+
+                const rect = dumbbells.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+
+                // 鉄アレイがビューポートに入ってくる進捗度（0〜1）
+                let scrollProgress = 0;
+                if (rect.top < windowHeight && rect.bottom > 0) {
+                    scrollProgress = Math.max(0, Math.min(1,
+                        (windowHeight - rect.top) / (windowHeight * 0.5)
+                    ));
+                }
+
+                // 各軸の色付け
+                const allEnds = document.querySelectorAll('.dumbbell-end');
+                const allBars = document.querySelectorAll('.dumbbell-bar');
+
+                allEnds.forEach(end => {
+                    const isActive = end.getAttribute('data-active') === 'true';
+
+                    if (isActive) {
+                        // 選択された項目は色付け（単色灰色からグラデーションオレンジへ）
+                        if (scrollProgress > 0.5) {
+                            // 灰色(224,224,224)からオレンジ(255,150,100)へ
+                            const rr = Math.floor(224 - (224 - 255) * (scrollProgress - 0.5) * 2);
+                            const rg = Math.floor(224 - (224 - 107) * (scrollProgress - 0.5) * 2);
+                            const rb = Math.floor(224 - (224 - 107) * (scrollProgress - 0.5) * 2);
+                            const lr = Math.floor(224 - (224 - 254) * (scrollProgress - 0.5) * 2);
+                            const lg = Math.floor(224 - (224 - 202) * (scrollProgress - 0.5) * 2);
+                            const lb = Math.floor(224 - (224 - 87) * (scrollProgress - 0.5) * 2);
+                            end.style.background = `linear-gradient(135deg, rgb(${rr}, ${rg}, ${rb}), rgb(${lr}, ${lg}, ${lb}))`;
+                        } else {
+                            end.style.background = `linear-gradient(135deg, rgb(224,224,224), rgb(224,224,224))`;
+                        }
+                        end.style.color = scrollProgress > 0.5 ? 'white' : '#666';
+                        end.style.transform = `scale(${1 + scrollProgress * 0.1})`;
+                        end.style.boxShadow = scrollProgress > 0.3
+                            ? `0 ${5 * scrollProgress}px ${15 * scrollProgress}px rgba(255, 107, 107, ${0.4 * scrollProgress})`
+                            : 'none';
+                    } else {
+                        // 選択されていない項目は灰色のまま
+                        end.style.background = '#e0e0e0';
+                        end.style.color = '#666';
+                        end.style.transform = 'scale(1)';
+                        end.style.boxShadow = 'none';
+                    }
+                });
+
+                // バーの色付け（灰色からオレンジへのグラデーション）
+                allBars.forEach(bar => {
+                    const axis = bar.getAttribute('data-axis');
+                    const activeLetter = bar.parentElement.querySelector('.dumbbell-end[data-active="true"]')?.getAttribute('data-letter');
+
+                    if (scrollProgress > 0.5 && activeLetter) {
+                        // 灰色(224,224,224)からオレンジ(255,150,100)へ
+                        const rr = Math.floor(224 - (224 - 255) * (scrollProgress - 0.5) * 2);
+                        const rg = Math.floor(224 - (224 - 107) * (scrollProgress - 0.5) * 2);
+                        const rb = Math.floor(224 - (224 - 107) * (scrollProgress - 0.5) * 2);
+                        const lr = Math.floor(224 - (224 - 254) * (scrollProgress - 0.5) * 2);
+                        const lg = Math.floor(224 - (224 - 202) * (scrollProgress - 0.5) * 2);
+                        const lb = Math.floor(224 - (224 - 87) * (scrollProgress - 0.5) * 2);
+
+                        // 各軸の左側の文字（R, F, S, E）が選択されている場合はto left、右側（G, U, T, L）ならto right
+                        const direction = ['R', 'F', 'S', 'E'].includes(activeLetter) ? 'to left' : 'to right';
+                        bar.style.background = `linear-gradient(${direction}, #e0e0e0, #e0e0e0, rgb(${lr}, ${lg}, ${lb}), rgb(${rr}, ${rg}, ${rb}))`;
+                    } else {
+                        bar.style.background = `linear-gradient(to left, rgb(224,224,224), rgb(224,224,224))`;
+                    }
+                });
+            }
+
+            // スクロールイベントリスナーを追加
+            window.addEventListener('scroll', updateDumbbellColors);
+            // 初期表示時にも実行
+            setTimeout(updateDumbbellColors, 100);
+
+            // 4つの特性カードを作成
+            userTypes.forEach(letter => {
+                const type = typeMapping[letter];
+                const card = document.createElement('div');
+                card.className = 'trait-card';
+
+                const firstLetter = type.full.charAt(0);
+                const restOfLabel = type.full.slice(1).toLowerCase();
+
+                card.innerHTML = `
+                    <div class="trait-letter">${firstLetter}${restOfLabel}</div>
+                    <div class="trait-desc">${type.desc}</div>
+                    <div class="trait-desc">${type.desc2}</div>
+                `;
+                typeTableEl.appendChild(card);
             });
 
             // 共有ボタンの設定
@@ -1347,8 +1539,8 @@
                     'item_id': result.type
                 });
 
-                const text = `🍏あなたの性格をりんごで表すと…？🍎\n🍏りんご性格診断🍎\n\n私は【${appleType.name}(${result.type})】タイプ！🍎\n${appleType.summary}\n\nあなたにぴったりのりんごを見つけよう👇\n${shareUrl}\n\n#りんご診断 #りんごの会 #性格診断 #青森 #りんご革命`;
-                const url = `https://threads.net/intent/post?text=${encodeURIComponent(text)}`;
+                const text = `🍏あなたの性格をりんごで表すと…？🍎\n🍏りんご性格診断🍎\n\n私は【${appleType.name}(${result.type})】タイプ！🍎\n${appleType.summary}\n\nあなたにぴったりのりんごを見つけよう👇\n${shareUrl}\n@ut_keio_apple\n#りんご診断`;
+                const url = `https://www.threads.net/intent/post?text=${encodeURIComponent(text)}`;
                 window.open(url, '_blank', 'noopener');
             };
 
@@ -1395,22 +1587,35 @@
             document.getElementById('appleType').textContent = `${resultData.name}（${resultData.type}）`;
             document.getElementById('resultDescription').textContent = resultData.description;
 
-            // タイプ解説表を再生成
+            // タイプ解説セクションの作成
             const typeTableEl = document.getElementById('typeTable');
             const typeMapping = {
-                'R': { label: 'Red', desc: '赤い（情熱的・外向的）' },
-                'G': { label: 'Green', desc: '緑/青い（冷静・内向的）' },
-                'F': { label: 'Famous', desc: '有名（トレンドに敏感）' },
-                'U': { label: 'Unique', desc: '珍しい（個性的・ニッチ）' },
-                'S': { label: 'Sweet', desc: '甘い（優しい・理想家）' },
-                'T': { label: 'Tart', desc: '酸っぱい（ストイック・現実的）' },
-                'E': { label: 'Early', desc: '早生（キビキビ・効率的）' },
-                'L': { label: 'Late', desc: '晩生（マイペース・のんびり）' }
+                'R': { letter: 'R', label: 'Red', full: 'Red', desc: '赤い', desc2: '情熱的・外向的' },
+                'G': { letter: 'G', label: 'Green', full: 'Green', desc: '緑/青い', desc2: '冷静・内向的' },
+                'F': { letter: 'F', label: 'Famous', full: 'Famous', desc: '有名', desc2: 'トレンドに敏感' },
+                'U': { letter: 'U', label: 'Unique', full: 'Unique', desc: '珍しい', desc2: '個性的・ニッチ' },
+                'S': { letter: 'S', label: 'Sweet', full: 'Sweet', desc: '甘い', desc2: '優しい・理想家' },
+                'T': { letter: 'T', label: 'Tart', full: 'Tart', desc: '酸っぱい', desc2: 'ストイック・現実的' },
+                'E': { letter: 'E', label: 'Early', full: 'Early', desc: '早生', desc2: 'キビキビ・効率的' },
+                'L': { letter: 'L', label: 'Late', full: 'Late', desc: '晩生', desc2: 'マイペース・のんびり' }
             };
 
             const userTypes = resultData.type.split('');
+
+            // 既存の鉄アレイコンテナがあれば削除
+            const existingDumbbells = typeTableEl.parentElement.querySelector('.dumbbells-container');
+            if (existingDumbbells) {
+                existingDumbbells.remove();
+            }
+
+            // コンテナをクリア
             typeTableEl.innerHTML = '';
 
+            // 鉄アレイコンテナを作成
+            const dumbbellsContainer = document.createElement('div');
+            dumbbellsContainer.className = 'dumbbells-container';
+
+            // 4つの軸を鉄アレイ形式で表示
             const axes = [
                 ['R', 'G'],
                 ['F', 'U'],
@@ -1418,32 +1623,133 @@
                 ['E', 'L']
             ];
 
-            axes.forEach((axis) => {
-                const axisGroup = document.createElement('div');
-                axisGroup.style.background = '#f0f0f0';
-                axisGroup.style.borderRadius = '10px';
-                axisGroup.style.padding = '5px';
-                axisGroup.style.display = 'flex';
-                axisGroup.style.flexDirection = 'column';
-                axisGroup.style.gap = '5px';
+            axes.forEach(axis => {
+                const dumbbell = document.createElement('div');
+                dumbbell.className = 'dumbbell';
 
-                axis.forEach(letter => {
-                    const isHighlighted = userTypes.includes(letter);
+                axis.forEach((letter, index) => {
+                    if (index === 1) {
+                        // 中央のバーを追加
+                        const bar = document.createElement('div');
+                        bar.className = 'dumbbell-bar';
+                        bar.setAttribute('data-axis', axis.join('-'));
+                        dumbbell.appendChild(bar);
+                    }
+
+                    const isActive = userTypes.includes(letter);
                     const type = typeMapping[letter];
-                    const rowDiv = document.createElement('div');
-                    rowDiv.className = `type-row ${isHighlighted ? 'highlighted' : ''}`;
 
-                    const firstLetter = type.label.charAt(0);
-                    const restOfLabel = type.label.slice(1);
-
-                    rowDiv.innerHTML = `
-                        <span class="type-label"><strong style="font-size: 1.2em; font-weight: 900;">${firstLetter}</strong>${restOfLabel}</span>
-                        <span class="type-desc">${type.desc}</span>
+                    const end = document.createElement('div');
+                    end.className = 'dumbbell-end';
+                    end.setAttribute('data-letter', letter);
+                    end.setAttribute('data-active', isActive ? 'true' : 'false');
+                    end.innerHTML = `
+                        <div class="letter">${type.letter}</div>
+                        <div class="label">${type.label}</div>
                     `;
-                    axisGroup.appendChild(rowDiv);
+                    dumbbell.appendChild(end);
                 });
 
-                typeTableEl.appendChild(axisGroup);
+                dumbbellsContainer.appendChild(dumbbell);
+            });
+
+            // 鉄アレイを最初に追加
+            typeTableEl.parentElement.insertBefore(dumbbellsContainer, typeTableEl);
+
+            // スクロールに応じた色付けアニメーション
+            function updateDumbbellColorsSaved() {
+                const dumbbells = document.querySelector('.dumbbells-container');
+                if (!dumbbells) return;
+
+                const rect = dumbbells.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+
+                // 鉄アレイがビューポートに入ってくる進捗度（0〜1）
+                let scrollProgress = 0;
+                if (rect.top < windowHeight && rect.bottom > 0) {
+                    scrollProgress = Math.max(0, Math.min(1,
+                        (windowHeight - rect.top) / (windowHeight * 0.5)
+                    ));
+                }
+
+                // 各軸の色付け
+                const allEnds = document.querySelectorAll('.dumbbell-end');
+                const allBars = document.querySelectorAll('.dumbbell-bar');
+
+                allEnds.forEach(end => {
+                    const isActive = end.getAttribute('data-active') === 'true';
+
+                    if (isActive) {
+                        // 選択された項目は色付け（単色灰色からグラデーションオレンジへ）
+                        if (scrollProgress > 0.5) {
+                            // 灰色(224,224,224)からオレンジ(255,150,100)へ
+                            const rr = Math.floor(224 - (224 - 255) * (scrollProgress - 0.5) * 2);
+                            const rg = Math.floor(224 - (224 - 107) * (scrollProgress - 0.5) * 2);
+                            const rb = Math.floor(224 - (224 - 107) * (scrollProgress - 0.5) * 2);
+                            const lr = Math.floor(224 - (224 - 254) * (scrollProgress - 0.5) * 2);
+                            const lg = Math.floor(224 - (224 - 202) * (scrollProgress - 0.5) * 2);
+                            const lb = Math.floor(224 - (224 - 87) * (scrollProgress - 0.5) * 2);
+                            end.style.background = `linear-gradient(135deg, rgb(${rr}, ${rg}, ${rb}), rgb(${lr}, ${lg}, ${lb}))`;
+                        } else {
+                            end.style.background = `linear-gradient(135deg, rgb(224,224,224), rgb(224,224,224))`;
+                        }
+                        end.style.color = scrollProgress > 0.5 ? 'white' : '#666';
+                        end.style.transform = `scale(${1 + scrollProgress * 0.1})`;
+                        end.style.boxShadow = scrollProgress > 0.3
+                            ? `0 ${5 * scrollProgress}px ${15 * scrollProgress}px rgba(255, 107, 107, ${0.4 * scrollProgress})`
+                            : 'none';
+                    } else {
+                        // 選択されていない項目は灰色のまま
+                        end.style.background = '#e0e0e0';
+                        end.style.color = '#666';
+                        end.style.transform = 'scale(1)';
+                        end.style.boxShadow = 'none';
+                    }
+                });
+
+                // バーの色付け（灰色からオレンジへのグラデーション）
+                allBars.forEach(bar => {
+                    const axis = bar.getAttribute('data-axis');
+                    const activeLetter = bar.parentElement.querySelector('.dumbbell-end[data-active="true"]')?.getAttribute('data-letter');
+
+                    if (scrollProgress > 0.5 && activeLetter) {
+                        // 灰色(224,224,224)からオレンジ(255,150,100)へ
+                        const rr = Math.floor(224 - (224 - 255) * (scrollProgress - 0.5) * 2);
+                        const rg = Math.floor(224 - (224 - 107) * (scrollProgress - 0.5) * 2);
+                        const rb = Math.floor(224 - (224 - 107) * (scrollProgress - 0.5) * 2);
+                        const lr = Math.floor(224 - (224 - 254) * (scrollProgress - 0.5) * 2);
+                        const lg = Math.floor(224 - (224 - 202) * (scrollProgress - 0.5) * 2);
+                        const lb = Math.floor(224 - (224 - 87) * (scrollProgress - 0.5) * 2);
+
+                        // 各軸の左側の文字（R, F, S, E）が選択されている場合はto left、右側（G, U, T, L）ならto right
+                        const direction = ['R', 'F', 'S', 'E'].includes(activeLetter) ? 'to left' : 'to right';
+                        bar.style.background = `linear-gradient(${direction}, #e0e0e0, #e0e0e0, rgb(${lr}, ${lg}, ${lb}), rgb(${rr}, ${rg}, ${rb}))`;
+                    } else {
+                        bar.style.background = `linear-gradient(to left, rgb(224,224,224), rgb(224,224,224))`;
+                    }
+                });
+            }
+
+            // スクロールイベントリスナーを追加
+            window.addEventListener('scroll', updateDumbbellColorsSaved);
+            // 初期表示時にも実行
+            setTimeout(updateDumbbellColorsSaved, 100);
+
+            // 4つの特性カードを作成
+            userTypes.forEach(letter => {
+                const type = typeMapping[letter];
+                const card = document.createElement('div');
+                card.className = 'trait-card';
+
+                const firstLetter = type.full.charAt(0);
+                const restOfLabel = type.full.slice(1).toLowerCase();
+
+                card.innerHTML = `
+                    <div class="trait-letter">${firstLetter}${restOfLabel}</div>
+                    <div class="trait-desc">${type.desc}</div>
+                    <div class="trait-desc">${type.desc2}</div>
+                `;
+                typeTableEl.appendChild(card);
             });
 
             // シェアボタンの設定
@@ -1484,8 +1790,8 @@
                     'item_id': resultData.type
                 });
 
-                const text = `🍏あなたの性格をりんごで表すと…？🍎\n🍏りんご性格診断🍎\n\n私は【${resultData.name}(${resultData.type})】タイプ！🍎\n${resultData.summary}\n\nあなたにぴったりのりんごを見つけよう👇\n${shareUrl}\n\n#りんご診断 #りんごの会 #性格診断 #青森 #りんご革命`;
-                const url = `https://threads.net/intent/post?text=${encodeURIComponent(text)}`;
+                const text = `🍏あなたの性格をりんごで表すと…？🍎\n🍏りんご性格診断🍎\n\n私は【${resultData.name}(${resultData.type})】タイプ！🍎\n${resultData.summary}\n\nあなたにぴったりのりんごを見つけよう👇\n${shareUrl}\n@ut_keio_apple\n#りんご診断`;
+                const url = `https://www.threads.net/intent/post?text=${encodeURIComponent(text)}`;
                 window.open(url, '_blank', 'noopener');
             };
         }
