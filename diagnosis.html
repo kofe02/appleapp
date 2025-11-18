@@ -510,7 +510,7 @@
             padding: 25px;
             background: white;
             border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
         .type-explanation h3 {
@@ -583,13 +583,11 @@
             background: linear-gradient(135deg, #ff6b6b, #feca57);
             border-radius: 15px;
             color: white;
-            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
             transition: all 0.3s ease;
         }
 
         .trait-card:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.4);
         }
 
         .trait-letter {
@@ -1360,6 +1358,18 @@
             };
         }
 
+        // タイプに応じた色を取得する関数
+        function getTypeColor(type) {
+            const firstTwo = type.substring(0, 2);
+            const colorMap = {
+                'RF': 'rgba(255, 106, 91, 0.2)',
+                'RU': 'rgba(248, 198, 95, 0.2)',
+                'GF': 'rgba(116, 228, 93, 0.2)',
+                'GU': 'rgba(93, 161, 230, 0.2)'
+            };
+            return colorMap[firstTwo] || 'rgba(0, 0, 0, 0.2)';
+        }
+
         function showResults() {
             const result = calculateResult();
             if (!result) return;
@@ -1400,6 +1410,22 @@
 
             document.getElementById('appleType').textContent = `${appleType.name}（${result.type}）`;
             document.getElementById('resultDescription').textContent = appleType.description;
+
+            // タイプに応じた色を適用
+            const typeColor = getTypeColor(result.type);
+            const resultDescEl = document.getElementById('resultDescription');
+            resultDescEl.style.border = `3px solid ${typeColor.replace('0.2', '1')}`;
+
+            const appleTypeEl = document.getElementById('appleType');
+            const solidColor = typeColor.replace('0.2', '1');
+            appleTypeEl.style.background = `linear-gradient(135deg, ${solidColor}, ${solidColor})`;
+            appleTypeEl.style.webkitBackgroundClip = 'text';
+            appleTypeEl.style.backgroundClip = 'text';
+
+            const typeExplanationEl = document.querySelector('.type-explanation');
+            if (typeExplanationEl) {
+                typeExplanationEl.style.boxShadow = `0 5px 15px ${typeColor}`;
+            }
 
             // タイプ解説セクションの作成
             const typeTableEl = document.getElementById('typeTable');
@@ -1451,6 +1477,13 @@
                     end.className = 'dumbbell-end';
                     end.setAttribute('data-letter', letter);
                     end.setAttribute('data-active', isActive ? 'true' : 'false');
+
+                    // アクティブな場合はタイプカラーの影を適用
+                    if (isActive) {
+                        const shadowColor = typeColor.replace('0.2', '0.3');
+                        end.style.boxShadow = `0 4px 8px ${shadowColor}`;
+                    }
+
                     end.innerHTML = `
                         <div class="letter">${type.letter}</div>
                         <div class="label">${type.label}</div>
@@ -1503,9 +1536,6 @@
                         }
                         end.style.color = scrollProgress > 0.5 ? 'white' : '#666';
                         end.style.transform = `scale(${1 + scrollProgress * 0.1})`;
-                        end.style.boxShadow = scrollProgress > 0.3
-                            ? `0 ${5 * scrollProgress}px ${15 * scrollProgress}px rgba(255, 107, 107, ${0.4 * scrollProgress})`
-                            : 'none';
                     } else {
                         // 選択されていない項目は灰色のまま
                         end.style.background = '#e0e0e0';
@@ -1655,6 +1685,22 @@
             document.getElementById('appleType').textContent = `${resultData.name}（${resultData.type}）`;
             document.getElementById('resultDescription').textContent = resultData.description;
 
+            // タイプに応じた色を適用
+            const typeColor = getTypeColor(resultData.type);
+            const resultDescEl = document.getElementById('resultDescription');
+            resultDescEl.style.border = `3px solid ${typeColor.replace('0.2', '1')}`;
+
+            const appleTypeEl = document.getElementById('appleType');
+            const solidColor = typeColor.replace('0.2', '1');
+            appleTypeEl.style.background = `linear-gradient(135deg, ${solidColor}, ${solidColor})`;
+            appleTypeEl.style.webkitBackgroundClip = 'text';
+            appleTypeEl.style.backgroundClip = 'text';
+
+            const typeExplanationEl = document.querySelector('.type-explanation');
+            if (typeExplanationEl) {
+                typeExplanationEl.style.boxShadow = `0 5px 15px ${typeColor}`;
+            }
+
             // タイプ解説セクションの作成
             const typeTableEl = document.getElementById('typeTable');
             const typeMapping = {
@@ -1711,6 +1757,13 @@
                     end.className = 'dumbbell-end';
                     end.setAttribute('data-letter', letter);
                     end.setAttribute('data-active', isActive ? 'true' : 'false');
+
+                    // アクティブな場合はタイプカラーの影を適用
+                    if (isActive) {
+                        const shadowColor = typeColor.replace('0.2', '0.3');
+                        end.style.boxShadow = `0 4px 8px ${shadowColor}`;
+                    }
+
                     end.innerHTML = `
                         <div class="letter">${type.letter}</div>
                         <div class="label">${type.label}</div>
@@ -1763,9 +1816,6 @@
                         }
                         end.style.color = scrollProgress > 0.5 ? 'white' : '#666';
                         end.style.transform = `scale(${1 + scrollProgress * 0.1})`;
-                        end.style.boxShadow = scrollProgress > 0.3
-                            ? `0 ${5 * scrollProgress}px ${15 * scrollProgress}px rgba(255, 107, 107, ${0.4 * scrollProgress})`
-                            : 'none';
                     } else {
                         // 選択されていない項目は灰色のまま
                         end.style.background = '#e0e0e0';

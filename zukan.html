@@ -602,6 +602,18 @@
             "GUTL": { name: "はつ恋ぐりん", description: "鮮烈な酸味とシャープな香りが特徴の、新しい品種でニッチなファンが多いりんごは、きっとあなたにぴったりのはず！（夏緑の写真にて代用）", summary: "マイペースでストイックな個性派", emoji: "🍏", image: "./src/apples/夏緑.jpg" }
         };
 
+        // タイプに応じた色を取得する関数
+        function getTypeColor(type) {
+            const firstTwo = type.substring(0, 2);
+            const colorMap = {
+                'RF': 'rgb(255, 106, 91)',
+                'RU': 'rgb(248, 198, 95)',
+                'GF': 'rgb(116, 228, 93)',
+                'GU': 'rgb(93, 161, 230)'
+            };
+            return colorMap[firstTwo] || '#e0e0e0';
+        }
+
         // 全16タイプのカードを生成
         const gridContainer = document.getElementById('gridContainer');
         const allTypes = ['RFSE', 'RFSL', 'RFTE', 'RFTL', 'RUSE', 'RUSL', 'RUTE', 'RUTL',
@@ -612,6 +624,19 @@
             const card = document.createElement('div');
             card.className = 'apple-card';
             card.onclick = () => openModal(code);
+
+            // タイプに応じた枠線の色を設定
+            const borderColor = getTypeColor(code);
+            card.style.borderColor = borderColor;
+
+            // ホバー時の影の色を設定
+            const shadowColor = borderColor.replace('rgb', 'rgba').replace(')', ', 0.3)');
+            card.addEventListener('mouseenter', () => {
+                card.style.boxShadow = `0 10px 30px ${shadowColor}`;
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.boxShadow = '';
+            });
 
             card.innerHTML = `
                 <div class="apple-image"><img src="${apple.image}" alt="${apple.name}" /></div>
@@ -639,6 +664,11 @@
             document.getElementById('modalImage').innerHTML = `<img src="${apple.image}" alt="${apple.name}" />`;
             document.getElementById('modalName').textContent = apple.name;
             document.getElementById('modalCode').textContent = code;
+
+            // タイプに応じた色を.modal-codeに適用
+            const modalCodeEl = document.getElementById('modalCode');
+            const typeColor = getTypeColor(code);
+            modalCodeEl.style.color = typeColor;
 
             const typeNames = types.map(t => typeMapping[t].full).join(' / ');
             document.getElementById('modalVariety').textContent = typeNames;
