@@ -120,6 +120,13 @@
             animation: fadeIn 1.5s ease;
         }
 
+        .title-image {
+            width: auto;
+            height: 400px;
+            filter: drop-shadow(0 10px 30px rgba(255, 107, 107, 0.4));
+            animation: pulse 2s infinite;
+        }
+
         .description {
             background: rgba(255, 255, 255, 0.95);
             padding: 30px;
@@ -194,7 +201,7 @@
             display: flex;
             flex-direction: column;
             position: absolute;
-            height: 200%;
+            height: auto;
         }
 
         .apple-column.left {
@@ -361,9 +368,20 @@
             text-decoration: underline;
         }
 
+        .photo-credit {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 12px;
+            margin-top: 10px;
+        }
+
         @media (max-width: 768px) {
             h1 {
                 font-size: 32px;
+            }
+
+            .title-image {
+                width: auto;
+                height: 150px;
             }
 
             .subtitle {
@@ -416,11 +434,8 @@
     <!-- Main content -->
     <div class="welcome-container">
         <div class="logo">
-            <div class="logo-icon">🍎</div>
-            <h1>りんご性格診断</h1>
+            <img src="src/title.png" alt="りんご診断タイトル" class="title-image" />
         </div>
-
-        <p class="subtitle">あなたはどのりんごタイプ？</p>
 
         <div class="description">
             <h2>16品種のりんごから<br>あなたにぴったりの品種を診断</h2>
@@ -438,37 +453,38 @@
 
         <div class="footer-links">
             <a href="terms.html">利用規約</a>
+            <p class="photo-credit">写真出典：りんご大学ホームページ</p>
         </div>
     </div>
 
     <script>
         // 16 apple types with their names and image paths
         const appleTypes = [
-            { name: "つがる", emoji: "🍎", src: "" },
-            { name: "ふじ", emoji: "🍎", src: "" },
-            { name: "ジョナゴールド", emoji: "🍎", src: "" },
-            { name: "紅玉", emoji: "🍎", src: "" },
-            { name: "未希らいふ", emoji: "🍎", src: "" },
-            { name: "世界一", emoji: "🍎", src: "" },
-            { name: "御所川原", emoji: "🍎", src: "" },
-            { name: "むつ", emoji: "🍎", src: "" },
-            { name: "トキ", emoji: "🍏", src: "" },
-            { name: "王林", emoji: "🍏", src: "" },
-            { name: "きおう", emoji: "🍏", src: "" },
-            { name: "シナノゴールド", emoji: "🍏", src: "" },
-            { name: "ぐんま名月", emoji: "🍏", src: "" },
-            { name: "金星", emoji: "🍏", src: "" },
-            { name: "祝", emoji: "🍏", src: "" },
-            { name: "はつ恋ぐりん", emoji: "🍏", src: "" }
+            { name: "つがる", emoji: "🍎", src: "./src/apples/つがる.png" },
+            { name: "ふじ", emoji: "🍎", src: "./src/apples/ふじ.jpg" },
+            { name: "ジョナゴールド", emoji: "🍎", src: "./src/apples/ジョナゴールド.jpg" },
+            { name: "紅玉", emoji: "🍎", src: "./src/apples/紅玉.jpg" },
+            { name: "未希らいふ", emoji: "🍎", src: "./src/apples/未希ライフ.jpg" },
+            { name: "世界一", emoji: "🍎", src: "./src/apples/世界一.jpg" },
+            { name: "御所川原", emoji: "🍎", src: "./src/apples/御所川原.jpg" },
+            { name: "むつ", emoji: "🍏", src: "./src/apples/陸奥.jpg" },
+            { name: "トキ", emoji: "🍏", src: "./src/apples/トキ.jpg" },
+            { name: "王林", emoji: "🍏", src: "./src/apples/王林.jpg" },
+            { name: "きおう", emoji: "🍏", src: "./src/apples/きおう.jpg" },
+            { name: "シナノゴールド", emoji: "🍏", src: "./src/apples/シナノゴールド.jpg" },
+            { name: "ぐんま名月", emoji: "🍏", src: "./src/apples/ぐんま名月.jpg" },
+            { name: "金星", emoji: "🍏", src: "./src/apples/金星.jpg" },
+            { name: "祝", emoji: "🍏", src: "./src/apples/祝.jpg" },
+            { name: "はつ恋ぐりん", emoji: "🍏", src: "./src/apples/夏緑.jpg" }
         ];
 
         // Create apple items for each column
         function createAppleColumn(columnId) {
             const column = document.getElementById(columnId);
-            const applesPerColumn = 8;
+            const applesPerColumn = appleTypes.length; // 16種類
 
-            // Create two sets for infinite scroll
-            for (let set = 0; set < 2; set++) {
+            // Create three sets for smooth infinite scroll
+            for (let set = 0; set < 3; set++) {
                 for (let i = 0; i < applesPerColumn; i++) {
                     const index = i % appleTypes.length;
                     const apple = appleTypes[index];
@@ -479,7 +495,7 @@
 
                     const colorClass = apple.emoji === '🍎' ? 'red' : 'green';
                     const imageContent = apple.src ?
-                        `<img src="${apple.src}" alt="${apple.name}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50% 50% 55% 55% / 55% 55% 45% 45%;" />` :
+                        `<img src="${apple.src}" alt="${apple.name}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50% 50% 50% 50%" />` :
                         `<div class="apple-photo ${colorClass}"></div>`;
 
                     appleItem.innerHTML = `
