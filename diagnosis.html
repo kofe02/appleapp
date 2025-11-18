@@ -76,6 +76,11 @@
             margin-bottom: 20px;
         }
 
+        .logo-image {
+            height: 200px;
+            width: auto;
+        }
+
         .logo-icon {
             width: 50px;
             height: 50px;
@@ -747,6 +752,13 @@
             color: #ff6b6b;
         }
 
+        .photo-credit {
+            text-align: center;
+            margin-top: 10px;
+            color: #636e72;
+            font-size: 12px;
+        }
+
         /* Mobile responsive styles */
         @media (max-width: 768px) {
             body {
@@ -835,6 +847,10 @@
 
             .navigation {
                 gap: 10px;
+            }
+
+            .logo-image {
+                height: 100px;
             }
 
             .btn {
@@ -991,8 +1007,7 @@
     <div class="container">
         <div class="header">
             <div class="logo">
-                <div class="logo-icon">🍎</div>
-                <h1>りんご性格診断</h1>
+                <img src="src/タイトル透過.png" alt="りんご性格診断" class="logo-image" />
             </div>
             <p class="subtitle">12の質問であなたのりんごタイプを診断します</p>
         </div>
@@ -1076,6 +1091,7 @@
 
             <div class="footer-links">
                 <a href="terms.html">利用規約</a>
+                <p class="photo-credit">写真出典：りんご大学ホームページ</p>
             </div>
         </div>
     </div>
@@ -1104,22 +1120,22 @@
         ];
 
         const appleTypes = {
-            "RFSE": { name: "つがる", description: "豊かな甘みとパリッとした食感が特徴の、誰からも愛される早生（わせ）りんごは、きっとあなたにぴったりのはず！", summary: "明るく親しみやすい早生の人気者", image: "" },
-            "RFSL": { name: "ふじ", description: "蜜が入りやすく、甘さとシャキシャキ感のバランスがとれた王道りんごは、きっとあなたにぴったりのはず！", summary: "安定感抜群の王道タイプ", image: "" },
-            "RFTE": { name: "ジョナゴールド", description: "強い酸味と甘みのメリハリがあり、料理やお菓子作りにも人気のりんごは、きっとあなたにぴったりのはず！", summary: "アクティブでメリハリのある人気者", image: "" },
-            "RFTL": { name: "紅玉", description: "ガツンとくる力強い酸味が特徴で、古くから愛される定番品種は、きっとあなたにぴったりのはず！", summary: "情熱的でストイックな定番品種", image: "" },
-            "RUSE": { name: "未希らいふ", description: "さっぱりとした甘みとジューシーな果汁が特徴の、市場では珍しい早生（わせ）品種は、きっとあなたにぴったりのはず！", summary: "個性的で優しい早生のレア品種", image: "" },
-            "RUSL": { name: "世界一", description: "規格外の大きさと優しい甘さが特徴の、贈答品としても人気の珍しい品種は、きっとあなたにぴったりのはず！", summary: "大らかで優しい個性派", image: "" },
-            "RUTE": { name: "御所川原", description: "しっかりとした酸味があり、流通量が少なく知る人ぞ知るニッチな品種は、きっとあなたにぴったりのはず！", summary: "アクティブでストイックな個性派", image: "" },
-            "RUTL": { name: "むつ", description: "大型で食べ応えのある果肉と程よい酸味が特徴の、じっくり味わいたい珍しい晚生（おくて）品種は、きっとあなたにぴったりのはず！", summary: "じっくり型のストイック個性派", image: "" },
-            "GFSE": { name: "トキ", description: "甘みが強く酸味が少ない、爽やかな味わいが特徴の、近年人気の高い黄色いりんごは、きっとあなたにぴったりのはず！", summary: "穏やかで優しい早生の人気者", image: "" },
-            "GFSL": { name: "王林", description: "強い甘さと独特な香りが特徴の、誰もが知る緑黄色の定番品種は、きっとあなたにぴったりのはず！", summary: "落ち着いた優しさの王道タイプ", image: "" },
-            "GFTE": { name: "きおう", description: "さっぱりとした酸味とシャキシャキ感が特徴の、初秋に出回る爽やかな黄色いりんごは、きっとあなたにぴったりのはず！", summary: "冷静でストイックな早生の人気者", image: "" },
-            "GFTL": { name: "シナノゴールド", description: "心地よい酸味とパリッとした食感が特徴の、貯蔵性の高い黄色いりんごは、きっとあなたにぴったりのはず！", summary: "着実でストイックな定番品種", image: "" },
-            "GUSE": { name: "ぐんま名月", description: "濃厚な甘みとほのかな香りが特徴の、希少な黄色い高級品種は、きっとあなたにぴったりのはず！", summary: "穏やかで優しい個性派の高級品", image: "" },
-            "GUSL": { name: "金星", description: "上品でまろやかな甘さが特徴の、表面のサビが特徴的な珍しい黄色いりんごは、きっとあなたにぴったりのはず！", summary: "マイペースで優しい個性派", image: "" },
-            "GUTE": { name: "祝", description: "昔ながらの爽やかな酸味が特徴の、一部の地域でしか流通しない非常に珍しい品種は、きっとあなたにぴったりのはず！", summary: "冷静でストイックなレア品種", image: "" },
-            "GUTL": { name: "はつ恋ぐりん", description: "鮮烈な酸味とシャープな香りが特徴の、新しい品種でニッチなファンが多いりんごは、きっとあなたにぴったりのはず！", summary: "マイペースでストイックな個性派", image: "" }
+            "RFSE": { name: "つがる", description: "豊かな甘みとパリッとした食感が特徴の、誰からも愛される早生（わせ）りんごは、きっとあなたにぴったりのはず！", summary: "明るく親しみやすい早生の人気者", image: "./src/apples/つがる.png" },
+            "RFSL": { name: "ふじ", description: "蜜が入りやすく、甘さとシャキシャキ感のバランスがとれた王道りんごは、きっとあなたにぴったりのはず！", summary: "安定感抜群の王道タイプ", image: "./src/apples/ふじ.jpg" },
+            "RFTE": { name: "ジョナゴールド", description: "強い酸味と甘みのメリハリがあり、料理やお菓子作りにも人気のりんごは、きっとあなたにぴったりのはず！", summary: "アクティブでメリハリのある人気者", image: "./src/apples/ジョナゴールド.jpg" },
+            "RFTL": { name: "紅玉", description: "ガツンとくる力強い酸味が特徴で、古くから愛される定番品種は、きっとあなたにぴったりのはず！", summary: "情熱的でストイックな定番品種", image: "./src/apples/紅玉.jpg" },
+            "RUSE": { name: "未希らいふ", description: "さっぱりとした甘みとジューシーな果汁が特徴の、市場では珍しい早生（わせ）品種は、きっとあなたにぴったりのはず！", summary: "個性的で優しい早生のレア品種", image: "./src/apples/未希ライフ.jpg" },
+            "RUSL": { name: "世界一", description: "規格外の大きさと優しい甘さが特徴の、贈答品としても人気の珍しい品種は、きっとあなたにぴったりのはず！", summary: "大らかで優しい個性派", image: "./src/apples/世界一.jpg" },
+            "RUTE": { name: "御所川原", description: "しっかりとした酸味があり、流通量が少なく知る人ぞ知るニッチな品種は、きっとあなたにぴったりのはず！", summary: "アクティブでストイックな個性派", image: "./src/apples/御所川原.jpg" },
+            "RUTL": { name: "むつ", description: "大型で食べ応えのある果肉と程よい酸味が特徴の、じっくり味わいたい珍しい晚生（おくて）品種は、きっとあなたにぴったりのはず！", summary: "じっくり型のストイック個性派", image: "./src/apples/陸奥.jpg" },
+            "GFSE": { name: "トキ", description: "甘みが強く酸味が少ない、爽やかな味わいが特徴の、近年人気の高い黄色いりんごは、きっとあなたにぴったりのはず！", summary: "穏やかで優しい早生の人気者", image: "./src/apples/トキ.jpg" },
+            "GFSL": { name: "王林", description: "強い甘さと独特な香りが特徴の、誰もが知る緑黄色の定番品種は、きっとあなたにぴったりのはず！", summary: "落ち着いた優しさの王道タイプ", image: "./src/apples/王林.jpg" },
+            "GFTE": { name: "きおう", description: "さっぱりとした酸味とシャキシャキ感が特徴の、初秋に出回る爽やかな黄色いりんごは、きっとあなたにぴったりのはず！", summary: "冷静でストイックな早生の人気者", image: "./src/apples/きおう.jpg" },
+            "GFTL": { name: "シナノゴールド", description: "心地よい酸味とパリッとした食感が特徴の、貯蔵性の高い黄色いりんごは、きっとあなたにぴったりのはず！", summary: "着実でストイックな定番品種", image: "./src/apples/シナノゴールド.jpg" },
+            "GUSE": { name: "ぐんま名月", description: "濃厚な甘みとほのかな香りが特徴の、希少な黄色い高級品種は、きっとあなたにぴったりのはず！", summary: "穏やかで優しい個性派の高級品", image: "./src/apples/ぐんま名月.jpg" },
+            "GUSL": { name: "金星", description: "上品でまろやかな甘さが特徴の、表面のサビが特徴的な珍しい黄色いりんごは、きっとあなたにぴったりのはず！", summary: "マイペースで優しい個性派", image: "./src/apples/金星.jpg" },
+            "GUTE": { name: "祝", description: "昔ながらの爽やかな酸味が特徴の、一部の地域でしか流通しない非常に珍しい品種は、きっとあなたにぴったりのはず！", summary: "冷静でストイックなレア品種", image: "./src/apples/祝.jpg" },
+            "GUTL": { name: "はつ恋ぐりん", description: "鮮烈な酸味とシャープな香りが特徴の、新しい品種でニッチなファンが多いりんごは、きっとあなたにぴったりのはず！（写真は夏緑です）", summary: "マイペースでストイックな個性派", image: "./src/apples/夏緑.jpg" }
         };        // Define apple colors for each position
         const appleColors = [
             '#ff6b6b', // Position 1 - Strong red
@@ -1626,9 +1642,15 @@
             document.getElementById('resultContainer').style.display = 'block';
             document.getElementById('progressBar').style.width = '100%';
 
+            // appleTypesから画像情報を取得
+            const appleType = appleTypes[resultData.type];
             const appleImageEl = document.getElementById('appleImage');
-            const isGreen = resultData.type[0] === 'G';
-            appleImageEl.textContent = isGreen ? '🍏' : '🍎';
+            if (appleType && appleType.image) {
+                appleImageEl.innerHTML = `<img src="${appleType.image}" alt="${resultData.name}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 20px;" />`;
+            } else {
+                const isGreen = resultData.type[0] === 'G';
+                appleImageEl.textContent = isGreen ? '🍏' : '🍎';
+            }
 
             document.getElementById('appleType').textContent = `${resultData.name}（${resultData.type}）`;
             document.getElementById('resultDescription').textContent = resultData.description;
