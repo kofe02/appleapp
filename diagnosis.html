@@ -1237,12 +1237,12 @@
             answers[questionIndex] = value;
             renderQuestions();
 
-            // 最初の回答時にquiz_startイベントを送信
+            // 最初の回答時に診断開始イベントを送信（GA4形式）
             const answeredCount = answers.filter(a => a !== null).length;
             if (answeredCount === 1) {
-                gtag('event', 'quiz_start', {
-                    'event_category': 'engagement',
-                    'event_label': 'first_question_answered'
+                gtag('event', 'diagnosis_start', {
+                    engagement_type: 'quiz',
+                    question_total: 12
                 });
             }
 
@@ -1376,12 +1376,16 @@
 
             const appleType = appleTypes[result.type];
 
-            // 診断完了イベントを送信
-            gtag('event', 'quiz_complete', {
-                'event_category': 'engagement',
-                'event_label': 'diagnosis_completed',
-                'apple_type': result.type,
-                'apple_name': appleType.name
+            // 診断完了イベントを送信（GA4形式）
+            console.log('診断完了イベント送信:', {
+                apple_type: result.type,
+                apple_name: appleType.name
+            });
+            gtag('event', 'diagnosis_complete', {
+                apple_type: result.type,
+                apple_name: appleType.name,
+                apple_summary: appleType.summary,
+                value: 1
             });
 
             // 結果をlocalStorageに保存
@@ -1595,12 +1599,12 @@
             const hashtags = `りんご診断,性格診断,${result.type},りんごの会,青森,りんご革命`;
 
             document.getElementById('shareTwitter').onclick = () => {
-                // シェアイベントを送信
+                // シェアイベントを送信（GA4形式）
                 gtag('event', 'share', {
-                    'event_category': 'engagement',
-                    'method': 'Twitter',
-                    'content_type': 'quiz_result',
-                    'item_id': result.type
+                    method: 'Twitter',
+                    content_type: 'diagnosis_result',
+                    apple_type: result.type,
+                    apple_name: appleType.name
                 });
 
                 const text = `🍏あなたの性格をりんごで表すと…？🍎\n🍏りんご性格診断🍎\n\n私は【${appleType.name}(${result.type})】タイプ！🍎\n${appleType.summary}\n\nあなたにぴったりのりんごを見つけよう👇\n${shareUrl}\n\n#${hashtags.replace(/,/g, ' #')}\n@ut_keio_apple`;
@@ -1609,12 +1613,12 @@
             };
 
             document.getElementById('shareLine').onclick = () => {
-                // シェアイベントを送信
+                // シェアイベントを送信（GA4形式）
                 gtag('event', 'share', {
-                    'event_category': 'engagement',
-                    'method': 'LINE',
-                    'content_type': 'quiz_result',
-                    'item_id': result.type
+                    method: 'LINE',
+                    content_type: 'diagnosis_result',
+                    apple_type: result.type,
+                    apple_name: appleType.name
                 });
 
                 const text = `🍏あなたの性格をりんごで表すと…？🍎\n🍏りんご性格診断🍎\n\n私は【${appleType.name}(${result.type})】タイプでした！🍎\n${appleType.summary}\n\nあなたもやってみてね👇\n${shareUrl}\n\n#りんご診断 #りんごの会`;
@@ -1623,12 +1627,12 @@
             };
 
             document.getElementById('shareThreads').onclick = () => {
-                // シェアイベントを送信
+                // シェアイベントを送信（GA4形式）
                 gtag('event', 'share', {
-                    'event_category': 'engagement',
-                    'method': 'Threads',
-                    'content_type': 'quiz_result',
-                    'item_id': result.type
+                    method: 'Threads',
+                    content_type: 'diagnosis_result',
+                    apple_type: result.type,
+                    apple_name: appleType.name
                 });
 
                 const text = `🍏あなたの性格をりんごで表すと…？🍎\n🍏りんご性格診断🍎\n\n私は【${appleType.name}(${result.type})】タイプ！🍎\n${appleType.summary}\n\nあなたにぴったりのりんごを見つけよう👇\n${shareUrl}\n@ut_keio_apple\n#りんご診断`;
@@ -1876,10 +1880,10 @@
 
             document.getElementById('shareTwitter').onclick = () => {
                 gtag('event', 'share', {
-                    'event_category': 'engagement',
-                    'method': 'Twitter',
-                    'content_type': 'quiz_result',
-                    'item_id': resultData.type
+                    method: 'Twitter',
+                    content_type: 'diagnosis_result',
+                    apple_type: resultData.type,
+                    apple_name: resultData.name
                 });
 
                 const text = `🍏あなたの性格をりんごで表すと…？🍎\n🍏りんご性格診断🍎\n\n私は【${resultData.name}(${resultData.type})】タイプ！🍎\n${resultData.summary}\n\nあなたにぴったりのりんごを見つけよう👇\n${shareUrl}\n\n#${hashtags.replace(/,/g, ' #')}\n@ut_keio_apple`;
@@ -1889,10 +1893,10 @@
 
             document.getElementById('shareLine').onclick = () => {
                 gtag('event', 'share', {
-                    'event_category': 'engagement',
-                    'method': 'LINE',
-                    'content_type': 'quiz_result',
-                    'item_id': resultData.type
+                    method: 'LINE',
+                    content_type: 'diagnosis_result',
+                    apple_type: resultData.type,
+                    apple_name: resultData.name
                 });
 
                 const text = `🍏あなたの性格をりんごで表すと…？🍎\n🍏りんご性格診断🍎\n\n私は【${resultData.name}(${resultData.type})】タイプでした！🍎\n${resultData.summary}\n\nあなたもやってみてね👇\n${shareUrl}\n\n#りんご診断 #りんごの会`;
@@ -1902,10 +1906,10 @@
 
             document.getElementById('shareThreads').onclick = () => {
                 gtag('event', 'share', {
-                    'event_category': 'engagement',
-                    'method': 'Threads',
-                    'content_type': 'quiz_result',
-                    'item_id': resultData.type
+                    method: 'Threads',
+                    content_type: 'diagnosis_result',
+                    apple_type: resultData.type,
+                    apple_name: resultData.name
                 });
 
                 const text = `🍏あなたの性格をりんごで表すと…？🍎\n🍏りんご性格診断🍎\n\n私は【${resultData.name}(${resultData.type})】タイプ！🍎\n${resultData.summary}\n\nあなたにぴったりのりんごを見つけよう👇\n${shareUrl}\n@ut_keio_apple\n#りんご診断`;
