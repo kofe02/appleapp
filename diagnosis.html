@@ -1602,6 +1602,7 @@
                 // シェアイベントを送信（GA4形式）
                 gtag('event', 'share', {
                     method: 'Twitter',
+                    share_destination: 'Twitter',
                     content_type: 'diagnosis_result',
                     apple_type: result.type,
                     apple_name: appleType.name
@@ -1616,6 +1617,7 @@
                 // シェアイベントを送信（GA4形式）
                 gtag('event', 'share', {
                     method: 'LINE',
+                    share_destination: 'LINE',
                     content_type: 'diagnosis_result',
                     apple_type: result.type,
                     apple_name: appleType.name
@@ -1630,6 +1632,7 @@
                 // シェアイベントを送信（GA4形式）
                 gtag('event', 'share', {
                     method: 'Threads',
+                    share_destination: 'Threads',
                     content_type: 'diagnosis_result',
                     apple_type: result.type,
                     apple_name: appleType.name
@@ -1881,6 +1884,7 @@
             document.getElementById('shareTwitter').onclick = () => {
                 gtag('event', 'share', {
                     method: 'Twitter',
+                    share_destination: 'Twitter',
                     content_type: 'diagnosis_result',
                     apple_type: resultData.type,
                     apple_name: resultData.name
@@ -1894,6 +1898,7 @@
             document.getElementById('shareLine').onclick = () => {
                 gtag('event', 'share', {
                     method: 'LINE',
+                    share_destination: 'LINE',
                     content_type: 'diagnosis_result',
                     apple_type: resultData.type,
                     apple_name: resultData.name
@@ -1907,6 +1912,7 @@
             document.getElementById('shareThreads').onclick = () => {
                 gtag('event', 'share', {
                     method: 'Threads',
+                    share_destination: 'Threads',
                     content_type: 'diagnosis_result',
                     apple_type: resultData.type,
                     apple_name: resultData.name
